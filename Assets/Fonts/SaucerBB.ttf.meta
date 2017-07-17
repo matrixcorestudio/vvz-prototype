@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b84cac202edd04df5a0f2303a9d28013
+timeCreated: 1499194527
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Saucer BB
+  fontNames:
+  - Saucer BB
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

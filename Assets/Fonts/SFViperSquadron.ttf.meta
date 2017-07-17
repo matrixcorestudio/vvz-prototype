@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 075628453697c47f3b14126cd42f4c6a
+timeCreated: 1499203034
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: SF Viper Squadron
+  fontNames:
+  - SF Viper Squadron
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

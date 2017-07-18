@@ -13,11 +13,6 @@ public class PlayerDiceRoll : NetworkBehaviour
 	public int buttonWidht = 70;
 	public int buttonHeight = 20;
 
-	int lastVikingRollValue = 0;
-	int lastZombieRollValue = 0;
-
-	DiceType lastDiceType = DiceType.None;
-
 	void OnGUI()
 	{
 		int xpos = offsetX + 10;
@@ -27,57 +22,43 @@ public class PlayerDiceRoll : NetworkBehaviour
 		ypos += vSpacing;
 		if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D6.ToString()))
 		{
-			//lastVikingRollValue = CalculateResult(lastDiceType = DiceType.D6);
-			lastDiceType = DiceType.D6;
-			CmdRollDice();
+			CmdRollDice(DiceType.D6);
 		}
 
 		ypos += vSpacing;
 		if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D6Plus2.ToString()))
 		{
-			//lastVikingRollValue = CalculateResult(lastDiceType = DiceType.D6Plus2);
-			lastDiceType = DiceType.D6Plus2;
-			CmdRollDice();
+			CmdRollDice(DiceType.D6Plus2);
 		}
 
 		ypos += vSpacing;
 		if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D10Max8.ToString()))
 		{
-			//lastVikingRollValue = CalculateResult(lastDiceType = DiceType.D10Max8);
-			lastDiceType = DiceType.D10Max8;
-			CmdRollDice();
+			CmdRollDice(DiceType.D10Max8);
 		}
 
 		ypos += vSpacing;
 		if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D12Min3.ToString()))
 		{
-			//lastVikingRollValue = CalculateResult(lastDiceType = DiceType.D12Min3);
-			lastDiceType = DiceType.D12Min3;
-			CmdRollDice();
+			CmdRollDice(DiceType.D12Min3);
 		}
 
 		ypos += vSpacing;
 		if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D4X2.ToString()))
 		{
-			//lastVikingRollValue = CalculateResult(lastDiceType = DiceType.D4X2);
-			lastDiceType = DiceType.D4X2;
-			CmdRollDice();
+			CmdRollDice(DiceType.D4X2);
 		}
 
 		ypos += vSpacing;
 		if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D3X3.ToString()))
 		{
-			//lastVikingRollValue = CalculateResult(lastDiceType = DiceType.D3X3);
-			lastDiceType = DiceType.D3X3;
-			CmdRollDice();
+			CmdRollDice(DiceType.D3X3);
 		}
 
 		ypos += vSpacing;
 		if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D4Plus4.ToString()))
 		{
-			//lastVikingRollValue = CalculateResult(lastDiceType = DiceType.D4Plus4);
-			lastDiceType = DiceType.D4Plus4;
-			CmdRollDice();
+			CmdRollDice(DiceType.D4Plus4);
 		}
 	}
 
@@ -110,34 +91,23 @@ public class PlayerDiceRoll : NetworkBehaviour
 		}
 	}
 
-	int CalculateD3() { return Random.Range(1, 3); }
-	int CalculateD4() { return Random.Range(1, 4); }
-	int CalculateD6() { return Random.Range(1, 6); }
-	int CalculateD8() { return Random.Range(1, 8); }
-	int CalculateD10() { return Random.Range(1, 10); }
-	int CalculateD12() { return Random.Range(1, 12); }
+	[Server] int CalculateD3()  { return Random.Range(1, 4); }
+	[Server] int CalculateD4()  { return Random.Range(1, 5); }
+	[Server] int CalculateD6()  { return Random.Range(1, 7); }
+	[Server] int CalculateD8()  { return Random.Range(1, 9); }
+	[Server] int CalculateD10() { return Random.Range(1, 11); }
+	[Server] int CalculateD12() { return Random.Range(1, 13); }
 
-	void Update ()
-	{
-		if(!isLocalPlayer)
-			return;
-	}
 
 	[Command]
-	void CmdRollDice ()
+	void CmdRollDice (DiceType diceType)
 	{
-		lastVikingRollValue = CalculateResult(lastDiceType);
-		lastZombieRollValue = CalculateResult(lastDiceType);
-		RpcRollDice(lastVikingRollValue, lastZombieRollValue);
+		RpcRollDice(CalculateResult(diceType), diceType);
 	}
 
 	[ClientRpc]
-	void RpcRollDice (int vRoll, int zRoll)
+	void RpcRollDice (int rollValue, DiceType diceType)
 	{
-		DiceRollUI.Instance.RollDice(vRoll, zRoll);
-		DiceRollUI.Instance.lastVikingRollValue = vRoll;
-		DiceRollUI.Instance.lastZombieRollValue = zRoll;
-		DiceRollUI.Instance.lastDiceType = lastDiceType.ToString();
-		DiceRollUI.Instance.UpdateInfo();
+		DiceRollUI.Instance.RollDice(rollValue, diceType.ToString());
 	}
 }

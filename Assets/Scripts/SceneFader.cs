@@ -11,6 +11,7 @@ public class SceneFader : MonoBehaviour {
 
 	void Start ()
 	{
+		fadeImage.color = new Color (0f,0f,0f,1f);
 		StartCoroutine(FadeInRoutine());
 	}
 

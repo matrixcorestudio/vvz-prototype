@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(PlayerManager))]
 public class PlayerDiceRoll : NetworkBehaviour 
 {
 	public enum DiceType
@@ -13,8 +14,20 @@ public class PlayerDiceRoll : NetworkBehaviour
 	public int buttonWidht = 70;
 	public int buttonHeight = 20;
 
+	PlayerManager playerManager;
+
+	void Start ()
+	{
+		playerManager = GetComponent<PlayerManager>();
+	}
+
+	[ClientCallback]
 	void OnGUI()
 	{
+		if(!isLocalPlayer)
+		{
+			return;
+		}
 		int xpos = offsetX + 10;
 		int ypos = offsetY + 10;        
 		int vSpacing = 30;
@@ -102,12 +115,12 @@ public class PlayerDiceRoll : NetworkBehaviour
 	[Command]
 	void CmdRollDice (DiceType diceType)
 	{
-		RpcRollDice(CalculateResult(diceType), diceType);
+		RpcRollDice(CalculateResult(diceType), diceType, playerManager.playerName);
 	}
 
 	[ClientRpc]
-	void RpcRollDice (int rollValue, DiceType diceType)
+	void RpcRollDice (int rollValue, DiceType diceType, string playerName)
 	{
-		DiceRollUI.Instance.RollDice(rollValue, diceType.ToString());
+		DiceRollUI.Instance.RollDice(rollValue, diceType.ToString(), playerName);
 	}
 }

@@ -9,6 +9,7 @@ public class DiceRollUI : MonoBehaviour {
 	public static DiceRollUI Instance{get {return instance;}}
 
 	[SerializeField] GameObject rollPanel;
+	[SerializeField] Text rollingPlayerNameText;
 	[SerializeField] Text rollValueText;
 	[SerializeField] Text rollStatusText;
 	[SerializeField] float randomizerTime = 0.2f;
@@ -21,19 +22,21 @@ public class DiceRollUI : MonoBehaviour {
 		instance = this;
 	}
 
-	public void RollDice (int rollvalue, string diceType)
+	public void RollDice (int rollvalue, string diceType, string playerName)
 	{
 		lastRollValue = rollvalue;
 		lastDiceType = diceType;
 		rollPanel.SetActive(true);
+		rollingPlayerNameText.text = playerName;
 		StartCoroutine(VisualRandomizerRoutine(rollvalue));
 		UpdateRollStatusUI();
 	}
 
 	void UpdateRollStatusUI ()
 	{
-		rollStatusText.text = "Last Viking roll value: "+ lastRollValue+"; "+
-			"With dice type: " + lastDiceType;
+		rollStatusText.text = "Last roll value: "+ lastRollValue+"; "+
+			"With dice type: " + lastDiceType+"; "+
+			"By Player: "+ rollingPlayerNameText.text;
 	}
 
 	IEnumerator VisualRandomizerRoutine (int rollvalue)

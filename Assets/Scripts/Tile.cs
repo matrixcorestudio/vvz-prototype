@@ -28,6 +28,7 @@ public class Tile : MonoBehaviour
 	public int yIndex;
 	public TileType tileType = TileType.Empty;
 	public Renderer rend;
+    private string clickedTile = string.Empty;
 	Board m_board;
 
 //	void Awake()
@@ -48,11 +49,17 @@ public class Tile : MonoBehaviour
 	{
 		if(m_board != null)
 		{
-			Debug.Log(gameObject.name+"; Type: "+tileType);
+            clickedTile = gameObject.name + "; Type: " + tileType;
+            Debug.Log(clickedTile);
 		}
 	}
 
-	void SetMaterial()
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(10, 10, 250, 20), clickedTile);
+    }
+
+    void SetMaterial()
 	{
 		rend.material = m_board.boardData.tileMaterials.Find(n => n.name == tileType.ToString()+"Mat");
 	}

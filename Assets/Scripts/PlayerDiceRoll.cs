@@ -6,7 +6,7 @@ public class PlayerDiceRoll : NetworkBehaviour
 {
 	public enum DiceType
 	{
-		None, D6, D6Plus2, D10Max8, D12Min3, D4X2, D3X3, D4Plus4  
+		None, D4, D4Plus1, D6, D6Plus2, D10Max8, D12Min3, D4X2, D3X3, D4Plus4  
 	}
 
 	public int offsetX = 0;
@@ -32,7 +32,19 @@ public class PlayerDiceRoll : NetworkBehaviour
 		int ypos = offsetY + 10;        
 		int vSpacing = 30;
 
-		ypos += vSpacing;
+        ypos += vSpacing;
+        if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D4.ToString()))
+        {
+            CmdRollDice(DiceType.D4);
+        }
+
+        ypos += vSpacing;
+        if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D4Plus1.ToString()))
+        {
+            CmdRollDice(DiceType.D4Plus1);
+        }
+
+        ypos += vSpacing;
 		if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), DiceType.D6.ToString()))
 		{
 			CmdRollDice(DiceType.D6);
@@ -80,27 +92,31 @@ public class PlayerDiceRoll : NetworkBehaviour
 	{
 		switch (dice)
 		{
-		case DiceType.D6:
-			return CalculateD6();
-		case DiceType.D6Plus2:
-			return CalculateD6() + 2;
-		case DiceType.D10Max8:
-			int resultD10 = CalculateD10();
-			if (resultD10 > 8) { return 8; }
-			return resultD10;
-		case DiceType.D12Min3:
-			int resultD12 = CalculateD12();
-			if (resultD12 < 3) { return 3; }
-			return resultD12;
-		case DiceType.D4X2:
-			return CalculateD4() + CalculateD4();
-		case DiceType.D3X3:
-			return CalculateD3() + CalculateD3() + CalculateD3();
-		case DiceType.D4Plus4:
-			return CalculateD4() + 4;
-		case DiceType.None: //Pass through
-		default:
-			return -1;
+            case DiceType.D4:
+                return CalculateD4();
+            case DiceType.D4Plus1:
+                return CalculateD4() + 1;
+		    case DiceType.D6:
+			    return CalculateD6();
+		    case DiceType.D6Plus2:
+			    return CalculateD6() + 2;
+		    case DiceType.D10Max8:
+			    int resultD10 = CalculateD10();
+			    if (resultD10 > 8) { return 8; }
+			    return resultD10;
+		    case DiceType.D12Min3:
+			    int resultD12 = CalculateD12();
+			    if (resultD12 < 3) { return 3; }
+			    return resultD12;
+		    case DiceType.D4X2:
+			    return CalculateD4() + CalculateD4();
+		    case DiceType.D3X3:
+			    return CalculateD3() + CalculateD3() + CalculateD3();
+		    case DiceType.D4Plus4:
+			    return CalculateD4() + 4;
+		    case DiceType.None: //Pass through
+		    default:
+			    return -1;
 		}
 	}
 

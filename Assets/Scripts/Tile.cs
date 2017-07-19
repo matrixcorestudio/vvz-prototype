@@ -56,7 +56,7 @@ public class Tile : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.Label(new Rect(10, 10, 250, 20), clickedTile);
+        //GUI.Label(new Rect(830, 720, 250, 20), "Info: " + clickedTile);
     }
 
     void SetMaterial()

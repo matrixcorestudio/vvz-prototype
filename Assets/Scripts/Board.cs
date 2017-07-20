@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Board : MonoBehaviour 
 {
@@ -21,13 +22,36 @@ public class Board : MonoBehaviour
 	Tile[,] m_allTiles;
 	public Tile[,] AllTiles {get {return m_allTiles;}}
 
+    public Text tileText;
+    public bool refreshTileText = false;
+    private string clickedTile = string.Empty;
+
 	void Start () 
 	{
 		csvString = PlayerPrefs.GetString("BoardCSV",boardCsvAsset.text);
+        if (tileText != null)
+        {
+            tileText.text = "Last clicked Tile";
+        }
 		SetupBoard();
 	}
 
-	public void SetupBoard ()
+    private void Update()
+    {
+        if (refreshTileText && tileText != null)
+        {
+            tileText.text = clickedTile;
+            refreshTileText = false;
+        }
+    }
+
+    public void RefreshTileText(string text)
+    {
+        clickedTile = "Last clicked " + text;
+        refreshTileText = true;
+    }
+
+    public void SetupBoard ()
 	{
 		SetupTilesFromCSV();
 		//SetupOrtographicCamera();

@@ -30,7 +30,6 @@ public class Tile : MonoBehaviour
 	public Renderer rend;
     private string clickedTile = string.Empty;
 	Board m_board;
-
 //	void Awake()
 //	{
 //		rend = GetComponent<Renderer>();
@@ -51,13 +50,9 @@ public class Tile : MonoBehaviour
 		{
             clickedTile = gameObject.name + "; Type: " + tileType;
             Debug.Log(clickedTile);
+            m_board.RefreshTileText(clickedTile);
 		}
 	}
-
-    private void OnGUI()
-    {
-        //GUI.Label(new Rect(830, 720, 250, 20), "Info: " + clickedTile);
-    }
 
     void SetMaterial()
 	{

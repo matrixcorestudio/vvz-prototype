@@ -54,3 +54,4 @@ MonoBehaviour:
   boardData: {fileID: 11400000, guid: c8366a30f1b81403eb96b2d65c7edd4b, type: 2}
   boardCsvAsset: {fileID: 4900000, guid: 758f741b8b9a34c2c80d27baf918f455, type: 3}
   borderSize: 0
+  tileText: {fileID: 114924848147434942, guid: 645d663edc39b41489e324434483c10a, type: 2}

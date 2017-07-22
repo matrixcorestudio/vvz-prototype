@@ -4,6 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+[System.Serializable]
+public struct BoardChange
+{
+	public Tile modifiedTile;
+	public TileType oldType;
+
+	public BoardChange(Tile tile, TileType type)
+	{
+		modifiedTile = tile;
+		oldType = type;
+	}
+}
+
 public class BoardEditor : MonoBehaviour 
 {
 	public Dropdown tilesDropdownMenu;
@@ -13,8 +26,10 @@ public class BoardEditor : MonoBehaviour
 	public SceneFader sceneFader;
 	public Board board;
 
-
 	List<string> boardNames = new List<string>();
+
+	Stack<BoardChange> undoStack = new Stack<BoardChange>();
+	Stack<BoardChange> redoStack = new Stack<BoardChange>();
 
 	void Awake()
 	{
@@ -111,6 +126,7 @@ public class BoardEditor : MonoBehaviour
 				Tile hitTile = hit.collider.GetComponent<Tile>();
 				if (hitTile != null) 
 				{
+					undoStack.Push(new BoardChange(hitTile,hitTile.tileType));
 					hitTile.ChangeProperties(tilesDropdownMenu.value);
 				}
 			}
@@ -142,6 +158,7 @@ public class BoardEditor : MonoBehaviour
 		for (int j = 0; j < board.Height; j++) {
 			for (int i = 0; i < board.Width; i++) {
 				if (board.AllTiles [i, j] != null) {
+					undoStack.Push(new BoardChange(board.AllTiles [i, j],board.AllTiles [i, j].tileType));
 					board.AllTiles [i, j].ResetProperties ();
 				}
 				else {
@@ -173,6 +190,24 @@ public class BoardEditor : MonoBehaviour
 			}
 		}
 		SaveLoadManager.WriteBoardFile(CSVManager.ConvertToCsv (dataRows), name);
+	}
+
+	public void UndoTileChange ()
+	{
+		if(undoStack.Count < 1)
+			return;
+		BoardChange change = undoStack.Pop();
+		redoStack.Push(new BoardChange (change.modifiedTile,change.modifiedTile.tileType));
+		change.modifiedTile.ChangeProperties(change.oldType);
+	}
+
+	public void RedoTileChange ()
+	{
+		if(redoStack.Count < 1)
+			return;
+		BoardChange change = redoStack.Pop();
+		undoStack.Push(new BoardChange (change.modifiedTile,change.modifiedTile.tileType));
+		change.modifiedTile.ChangeProperties(change.oldType);
 	}
 
 	public void BackToMenu ()

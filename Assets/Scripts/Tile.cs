@@ -71,4 +71,11 @@ public class Tile : MonoBehaviour
 		SetMaterial();
 		Debug.Log (gameObject.name+"; Changed to type: "+tileType);
 	}
+
+	public void ChangeProperties(TileType type)
+	{
+		tileType = type;
+		SetMaterial();
+		Debug.Log (gameObject.name+"; Changed to type: "+tileType);
+	}
 }

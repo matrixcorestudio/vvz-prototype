@@ -5,12 +5,13 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
 	[SerializeField] float panSpeed = 10f;
-	[SerializeField] float panBorderThickness = 10f;
 	[SerializeField] float scrollSpeed = 2f;
 	[SerializeField] Vector2 panLimit;
 	[SerializeField] float minCameraSize = 5f;
 	[SerializeField] float maxCameraSize = 15f;
-	[SerializeField] bool mouseMoveEnable = false;
+
+	[SerializeField] float dragSpeed = 1.5f;
+	Vector3 dragOrigin;
 
 	Vector3 m_startPosition;
 	Vector3 m_currentPosition;
@@ -31,10 +32,6 @@ public class CameraController : MonoBehaviour {
 		m_currentPosition.x += m_keyInput.x * panSpeed * Time.deltaTime;
 		m_currentPosition.y += m_keyInput.y * panSpeed * Time.deltaTime;
 
-		if(mouseMoveEnable)
-		{
-			CameraPositionMouseInput();
-		}
 
 		m_currentPosition.x = Mathf.Clamp(m_currentPosition.x, m_startPosition.x - panLimit.x, m_startPosition.x + panLimit.x);
 		m_currentPosition.y = Mathf.Clamp(m_currentPosition.y, m_startPosition.y - panLimit.y, m_startPosition.y + panLimit.y);
@@ -42,23 +39,20 @@ public class CameraController : MonoBehaviour {
 		transform.position = m_currentPosition;
 	}
 
-	void CameraPositionMouseInput ()
+	void LateUpdate ()
 	{
-		if(Input.mousePosition.y >= Screen.height - panBorderThickness)
+		if (Input.GetMouseButtonDown(1))
 		{
-			m_currentPosition.y += panSpeed * Time.deltaTime;
+			dragOrigin = Input.mousePosition;
+			return;
 		}
-		if(Input.mousePosition.y <= panBorderThickness)
-		{
-			m_currentPosition.y -= panSpeed * Time.deltaTime;
-		}
-		if(Input.mousePosition.x >= Screen.width - panBorderThickness)
-		{
-			m_currentPosition.x += panSpeed * Time.deltaTime;
-		}
-		if(Input.mousePosition.x <= panBorderThickness)
-		{
-			m_currentPosition.x -= panSpeed * Time.deltaTime;
-		}
+
+		if (!Input.GetMouseButton(1)) return;
+
+		Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
+		Vector3 move = new Vector3(-pos.x * dragSpeed, -pos.y * dragSpeed, 0);
+
+		transform.Translate(move, Space.World);
 	}
+		
 }

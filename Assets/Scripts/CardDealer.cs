@@ -114,7 +114,7 @@ public class CardDealer : MonoBehaviour
         List<int> half1 = new List<int>();
         List<int> half2 = new List<int>();
 
-        for (int i = 0, j = 0; i < deck.Count; ++i)
+        for (int i = 0; i < deck.Count; ++i)
         {
             if (i < deck.Count / 2)
             {

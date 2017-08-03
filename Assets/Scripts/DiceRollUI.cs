@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DiceRollUI : MonoBehaviour {
-
-	static DiceRollUI instance;
-	public static DiceRollUI Instance{get {return instance;}}
-
+public class DiceRollUI : Singleton<DiceRollUI> 
+{
 	[SerializeField] GameObject rollPanel;
 	[SerializeField] Text rollingPlayerNameText;
 	[SerializeField] Text rollValueText;
@@ -16,11 +13,6 @@ public class DiceRollUI : MonoBehaviour {
 
 	int lastRollValue = 0;
 	string lastDiceType = "";
-
-	void Awake ()
-	{
-		instance = this;
-	}
 
 	public void RollDice (int rollvalue, string diceType, string playerName)
 	{

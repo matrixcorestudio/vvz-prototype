@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServerCardDealer : MonoBehaviour 
+public class ServerCardDealer : Singleton<ServerCardDealer> 
 {
 	public enum CardType
 	{
@@ -19,10 +19,6 @@ public class ServerCardDealer : MonoBehaviour
 		public int remainingCurses;
 	}
 
-
-	static ServerCardDealer instance;
-	public static ServerCardDealer Instance{get {return instance;}}
-
 	public DeckStatusInfo deckStatus;
 
 	int blessingLimit = 57;
@@ -30,11 +26,6 @@ public class ServerCardDealer : MonoBehaviour
 	List<int> blessings;
 	List<int> curses;
 	CardDictionaries cards;
-
-	void Awake ()
-	{
-		instance = this;
-	}
 
 	void Start()
 	{

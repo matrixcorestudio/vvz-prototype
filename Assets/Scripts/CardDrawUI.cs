@@ -1,21 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class CardDrawUI : MonoBehaviour 
+public class CardDrawUI : Singleton<CardDrawUI> 
 {
-	static CardDrawUI instance;
-	public static CardDrawUI Instance{get {return instance;}}
 	public Text drawingPlayerName;
 	public Text lastCardTypeText;
 	public Text lastCardIndexText;
 	public Text lastCardDescriptionText;
 	public Text remainingBlessingsText;
 	public Text remainingCursesText;
-
-	void Awake ()
-	{
-		instance = this;
-	}
 
 	public void UpdateDeckStatusUI (string cardType, int index, string description, int blessings, int curses, string playerName)
 	{

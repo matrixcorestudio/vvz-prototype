@@ -3,20 +3,26 @@ using UnityEngine.UI;
 
 public class CardDrawUI : Singleton<CardDrawUI> 
 {
-	public Text drawingPlayerName;
-	public Text lastCardTypeText;
-	public Text lastCardIndexText;
-	public Text lastCardDescriptionText;
+	public Text playerNameText;
+	public Text cardIdText;
+	public Text cardNameText;
+	public Text cardTypeText;
+	public Text cardDescriptiontText
+	;
 	public Text remainingBlessingsText;
 	public Text remainingCursesText;
 
-	public void UpdateDeckStatusUI (string cardType, int index, string description, int blessings, int curses, string playerName)
+	public void UpdateDeckStatusUI (ServerCardDealer.DealerStatus dealerStatus, string playerName)
 	{
-		lastCardTypeText.text = cardType;
-		lastCardIndexText.text = index.ToString();
-		lastCardDescriptionText.text = description;
-		remainingBlessingsText.text = blessings.ToString();
-		remainingCursesText.text = curses.ToString();
-		drawingPlayerName.text = playerName;
+		playerNameText.text = "Drawn By: "+playerName;
+
+		cardIdText.text = "ID: "+ dealerStatus.lastCardId;
+		cardNameText.text = "Last Card: "+dealerStatus.lastCardName;
+		cardTypeText.text = "Type: "+dealerStatus.lastCardType;
+		cardDescriptiontText.text = "Description: "+dealerStatus.lastCardDescription;
+
+		remainingBlessingsText.text = "Remaining Blessings: "+dealerStatus.remainingBlessings.ToString();
+		remainingCursesText.text = "Remaining Curses: "+dealerStatus.remainingCurses.ToString();
+
 	}
 }

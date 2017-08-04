@@ -47,32 +47,26 @@ public class PlayerDrawCard : NetworkBehaviour
 	void CmdDrawBlessing ()
 	{
 		ServerCardDealer.Instance.DrawBlessing();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.deckStatus, playerManager.playerName);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, playerManager.playerName);
 	}
 
 	[Command]
 	void CmdDrawCurse ()
 	{
 		ServerCardDealer.Instance.DrawCurse();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.deckStatus, playerManager.playerName);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, playerManager.playerName);
 	}
 
 	[Command]
 	void CmdDrawRandom ()
 	{
 		ServerCardDealer.Instance.DrawRandom();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.deckStatus, playerManager.playerName);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, playerManager.playerName);
 	}
 
 	[ClientRpc]
-	void RpcUpdateDeckStatusInfo (ServerCardDealer.DeckStatusInfo info, string playerName)
+	void RpcUpdateDeckStatusInfo (ServerCardDealer.DealerStatus dealerStatus, string playerName)
 	{
-		CardDrawUI.Instance.UpdateDeckStatusUI(
-			info.lastCardType.ToString(), 
-			info.lastCardIndex, 
-			info.lastCardDescription,
-			info.remainingBlessings,
-			info.remainingCurses,
-			playerName);
+		CardDrawUI.Instance.UpdateDeckStatusUI(dealerStatus, playerName);
 	}
 }

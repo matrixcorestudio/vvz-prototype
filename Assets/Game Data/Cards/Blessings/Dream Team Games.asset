@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400611b6fb3964401a1fc6c901da259a, type: 3}
+  m_Name: Dream Team Games
+  m_EditorClassIdentifier: 
+  id: 32
+  description: "For  the next 10 rounds, the nearest opossing Viking becomes your
+    ally. Whenever you step into each other when moving, both gain +1 PP, if either
+    land on their ally, both gain +2 PP and remove each other negative status effect.
+    When either player draws from a deck, the other player draws too from the same
+    deck. When either player\u2019s Viking or Zombie respawns or is killed, the other
+    player\u2019s respawns/dies too. Both players win the game if either Viking escapes.
+    Both players lose if either Viking loses all stocks."
+  isQuick: 0
+  type: 1
+  target: 1
+  cardImage: {fileID: 0}

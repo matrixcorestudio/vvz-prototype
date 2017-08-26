@@ -12,18 +12,19 @@ public class SaveLoadManager
 {
 	public static void WriteBoardFile(string csv, string boardName)
 	{
-		string filePath = GetPath() + boardName + ".txt";
+		string filePath = GetPath() + boardName + ".csv";
 		StreamWriter outStream = System.IO.File.CreateText(filePath);
 		outStream.Write(csv);
 		outStream.Close();
+
 		#if UNITY_EDITOR
-		AssetDatabase.ImportAsset("Assets/Resources/"+boardName+".txt");
+		AssetDatabase.ImportAsset("Assets/Resources/Maps/" + boardName + ".csv");
 		#endif
 	}
 
 	public static List<string> LoadBoardsNames()
 	{
-		string[] txtfiles = Directory.GetFiles(GetPath(), "*.txt");
+		string[] txtfiles = Directory.GetFiles(GetPath(), "*.csv");
 		List<string> boardNames = new List<string>();
 
 		for (int i = 0; i < txtfiles.Length; i++)
@@ -36,7 +37,7 @@ public class SaveLoadManager
 
 	public static string ReadCSVFile(string name)
 	{
-		StreamReader sr = new StreamReader(GetPath()+name+".txt");
+		StreamReader sr = new StreamReader(GetPath()+name+".csv");
 		return sr.ReadToEnd();
 	}
 
@@ -44,13 +45,13 @@ public class SaveLoadManager
 	public static string GetPath()
 	{
 		#if UNITY_EDITOR
-		return Application.dataPath +"/Resources/";
+		return Application.dataPath +"/Resources/Maps/";
 		#elif UNITY_ANDROID
-		return Application.persistentDataPath+"/";
+		return Application.persistentDataPath+"/Maps/";
 		#elif UNITY_IPHONE
-		return Application.persistentDataPath+"/";
+		return Application.persistentDataPath+"/Maps/";
 		#else
-		return Application.dataPath+"/";
+		return Application.dataPath+"/Maps/";
 		#endif
 	}
 }

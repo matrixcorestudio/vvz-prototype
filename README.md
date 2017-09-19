@@ -1,2 +1,2 @@
 # vvz-prototype
-Tito joins the action!
+This is now the official branch for VvZ protoypes, with the PvP as the main mode.

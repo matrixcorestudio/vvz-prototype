@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boardData: {fileID: 11400000, guid: c8366a30f1b81403eb96b2d65c7edd4b, type: 2}
-  boardCsvAsset: {fileID: 4900000, guid: d66d648a81c3f4a4b807312bc4e9d935, type: 3}
+  boardCsvAsset: {fileID: 4900000, guid: 1091c7ee4a54bcb4388fa366ddd09826, type: 3}
   borderSize: 0
   tileText: {fileID: 0}
   refreshTileText: 0

@@ -8,6 +8,7 @@ public class ToggleEvent : UnityEvent<bool>{}
 
 public class PlayerManager : NetworkBehaviour 
 {
+    public enum PlayerType { Viking, Zombie, Spectator}
 
 	[SerializeField] ToggleEvent onToggleShared;
 	[SerializeField] ToggleEvent onToggleLocal;
@@ -18,6 +19,8 @@ public class PlayerManager : NetworkBehaviour
 
 	public Text vikingName;
 	public Text zombieName;
+
+    private PlayerType playerType;
 
 	[Header("Sprites")]
 	[SerializeField] SpriteRenderer vikingSprite;

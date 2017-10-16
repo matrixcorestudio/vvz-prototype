@@ -18,6 +18,7 @@ namespace Prototype.Player
         [SerializeField] ToggleEvent onToggleShared;
         [SerializeField] ToggleEvent onToggleLocal;
         [SerializeField] ToggleEvent onToggleRemote;
+        [SerializeField] ToggleEvent onToggleSpectator;
 
         [SerializeField] List<Text> characterNames;
         [SerializeField] List<SpriteRenderer> renderers;
@@ -49,7 +50,6 @@ namespace Prototype.Player
                 playerType = Enums.PlayerType.Spectator;
                 InitializeSpectator();
             }
-            EnablePlayer();
         }
 
         public void EnablePlayer()
@@ -90,6 +90,7 @@ namespace Prototype.Player
                     renderers[i].sortingOrder = -1;
                 }
             }
+            EnablePlayer();
         }
 
         private void InitializeZombies()
@@ -104,17 +105,12 @@ namespace Prototype.Player
                     renderers[1].sortingOrder = -1;
                 }
             }
+            EnablePlayer();
         }
 
         private void InitializeSpectator()
         {
-            //if(isLocalPlayer)
-            //{
-            //    foreach (GameObject character in transform)
-            //    {
-            //        Network.Destroy(character);
-            //    }
-            //}
+            onToggleSpectator.Invoke(false);
         }
     } 
 }

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Prototype.Player;
 
-[RequireComponent(typeof(PlayerManager))]
+[RequireComponent(typeof(Player))]
 public class PlayerDrawCard : NetworkBehaviour 
 {
 	int xpos = 10;
@@ -11,11 +12,11 @@ public class PlayerDrawCard : NetworkBehaviour
 	int buttonWidth = 80;
 	int buttonHeight = 20;
 
-	PlayerManager playerManager;
+	Player player;
 
 	void Start ()
 	{
-		playerManager = GetComponent<PlayerManager>();
+		player = GetComponent<Player>();
 	}
 
 	[ClientCallback]
@@ -47,21 +48,21 @@ public class PlayerDrawCard : NetworkBehaviour
 	void CmdDrawBlessing ()
 	{
 		ServerCardDealer.Instance.DrawBlessing();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, playerManager.playerName);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, player.name);
 	}
 
 	[Command]
 	void CmdDrawCurse ()
 	{
 		ServerCardDealer.Instance.DrawCurse();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, playerManager.playerName);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, player.name);
 	}
 
 	[Command]
 	void CmdDrawRandom ()
 	{
 		ServerCardDealer.Instance.DrawRandom();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, playerManager.playerName);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, player.name);
 	}
 
 	[ClientRpc]

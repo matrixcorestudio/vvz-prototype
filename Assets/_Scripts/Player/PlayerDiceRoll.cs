@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using Prototype.Player;
 
-[RequireComponent(typeof(PlayerManager))]
+[RequireComponent(typeof(Player))]
 public class PlayerDiceRoll : NetworkBehaviour 
 {
 	public enum DiceType
@@ -14,11 +15,11 @@ public class PlayerDiceRoll : NetworkBehaviour
 	public int buttonWidht = 70;
 	public int buttonHeight = 20;
 
-	PlayerManager playerManager;
+	Player player;
 
 	void Start ()
 	{
-		playerManager = GetComponent<PlayerManager>();
+		player = GetComponent<Player>();
 	}
 
 	[ClientCallback]
@@ -131,7 +132,7 @@ public class PlayerDiceRoll : NetworkBehaviour
 	[Command]
 	void CmdRollDice (DiceType diceType)
 	{
-		RpcRollDice(CalculateResult(diceType), diceType, playerManager.playerName);
+		RpcRollDice(CalculateResult(diceType), diceType, player.name);
 	}
 
 	[ClientRpc]

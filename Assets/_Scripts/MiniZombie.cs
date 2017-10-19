@@ -1,18 +1,28 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public class MiniZombie : NetworkBehaviour {
+    [System.Serializable]
+    public class ToggleEvent : UnityEvent<bool> { }
 
-    private BoxCollider m_collider;
+    [SerializeField] ToggleEvent onToggleLocal;
 	public override void OnStartAuthority()
     {
         if (hasAuthority)
         {
-            m_collider = GetComponent<BoxCollider>();
-            if (m_collider != null)
-            {
-                m_collider.enabled = true;
-            }
+            EnableMiniZombie();
         }
 	}
+
+    void EnableMiniZombie()
+    {
+        onToggleLocal.Invoke(true);
+    }
+
+    [Command]
+    public void CmdRemoveZombie()
+    {
+        NetworkServer.Destroy(gameObject);
+    }
 }

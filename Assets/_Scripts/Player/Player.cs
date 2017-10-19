@@ -25,29 +25,29 @@ namespace Prototype.Player
         [SerializeField] Sprite vikingSprite;
         [SerializeField] Sprite zombieSprite;
 
-        private Enums.PlayerType playerType;
+        private Enums.PlayerType m_playerType;
         private string[] vikingNamesFlight1 = { "[L] Storm Caller", "Dice Master", "Gambler", "Earl Stone" };
         private string[] zombieNamesFlight1 = { "[L] Puniszher", "Crawler", "Lizard Tongue", "Life-Taker" };
         private Color[] vikingColorsFlight1 = { Color.white, new Color(1f, 165f / 255f, 0), Color.red, Color.black};
         private Color[] zombieColorsFlight1 = { Color.magenta, new Color(165f / 255f, 42f / 255f, 42f / 255f), Color.green, Color.yellow};
 
-        
+        public Enums.PlayerType PlayerType { get { return m_playerType;}}
 
         private void Start()
         {
             if (playerTextColor == Color.blue)
             {
-                playerType = Enums.PlayerType.Vikings;
+                m_playerType = Enums.PlayerType.Vikings;
                 InitializeVikings();
             }
             else if(playerTextColor == Color.magenta)
             {
-                playerType = Enums.PlayerType.Zombies;
+                m_playerType = Enums.PlayerType.Zombies;
                 InitializeZombies();
             }
             else
             {
-                playerType = Enums.PlayerType.Spectator;
+                m_playerType = Enums.PlayerType.Spectator;
                 InitializeSpectator();
             }
         }

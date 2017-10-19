@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 114074795792168004}
   - component: {fileID: 114527040323264028}
   - component: {fileID: 114635420477150478}
+  - component: {fileID: 114963270248781748}
   - component: {fileID: 114276250471060970}
   - component: {fileID: 114674204470733350}
   - component: {fileID: 114290742828427518}
@@ -1166,6 +1167,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114963270248781748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786259994688736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255b7364751b89d4093145313ade555e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombiePrefab: {fileID: 1712250892628058, guid: ec6862e43e7c3ad459b455e4a4fe2568,
+    type: 2}
 --- !u!212 &212424778061130382
 SpriteRenderer:
   m_ObjectHideFlags: 1

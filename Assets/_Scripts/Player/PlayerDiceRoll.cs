@@ -7,7 +7,7 @@ public class PlayerDiceRoll : NetworkBehaviour
 {
 	public enum DiceType
 	{
-		None, D4, D4Plus1, D6, D6Plus2, D10Max8, D12Min3, D4X2, D3X3, D4Plus4  
+		None, CoinFlip, D4, D4Plus1, D6, D6Plus2, D10Max8, D12Min3, D4X2, D3X3, D4Plus4
 	}
 
 	public int offsetX = 0;

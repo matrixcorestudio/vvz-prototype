@@ -21,4 +21,10 @@ public class CardData : ScriptableObject
 	public CardTarget target;
 	public Sprite cardImage;
 
+	public virtual void Use()
+	{
+		//implementar de acuerdo a carta
+		Debug.Log("Usando: "+name);
+	}
+
 }

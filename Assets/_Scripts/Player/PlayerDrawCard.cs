@@ -12,11 +12,13 @@ public class PlayerDrawCard : NetworkBehaviour
 	int buttonWidth = 80;
 	int buttonHeight = 20;
 
-	Player player;
+	Player m_player;
+	public delegate void OnDrawCard(Player player, string result);
+	public event OnDrawCard drawCardEvent;
 
 	void Start ()
 	{
-		player = GetComponent<Player>();
+		m_player = GetComponent<Player>();
 	}
 
 	[ClientCallback]
@@ -48,21 +50,33 @@ public class PlayerDrawCard : NetworkBehaviour
 	void CmdDrawBlessing ()
 	{
 		ServerCardDealer.Instance.DrawBlessing();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, player.name);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
+		if(drawCardEvent != null)
+		{
+			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+		}
 	}
 
 	[Command]
 	void CmdDrawCurse ()
 	{
 		ServerCardDealer.Instance.DrawCurse();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, player.name);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
+		if(drawCardEvent != null)
+		{
+			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+		}
 	}
 
 	[Command]
 	void CmdDrawRandom ()
 	{
 		ServerCardDealer.Instance.DrawRandom();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, player.name);
+		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
+		if(drawCardEvent != null)
+		{
+			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+		}
 	}
 
 	[ClientRpc]

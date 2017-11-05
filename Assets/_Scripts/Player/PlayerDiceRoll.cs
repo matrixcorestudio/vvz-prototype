@@ -15,11 +15,14 @@ public class PlayerDiceRoll : NetworkBehaviour
 	public int buttonWidht = 70;
 	public int buttonHeight = 20;
 
-	Player player;
+	Player m_player;
 
-	void Start ()
+	public delegate void OnDiceRoll(Player player, string result);
+	public event OnDiceRoll diceRollEvent;
+
+	void Start()
 	{
-		player = GetComponent<Player>();
+		m_player = GetComponent<Player>();
 	}
 
 	[ClientCallback]
@@ -132,7 +135,12 @@ public class PlayerDiceRoll : NetworkBehaviour
 	[Command]
 	void CmdRollDice (DiceType diceType)
 	{
-		RpcRollDice(CalculateResult(diceType), diceType, player.name);
+		int rollResult = CalculateResult(diceType);
+		if(diceRollEvent != null)
+		{
+			diceRollEvent(m_player, "Dice Roll: "+rollResult+", DiceType: "+diceType);
+		}
+		RpcRollDice(rollResult, diceType, m_player.name);
 	}
 
 	[ClientRpc]

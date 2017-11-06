@@ -904,6 +904,13 @@ MonoBehaviour:
   offsetY: 0
   buttonWidht: 70
   buttonHeight: 20
+  singleDiceDropdown: {fileID: 114413969825672940, guid: 6d028531798df644d8ea633aa013276b,
+    type: 2}
+  charDiceDropdowns:
+  - {fileID: 114700776267642674, guid: 6d028531798df644d8ea633aa013276b, type: 2}
+  - {fileID: 114661829177418106, guid: 6d028531798df644d8ea633aa013276b, type: 2}
+  - {fileID: 114752033729923104, guid: 6d028531798df644d8ea633aa013276b, type: 2}
+  - {fileID: 114634073443412176, guid: 6d028531798df644d8ea633aa013276b, type: 2}
 --- !u!114 &114549117526912282
 MonoBehaviour:
   m_ObjectHideFlags: 1

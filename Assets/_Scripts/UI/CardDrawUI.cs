@@ -7,8 +7,7 @@ public class CardDrawUI : Singleton<CardDrawUI>
 	public Text cardIdText;
 	public Text cardNameText;
 	public Text cardTypeText;
-	public Text cardDescriptiontText
-	;
+	public Text cardDescriptiontText;
 	public Text remainingBlessingsText;
 	public Text remainingCursesText;
 

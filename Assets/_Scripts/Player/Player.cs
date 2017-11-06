@@ -25,16 +25,26 @@ namespace Prototype.Player
         [SerializeField] Sprite vikingSprite;
         [SerializeField] Sprite zombieSprite;
 
-        private Enums.PlayerType m_playerType;
-        private string[] vikingNamesFlight1 = { "[L] Storm Caller", "Dice Master", "Gambler", "Earl Stone" };
-        private string[] zombieNamesFlight1 = { "[L] Puniszher", "Crawler", "Lizard Tongue", "Life-Taker" };
+        
+        private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
+        private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
         private Color[] vikingColorsFlight1 = { Color.white, new Color(1f, 165f / 255f, 0), Color.red, Color.black};
         private Color[] zombieColorsFlight1 = { Color.magenta, new Color(165f / 255f, 42f / 255f, 42f / 255f), Color.green, Color.yellow};
 
-        public Enums.PlayerType PlayerType { get { return m_playerType;}}
+        private Enums.PlayerType m_playerType;
+        public Enums.PlayerType PlayerType { get { return m_playerType; } }
+
+        private Enums.DiceType[] diceTypes;
+        public Enums.DiceType[] DiceTypes
+        {
+            get { return diceTypes; }
+            set { diceTypes = value; }
+        }
+
 
         private void Start()
         {
+            diceTypes = new Enums.DiceType[4];
             if (playerTextColor == Color.blue)
             {
                 m_playerType = Enums.PlayerType.Vikings;
@@ -49,7 +59,7 @@ namespace Prototype.Player
             {
                 m_playerType = Enums.PlayerType.Spectator;
                 InitializeSpectator();
-            }
+            }            
         }
 
         public void EnablePlayer()
@@ -90,6 +100,13 @@ namespace Prototype.Player
                     renderers[i].sortingOrder = -1;
                 }
             }
+
+            //Hardcoded for flight 1
+            diceTypes[0] = Enums.DiceType.D6Plus2;
+            diceTypes[1] = Enums.DiceType.D6Plus2;
+            diceTypes[2] = Enums.DiceType.D12Min3;
+            diceTypes[3] = Enums.DiceType.D10Max8;
+
             EnablePlayer();
         }
 
@@ -105,6 +122,13 @@ namespace Prototype.Player
                     renderers[1].sortingOrder = -1;
                 }
             }
+
+            //Hardcoded for flight 1
+            diceTypes[0] = Enums.DiceType.D6;
+            diceTypes[1] = Enums.DiceType.D4X2;
+            diceTypes[2] = Enums.DiceType.D6;
+            diceTypes[3] = Enums.DiceType.D6;
+
             EnablePlayer();
         }
 

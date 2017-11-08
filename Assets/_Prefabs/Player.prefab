@@ -260,7 +260,6 @@ GameObject:
   - component: {fileID: 114663810321319220}
   - component: {fileID: 114043503266981744}
   - component: {fileID: 114074795792168004}
-  - component: {fileID: 114527040323264028}
   - component: {fileID: 114635420477150478}
   - component: {fileID: 114963270248781748}
   - component: {fileID: 114276250471060970}
@@ -680,7 +679,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114527040323264028}
+      - m_Target: {fileID: 0}
         m_MethodName: set_enabled
         m_Mode: 0
         m_Arguments:
@@ -889,28 +888,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 10
---- !u!114 &114527040323264028
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1786259994688736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a2d39ccca204083ba965eacbd9e261, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
-  buttonWidht: 70
-  buttonHeight: 20
-  singleDiceDropdown: {fileID: 114413969825672940, guid: 6d028531798df644d8ea633aa013276b,
-    type: 2}
-  charDiceDropdowns:
-  - {fileID: 114700776267642674, guid: 6d028531798df644d8ea633aa013276b, type: 2}
-  - {fileID: 114661829177418106, guid: 6d028531798df644d8ea633aa013276b, type: 2}
-  - {fileID: 114752033729923104, guid: 6d028531798df644d8ea633aa013276b, type: 2}
-  - {fileID: 114634073443412176, guid: 6d028531798df644d8ea633aa013276b, type: 2}
 --- !u!114 &114549117526912282
 MonoBehaviour:
   m_ObjectHideFlags: 1

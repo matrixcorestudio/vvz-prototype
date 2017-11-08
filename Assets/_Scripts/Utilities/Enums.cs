@@ -24,6 +24,13 @@
             Zombies,
             Spectator
         }
+
+        public enum RollType
+        {
+            SingleRoll,
+            VikingRoll,
+            ZombieRoll
+        }
     }
 
 }

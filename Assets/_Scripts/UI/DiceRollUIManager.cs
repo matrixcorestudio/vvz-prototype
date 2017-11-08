@@ -33,7 +33,7 @@ public class DiceRollUIManager : NetworkBehaviour
     public void SingleRoll()
     {
         Debug.Log("Single Roll Button pressed ;) value: " + singleDiceDropdown.value);
-        CmdRollDice((Enums.DiceType)singleDiceDropdown.value);
+        CmdRollDice(Enums.RollType.SingleRoll, (Enums.DiceType)singleDiceDropdown.value);
     }
 
     [Server]
@@ -80,19 +80,20 @@ public class DiceRollUIManager : NetworkBehaviour
     [Server] int CalculateD12() { return UnityEngine.Random.Range(1, 13); }
 
     [Command]
-    void CmdRollDice(Enums.DiceType diceType)
+    void CmdRollDice(Enums.RollType rollType, Enums.DiceType diceType)
     {
+        //TODO: change this stuff to consider roll typ (single, vikings or zombies type of roll)
         int rollResult = CalculateResult(diceType);
         if (DiceRollEvent != null)
         {
             DiceRollEvent("Dice Roll: " + rollResult + ", DiceType: " + diceType);
         }
-        RpcRollDice(rollResult, diceType, "LOLZ");
+        RpcRollDice(rollResult, diceType, rollType);
     }
 
     [ClientRpc]
-    void RpcRollDice(int rollValue, Enums.DiceType diceType, string playerName)
+    void RpcRollDice(int rollValue, Enums.DiceType diceType, Enums.RollType rollType)
     {
-        DiceRollUI.Instance.RollDice(rollValue, diceType.ToString(), playerName);
+        DiceRollUI.Instance.RollDice(rollValue, diceType.ToString(), rollType);
     }
 }

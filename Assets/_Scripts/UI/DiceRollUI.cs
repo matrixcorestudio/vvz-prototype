@@ -2,24 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Prototype.Utilities;
 
 public class DiceRollUI : Singleton<DiceRollUI> 
 {
 	[SerializeField] GameObject rollPanel;
-	[SerializeField] Text rollingPlayerNameText;
+	[SerializeField] Text rollTypeText;
 	[SerializeField] Text rollValueText;
 	[SerializeField] Text rollStatusText;
+    [SerializeField] Text[] charNameTexts;
 	[SerializeField] float randomizerTime = 0.2f;
 
 	int lastRollValue = 0;
-	string lastDiceType = "";
+	string lastRollType = string.Empty;
+    bool isSingle;
 
-	public void RollDice (int rollvalue, string diceType, string playerName)
+    private void Start()
+    {
+        rollStatusText.text = string.Empty;
+        rollTypeText.text = string.Empty;
+        rollValueText.text = string.Empty;
+        for (int i = 0; i < charNameTexts.Length; ++i)
+        {
+            charNameTexts[i].text = string.Empty;
+        }
+    }
+
+    public void RollDice (int rollvalue, string diceType, Enums.RollType rollType)
 	{
 		lastRollValue = rollvalue;
-		lastDiceType = diceType;
+		lastRollType = diceType;
 		rollPanel.SetActive(true);
-		rollingPlayerNameText.text = playerName;
+		rollTypeText.text = rollType.ToString();
 		StartCoroutine(VisualRandomizerRoutine(rollvalue));
 		UpdateRollStatusUI();
 	}
@@ -27,8 +41,8 @@ public class DiceRollUI : Singleton<DiceRollUI>
 	void UpdateRollStatusUI ()
 	{
 		rollStatusText.text = "Last roll value: "+ lastRollValue+"; "+
-			"With dice type: " + lastDiceType+"; "+
-			"By Player: "+ rollingPlayerNameText.text;
+			"With dice type: " + lastRollType+"; "+
+			"By Player: "+ rollTypeText.text;
 	}
 
 	IEnumerator VisualRandomizerRoutine (int rollvalue)

@@ -289,6 +289,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &387095756 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114955634807527580, guid: edd794d92c832694aba0a44b0fb33b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546085682}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &438967018
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,9 +520,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rollPanel: {fileID: 1116570363}
-  rollingPlayerNameText: {fileID: 5986842}
+  rollTypeText: {fileID: 5986842}
   rollValueText: {fileID: 1835359454}
   rollStatusText: {fileID: 1894436897}
+  charNameTexts:
+  - {fileID: 1484166828}
+  - {fileID: 852175101}
+  - {fileID: 1578424406}
+  - {fileID: 387095756}
   randomizerTime: 0.2
 --- !u!114 &829383451
 MonoBehaviour:
@@ -576,6 +587,12 @@ MonoBehaviour:
   m_Script: {fileID: -1050975500, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &852175101 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114204138235061438, guid: edd794d92c832694aba0a44b0fb33b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546085682}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &911969246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1336,12 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &1484166828 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114593301062731826, guid: edd794d92c832694aba0a44b0fb33b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546085682}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1546085682
 Prefab:
   m_ObjectHideFlags: 0
@@ -1419,6 +1442,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edd794d92c832694aba0a44b0fb33b6b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1578424406 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114379479502992422, guid: edd794d92c832694aba0a44b0fb33b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546085682}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1596429722
 GameObject:
   m_ObjectHideFlags: 0
@@ -1596,19 +1625,14 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1236247271710356, guid: 6d028531798df644d8ea633aa013276b, type: 2}
-      propertyPath: m_Name
-      value: DiceRollerPanel
-      objectReference: {fileID: 0}
     - target: {fileID: 114038738940480526, guid: 6d028531798df644d8ea633aa013276b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1201625176}
-    - target: {fileID: 114038738940480526, guid: 6d028531798df644d8ea633aa013276b,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SingleRoll
+    - target: {fileID: 1236247271710356, guid: 6d028531798df644d8ea633aa013276b, type: 2}
+      propertyPath: m_Name
+      value: DiceRollerPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d028531798df644d8ea633aa013276b, type: 2}

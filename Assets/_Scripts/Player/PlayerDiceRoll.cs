@@ -142,14 +142,14 @@ namespace Prototype.Player
             {
                 DiceRollEvent(m_player, "Dice Roll: " + rollResult + ", DiceType: " + diceType);
             }
-            RpcRollDice(rollResult, diceType, m_player.name);
+            //RpcRollDice(rollResult, diceType, m_player.name);
         }
 
-        [ClientRpc]
-        void RpcRollDice(int rollValue, Enums.DiceType diceType, string playerName)
-        {
-            DiceRollUI.Instance.RollDice(rollValue, diceType.ToString(), playerName);
-        }
+        //[ClientRpc]
+        //void RpcRollDice(int rollValue, Enums.DiceType diceType, string playerName)
+        //{
+        //    DiceRollUI.Instance.RollDice(rollValue, diceType.ToString(), playerName);
+        //}
     }
 
 }

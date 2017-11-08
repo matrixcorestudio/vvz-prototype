@@ -44,7 +44,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1215580826020546
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 222180082730725410}
   - component: {fileID: 114171410289258170}
   m_Layer: 5
-  m_Name: PlayerLabel
+  m_Name: RollFromText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 222925041284396928}
   - component: {fileID: 114579338479434296}
   m_Layer: 5
-  m_Name: PlayerTypeText
+  m_Name: RollTypeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -356,7 +356,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 01cd679a1b9ee48bf9c546f6ce2cb97e, type: 3}
-    m_FontSize: 20
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -367,7 +367,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Player: '
+  m_Text: 'Roll From: '
 --- !u!114 &114204138235061438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -620,7 +620,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 01cd679a1b9ee48bf9c546f6ce2cb97e, type: 3}
-    m_FontSize: 20
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -869,8 +869,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -88.08, y: 0}
-  m_SizeDelta: {x: 172.74, y: 35.52}
+  m_AnchoredPosition: {x: -81.47, y: 0.12000275}
+  m_SizeDelta: {x: 159.52, y: 33.09}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224181392214467538
 RectTransform:

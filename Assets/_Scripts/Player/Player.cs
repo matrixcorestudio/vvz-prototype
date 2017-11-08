@@ -34,17 +34,40 @@ namespace Prototype.Player
         private Enums.PlayerType m_playerType;
         public Enums.PlayerType PlayerType { get { return m_playerType; } }
 
-        private Enums.DiceType[] diceTypes;
-        public Enums.DiceType[] DiceTypes
+        private Enums.DiceType[] vikingDiceTypes;
+        public Enums.DiceType[] VikingDiceTypes
         {
-            get { return diceTypes; }
-            set { diceTypes = value; }
+            get { return vikingDiceTypes; }
+            set { vikingDiceTypes = value; }
         }
 
+        private Enums.DiceType[] zombieDiceTypes;
+        public Enums.DiceType[] ZombieDiceTypes
+        {
+            get { return zombieDiceTypes; }
+            set { zombieDiceTypes = value; }
+        }
+
+        private void Awake()
+        {
+            vikingDiceTypes = new Enums.DiceType[4];
+            zombieDiceTypes = new Enums.DiceType[4];
+
+            //Hardcoded for flight 1
+            vikingDiceTypes[0] = Enums.DiceType.D6Plus2;
+            vikingDiceTypes[1] = Enums.DiceType.D6Plus2;
+            vikingDiceTypes[2] = Enums.DiceType.D12Min3;
+            vikingDiceTypes[3] = Enums.DiceType.D10Max8;
+
+            //Hardcoded for flight 1
+            zombieDiceTypes[0] = Enums.DiceType.D6;
+            zombieDiceTypes[1] = Enums.DiceType.D4X2;
+            zombieDiceTypes[2] = Enums.DiceType.D6;
+            zombieDiceTypes[3] = Enums.DiceType.D6;
+        }
 
         private void Start()
         {
-            diceTypes = new Enums.DiceType[4];
             if (playerTextColor == Color.blue)
             {
                 m_playerType = Enums.PlayerType.Vikings;
@@ -101,12 +124,6 @@ namespace Prototype.Player
                 }
             }
 
-            //Hardcoded for flight 1
-            diceTypes[0] = Enums.DiceType.D6Plus2;
-            diceTypes[1] = Enums.DiceType.D6Plus2;
-            diceTypes[2] = Enums.DiceType.D12Min3;
-            diceTypes[3] = Enums.DiceType.D10Max8;
-
             EnablePlayer();
         }
 
@@ -122,12 +139,6 @@ namespace Prototype.Player
                     renderers[1].sortingOrder = -1;
                 }
             }
-
-            //Hardcoded for flight 1
-            diceTypes[0] = Enums.DiceType.D6;
-            diceTypes[1] = Enums.DiceType.D4X2;
-            diceTypes[2] = Enums.DiceType.D6;
-            diceTypes[3] = Enums.DiceType.D6;
 
             EnablePlayer();
         }

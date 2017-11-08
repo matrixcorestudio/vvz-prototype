@@ -21,30 +21,30 @@ public class PlayerDrawCard : NetworkBehaviour
 		m_player = GetComponent<Player>();
 	}
 
-	[ClientCallback]
-	void OnGUI ()
-	{
-		if(!isLocalPlayer)
-		{
-			return;
-		}
-		int _ypos = ypos;
-		int _xpos = xpos;
-		if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Blessing"))
-		{
-			CmdDrawBlessing();
-		}
-		_ypos += buttonHeight + 10;
-		if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Curse"))
-		{
-			CmdDrawCurse();
-		}
-		_ypos += buttonHeight + 10;
-		if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Random"))
-		{
-			CmdDrawRandom();
-		}
-	}
+	//[ClientCallback]
+	//void OnGUI ()
+	//{
+	//	if(!isLocalPlayer)
+	//	{
+	//		return;
+	//	}
+	//	int _ypos = ypos;
+	//	int _xpos = xpos;
+	//	if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Blessing"))
+	//	{
+	//		CmdDrawBlessing();
+	//	}
+	//	_ypos += buttonHeight + 10;
+	//	if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Curse"))
+	//	{
+	//		CmdDrawCurse();
+	//	}
+	//	_ypos += buttonHeight + 10;
+	//	if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Random"))
+	//	{
+	//		CmdDrawRandom();
+	//	}
+	//}
 
 	[Command]
 	void CmdDrawBlessing ()

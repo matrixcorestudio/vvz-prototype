@@ -1240,6 +1240,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 25, y: 4, z: 0}
+--- !u!1 &1201625175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1201625177}
+  - component: {fileID: 1201625176}
+  - component: {fileID: 1201625178}
+  m_Layer: 0
+  m_Name: Dice Roll UI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1201625176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201625175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3530957726881f04bb5db83084cabcf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  singleDiceDropdown: {fileID: 1859264069}
+  charDiceDropdowns:
+  - {fileID: 1859264073}
+  - {fileID: 1859264072}
+  - {fileID: 1859264071}
+  - {fileID: 1859264070}
+--- !u!4 &1201625177
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201625175}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 95.207855, y: 204.19421, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1201625178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201625175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 0
+    i1: 0
+    i2: 0
+    i3: 0
+    i4: 0
+    i5: 0
+    i6: 0
+    i7: 0
+    i8: 0
+    i9: 0
+    i10: 0
+    i11: 0
+    i12: 0
+    i13: 0
+    i14: 0
+    i15: 0
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!1001 &1546085682
 Prefab:
   m_ObjectHideFlags: 0
@@ -1521,9 +1600,49 @@ Prefab:
       propertyPath: m_Name
       value: DiceRollerPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 114038738940480526, guid: 6d028531798df644d8ea633aa013276b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1201625176}
+    - target: {fileID: 114038738940480526, guid: 6d028531798df644d8ea633aa013276b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SingleRoll
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6d028531798df644d8ea633aa013276b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1859264069 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114413969825672940, guid: 6d028531798df644d8ea633aa013276b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1859264068}
+  m_Script: {fileID: 853051423, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1859264070 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114634073443412176, guid: 6d028531798df644d8ea633aa013276b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1859264068}
+  m_Script: {fileID: 853051423, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1859264071 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114752033729923104, guid: 6d028531798df644d8ea633aa013276b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1859264068}
+  m_Script: {fileID: 853051423, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1859264072 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114661829177418106, guid: 6d028531798df644d8ea633aa013276b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1859264068}
+  m_Script: {fileID: 853051423, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1859264073 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114700776267642674, guid: 6d028531798df644d8ea633aa013276b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1859264068}
+  m_Script: {fileID: 853051423, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1894436895
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,37 +15,14 @@ namespace Prototype.Player
         public int buttonWidht = 70;
         public int buttonHeight = 20;
 
-        public Dropdown singleDiceDropdown;
-        public Dropdown[] charDiceDropdowns;
-
         Player m_player;
-        Enums.DiceType[] diceTypes;
 
         public delegate void OnDiceRoll(Player player, string result);
         public event OnDiceRoll DiceRollEvent;
 
         void Start()
         {
-            m_player = GetComponent<Player>();
-            diceTypes = m_player.DiceTypes;
-
-            List<string> diceOptions = new List<string>();
-            foreach (var type in Enum.GetValues(typeof (Enums.DiceType)))
-            {
-                diceOptions.Add(type.ToString());
-            }
-            singleDiceDropdown.ClearOptions();
-            singleDiceDropdown.AddOptions(diceOptions);
-            for (int i = 0; i < charDiceDropdowns.Length; i++)
-            {
-                charDiceDropdowns[i].ClearOptions();
-                charDiceDropdowns[i].AddOptions(diceOptions);
-            }
-        }
-
-        public void SingleRoll()
-        {
-            Debug.Log("Single Roll Button pressed ;) value: " + singleDiceDropdown.value);
+            m_player = GetComponent<Player>();           
         }
 
         //[ClientCallback]

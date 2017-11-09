@@ -521,13 +521,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rollPanel: {fileID: 1116570363}
   rollTypeText: {fileID: 5986842}
-  rollValueText: {fileID: 1835359454}
   rollStatusText: {fileID: 1894436897}
   charNameTexts:
   - {fileID: 1484166828}
   - {fileID: 852175101}
   - {fileID: 1578424406}
   - {fileID: 387095756}
+  rollValueText:
+  - {fileID: 1835359454}
+  - {fileID: 1546085685}
+  - {fileID: 1546085684}
+  - {fileID: 1546085683}
   randomizerTime: 0.2
 --- !u!114 &829383451
 MonoBehaviour:
@@ -1442,6 +1446,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edd794d92c832694aba0a44b0fb33b6b, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1546085683 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114304033254299880, guid: edd794d92c832694aba0a44b0fb33b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546085682}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1546085684 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114374363509206344, guid: edd794d92c832694aba0a44b0fb33b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546085682}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1546085685 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114515517744008460, guid: edd794d92c832694aba0a44b0fb33b6b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1546085682}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1578424406 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114379479502992422, guid: edd794d92c832694aba0a44b0fb33b6b,
@@ -1625,6 +1647,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114154076548167396, guid: 6d028531798df644d8ea633aa013276b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1201625176}
+    - target: {fileID: 114184776777197100, guid: 6d028531798df644d8ea633aa013276b,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1201625176}
     - target: {fileID: 114038738940480526, guid: 6d028531798df644d8ea633aa013276b,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

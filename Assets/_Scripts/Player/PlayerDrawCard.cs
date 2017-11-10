@@ -1,5 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Prototype.Player;
@@ -13,40 +11,42 @@ public class PlayerDrawCard : NetworkBehaviour
 	int buttonHeight = 20;
 
 	Player m_player;
+    Inventory m_inventory;
 	public delegate void OnDrawCard(Player player, string result);
 	public event OnDrawCard drawCardEvent;
 
 	void Start ()
 	{
 		m_player = GetComponent<Player>();
+        m_inventory = GetComponent<Inventory>();
 	}
 
-	//[ClientCallback]
-	//void OnGUI ()
-	//{
-	//	if(!isLocalPlayer)
-	//	{
-	//		return;
-	//	}
-	//	int _ypos = ypos;
-	//	int _xpos = xpos;
-	//	if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Blessing"))
-	//	{
-	//		CmdDrawBlessing();
-	//	}
-	//	_ypos += buttonHeight + 10;
-	//	if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Curse"))
-	//	{
-	//		CmdDrawCurse();
-	//	}
-	//	_ypos += buttonHeight + 10;
-	//	if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Random"))
-	//	{
-	//		CmdDrawRandom();
-	//	}
-	//}
+    //[ClientCallback]
+    //void OnGUI()
+    //{
+    //    if (!isLocalPlayer)
+    //    {
+    //        return;
+    //    }
+    //    int _ypos = ypos;
+    //    int _xpos = xpos;
+    //    if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Blessing"))
+    //    {
+    //        CmdDrawBlessing();
+    //    }
+    //    _ypos += buttonHeight + 10;
+    //    if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Curse"))
+    //    {
+    //        CmdDrawCurse();
+    //    }
+    //    _ypos += buttonHeight + 10;
+    //    if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Random"))
+    //    {
+    //        CmdDrawRandom();
+    //    }
+    //}
 
-	[Command]
+    [Command]
 	void CmdDrawBlessing ()
 	{
 		ServerCardDealer.Instance.DrawBlessing();
@@ -82,6 +82,6 @@ public class PlayerDrawCard : NetworkBehaviour
 	[ClientRpc]
 	void RpcUpdateDeckStatusInfo (ServerCardDealer.DealerStatus dealerStatus, string playerName)
 	{
-		CardDrawUI.Instance.UpdateDeckStatusUI(dealerStatus, playerName);
+		//CardDrawUI.Instance.UpdateDeckStatusUI(dealerStatus, playerName);
 	}
 }

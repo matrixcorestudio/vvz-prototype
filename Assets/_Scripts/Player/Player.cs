@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
@@ -46,6 +46,12 @@ namespace Prototype.Player
         {
             get { return zombieDiceTypes; }
             set { zombieDiceTypes = value; }
+        }
+
+        public override void OnStartLocalPlayer()
+        {
+            base.OnStartLocalPlayer();
+            gameObject.tag = "LocalPlayer";
         }
 
         private void Awake()

@@ -16,4 +16,4 @@ MonoBehaviour:
   isQuick: 0
   type: 2
   target: 1
-  cardImage: {fileID: 0}
+  cardImage: {fileID: 21300000, guid: ec79a31c6d492c14d8fc26159da84a7e, type: 3}

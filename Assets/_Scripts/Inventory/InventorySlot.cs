@@ -19,7 +19,6 @@ public class InventorySlot : MonoBehaviour
         cardImage.sprite = newCard.cardImage;
         cardImage.enabled = true;
         discardButton.interactable = true;
-
     }
 
     public void ClearSlot()
@@ -35,11 +34,11 @@ public class InventorySlot : MonoBehaviour
         m_inventory.Remove(m_card);
     }
 
-    public void UseCard()
+    public void OnUseCard()
     {
         if (m_card != null)
         {
-            m_card.Use();
+            //m_card.Use();
         }
     }
 }

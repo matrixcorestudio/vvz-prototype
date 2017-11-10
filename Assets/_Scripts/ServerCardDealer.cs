@@ -1,4 +1,3 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -54,19 +53,21 @@ public class ServerCardDealer : Singleton<ServerCardDealer>
 		InitCurses();
 	}
 
-	public void DrawBlessing ()
+	public CardData DrawBlessing ()
 	{
 		m_lastDrawnCard = blessingCards[m_blessings[0]];
 		RemoveCard(m_blessings, CardData.CardType.Blessing);
+        return m_lastDrawnCard;
 	}
 
-	public void DrawCurse ()
+	public CardData DrawCurse ()
 	{
 		m_lastDrawnCard = curseCards[m_curses[0]];
 		RemoveCard(m_curses, CardData.CardType.Curse);
+        return m_lastDrawnCard;
 	}
 
-	public void DrawRandom ()
+	public CardData DrawRandom ()
 	{
 		if(Random.Range(0,100)%2 == 0)
 		{
@@ -76,6 +77,7 @@ public class ServerCardDealer : Singleton<ServerCardDealer>
 		{
 			DrawCurse();
 		}
+        return m_lastDrawnCard;
 	}
 
 	void InitBlessings()

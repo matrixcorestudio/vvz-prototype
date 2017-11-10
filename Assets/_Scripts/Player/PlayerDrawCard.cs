@@ -5,10 +5,10 @@ using Prototype.Player;
 [RequireComponent(typeof(Player))]
 public class PlayerDrawCard : NetworkBehaviour 
 {
-	int xpos = 10;
-	int ypos = 310;
-	int buttonWidth = 80;
-	int buttonHeight = 20;
+	//int xpos = 10;
+	//int ypos = 310;
+	//int buttonWidth = 80;
+	//int buttonHeight = 20;
 
 	Player m_player;
     Inventory m_inventory;
@@ -49,7 +49,8 @@ public class PlayerDrawCard : NetworkBehaviour
     [Command]
 	void CmdDrawBlessing ()
 	{
-		ServerCardDealer.Instance.DrawBlessing();
+		CardData card = ServerCardDealer.Instance.DrawBlessing();
+        m_inventory.Add(card);
 		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
 		if(drawCardEvent != null)
 		{
@@ -60,8 +61,9 @@ public class PlayerDrawCard : NetworkBehaviour
 	[Command]
 	void CmdDrawCurse ()
 	{
-		ServerCardDealer.Instance.DrawCurse();
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
+		CardData card = ServerCardDealer.Instance.DrawCurse();
+        m_inventory.Add(card);
+        RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
 		if(drawCardEvent != null)
 		{
 			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
@@ -71,7 +73,8 @@ public class PlayerDrawCard : NetworkBehaviour
 	[Command]
 	void CmdDrawRandom ()
 	{
-		ServerCardDealer.Instance.DrawRandom();
+		CardData card = ServerCardDealer.Instance.DrawRandom();
+        m_inventory.Add(card);
 		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
 		if(drawCardEvent != null)
 		{

@@ -39,7 +39,7 @@ public class DiceRollUI : Singleton<DiceRollUI>
 		rollPanel.SetActive(true);
         rollTypeText.text = Enums.RollType.SingleRoll.ToString();
         lastRollType = Enums.RollType.SingleRoll.ToString();
-        charNameTexts[0].text = "Single Roll: ";
+        charNameTexts[0].text = "Single Roll (" + diceType + ") : ";
         StartCoroutine(SingleVisualRandomizerRoutine());
 	}
 
@@ -52,7 +52,7 @@ public class DiceRollUI : Singleton<DiceRollUI>
         lastRollType = rollType.ToString();
         for (int i = 0; i < charNameTexts.Length; ++i)
         {
-            charNameTexts[i].text = charNames[i] + ": ";
+            charNameTexts[i].text = charNames[i] + " (" + diceTypes[i] + ") : ";
         }
         StartCoroutine(MultipleVisualRandomizerRoutine());
     }
@@ -65,7 +65,7 @@ public class DiceRollUI : Singleton<DiceRollUI>
             for (int i = 0; i < rollValueText.Length; ++i)
             {
                 rollValueText[i].text = (lastRollValues[i] < 0 ? "None" : lastRollValues[i].ToString());
-                if (lastDiceType == Enums.DiceType.CoinFlip.ToString())
+                if (lastDiceTypes[i] == Enums.DiceType.CoinFlip.ToString())
                 {
                     rollValueText[i].text = (lastRollValues[i] == 2 ? "Good" : "Bad");
                 }
@@ -80,6 +80,7 @@ public class DiceRollUI : Singleton<DiceRollUI>
             {
                 rollValueText[0].text = (lastRollValue == 2 ? "Good" : "Bad");
             }
+            rollValueText[1].text = rollValueText[2].text = rollValueText[3].text = string.Empty;
             rollStatusText.text = string.Format("Last roll value: {0}, with dice type: {1}, with " +
                 "roll type: {2}", rollValueText[0].text, lastDiceType, lastRollType);
         }

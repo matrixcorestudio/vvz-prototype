@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.UI;
 using Prototype.Utilities;
+using Prototype.Player;
 
 public class DiceRollUIManager : NetworkBehaviour
 {
@@ -19,6 +20,8 @@ public class DiceRollUIManager : NetworkBehaviour
     private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
     private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
 
+    private Player player;
+    public Player Player { get; set; }
 
     private void Awake()
     {
@@ -67,6 +70,28 @@ public class DiceRollUIManager : NetworkBehaviour
     {
         Debug.Log("Zombie Roll button pressed!");
         CmdRollDice(Enums.RollType.ZombieRoll, Enums.DiceType.None);
+    }
+
+    public void ChangeVikingDice()
+    {
+        string toLog = "Changing dice type to vikings to the next values: ";
+        for (int i = 0; i < vikingDiceTypes.Length; ++i)
+        {
+            vikingDiceTypes[i] = (Enums.DiceType)charDiceDropdowns[i].value;
+            toLog += vikingDiceTypes[i].ToString() + ", ";
+        }
+        Debug.Log(toLog.Remove(toLog.Length - 2));
+    }
+
+    public void ChangeZombieDice()
+    {
+        string toLog = "Changing dice type to zombies to the next values: ";
+        for (int i = 0; i < zombieDiceTypes.Length; ++i)
+        {
+            zombieDiceTypes[i] = (Enums.DiceType)charDiceDropdowns[i].value;
+            toLog += zombieDiceTypes[i].ToString() + ", ";
+        }
+        Debug.Log(toLog.Remove(toLog.Length - 2));
     }
 
     [Server]

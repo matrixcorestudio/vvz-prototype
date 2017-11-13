@@ -15,15 +15,15 @@ public class DiceRollUIManager : NetworkBehaviour
     public delegate void OnDiceRoll(string result);
     public event OnDiceRoll DiceRollEvent;
 
-    private Enums.DiceType[] vikingDiceTypes;
-    private Enums.DiceType[] zombieDiceTypes;
+    private SyncListInt vikingDiceTypes = new SyncListInt();
+    private SyncListInt zombieDiceTypes = new SyncListInt();
     private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
     private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
 
     private Player player;
     public Player Player { get; set; }
 
-    private void Awake()
+    private void Start()
     {
         List<string> diceOptions = new List<string>();
         foreach (var type in Enum.GetValues(typeof(Enums.DiceType)))
@@ -38,57 +38,62 @@ public class DiceRollUIManager : NetworkBehaviour
             charDiceDropdowns[i].AddOptions(diceOptions);
         }
 
-        vikingDiceTypes = new Enums.DiceType[4];
-        zombieDiceTypes = new Enums.DiceType[4];
+        //vikingDiceTypes = new SyncListInt();
+        //zombieDiceTypes = new SyncListInt();
 
         //Hardcoded for flight 1
-        vikingDiceTypes[0] = Enums.DiceType.D6Plus2;
-        vikingDiceTypes[1] = Enums.DiceType.D6Plus2;
-        vikingDiceTypes[2] = Enums.DiceType.D12Min3;
-        vikingDiceTypes[3] = Enums.DiceType.D10Max8;
+        vikingDiceTypes.Add((int)Enums.DiceType.D6Plus2);
+        vikingDiceTypes.Add((int)Enums.DiceType.D6Plus2);
+        vikingDiceTypes.Add((int)Enums.DiceType.D12Min3);
+        vikingDiceTypes.Add((int)Enums.DiceType.D10Max8);
 
         //Hardcoded for flight 1
-        zombieDiceTypes[0] = Enums.DiceType.D6;
-        zombieDiceTypes[1] = Enums.DiceType.D4X2;
-        zombieDiceTypes[2] = Enums.DiceType.D6;
-        zombieDiceTypes[3] = Enums.DiceType.D6;
+        zombieDiceTypes.Add((int)Enums.DiceType.D6);
+        zombieDiceTypes.Add((int)Enums.DiceType.D4X2);
+        zombieDiceTypes.Add((int)Enums.DiceType.D6);
+        zombieDiceTypes.Add((int)Enums.DiceType.D6);
     }
     
+    [ClientCallback]
     public void SingleRoll()
     {
         Debug.Log("Single Roll Button pressed ;) value: " + singleDiceDropdown.value);
         CmdRollDice(Enums.RollType.SingleRoll, (Enums.DiceType)singleDiceDropdown.value);
     }
 
+    [ClientCallback]
     public void VikingRoll()
     {
         Debug.Log("Viking Roll button pressed!");
         CmdRollDice(Enums.RollType.VikingRoll, Enums.DiceType.None);
     }
 
+    [ClientCallback]
     public void ZombieRoll()
     {
         Debug.Log("Zombie Roll button pressed!");
         CmdRollDice(Enums.RollType.ZombieRoll, Enums.DiceType.None);
     }
 
+    [ClientCallback]
     public void ChangeVikingDice()
     {
         string toLog = "Changing dice type to vikings to the next values: ";
-        for (int i = 0; i < vikingDiceTypes.Length; ++i)
+        for (int i = 0; i < vikingDiceTypes.Count; ++i)
         {
-            vikingDiceTypes[i] = (Enums.DiceType)charDiceDropdowns[i].value;
+            vikingDiceTypes[i] = charDiceDropdowns[i].value;
             toLog += vikingDiceTypes[i].ToString() + ", ";
         }
         Debug.Log(toLog.Remove(toLog.Length - 2));
     }
 
+    [ClientCallback]
     public void ChangeZombieDice()
     {
         string toLog = "Changing dice type to zombies to the next values: ";
-        for (int i = 0; i < zombieDiceTypes.Length; ++i)
+        for (int i = 0; i < zombieDiceTypes.Count; ++i)
         {
-            zombieDiceTypes[i] = (Enums.DiceType)charDiceDropdowns[i].value;
+            zombieDiceTypes[i] = charDiceDropdowns[i].value;
             toLog += zombieDiceTypes[i].ToString() + ", ";
         }
         Debug.Log(toLog.Remove(toLog.Length - 2));
@@ -140,6 +145,7 @@ public class DiceRollUIManager : NetworkBehaviour
     [Command]
     void CmdRollDice(Enums.RollType rollType, Enums.DiceType diceType)
     {
+        Debug.Log("Rolling Dice in CmdRollDice");
         if (rollType == Enums.RollType.SingleRoll)
         {
             int rollResult = CalculateResult(diceType);
@@ -156,19 +162,21 @@ public class DiceRollUIManager : NetworkBehaviour
 
             if (rollType == Enums.RollType.VikingRoll)
             {
-                for (int i = 0; i < vikingDiceTypes.Length; ++i)
+                for (int i = 0; i < vikingDiceTypes.Count; ++i)
                 {
-                    rollResults[i] = CalculateResult(vikingDiceTypes[i]);
-                    diceTypes[i] = vikingDiceTypes[i].ToString();
+                    Enums.DiceType dt = (Enums.DiceType)vikingDiceTypes[i];
+                    rollResults[i] = CalculateResult(dt);
+                    diceTypes[i] = dt.ToString();
                 }
                 RpcRollMultipleDice(rollResults, diceTypes, vikingNamesFlight1, Enums.RollType.VikingRoll);
             }
             else //Roll type is zombies
             {
-                for (int i = 0; i < zombieDiceTypes.Length; ++i)
+                for (int i = 0; i < zombieDiceTypes.Count; ++i)
                 {
-                    rollResults[i] = CalculateResult(zombieDiceTypes[i]);
-                    diceTypes[i] = zombieDiceTypes[i].ToString();
+                    Enums.DiceType dt = (Enums.DiceType)zombieDiceTypes[i];
+                    rollResults[i] = CalculateResult(dt);
+                    diceTypes[i] = dt.ToString();
                 }
                 RpcRollMultipleDice(rollResults, diceTypes, zombieNamesFlight1, Enums.RollType.ZombieRoll);
             }
@@ -178,6 +186,7 @@ public class DiceRollUIManager : NetworkBehaviour
     [ClientRpc]
     void RpcRollSingleDice(int rollValue, Enums.DiceType diceType)
     {
+        Debug.Log("RpcRollSingle entered ;)");
         DiceRollUI.Instance.RollSingleDice(rollValue, diceType.ToString());
     }
 

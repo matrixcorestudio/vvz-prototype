@@ -633,6 +633,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1065775633272274, guid: ff6708a788c38544e9176fdbae199e14, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff6708a788c38544e9176fdbae199e14, type: 2}
   m_IsPrefabParent: 0
@@ -1059,7 +1063,7 @@ MonoBehaviour:
   - {fileID: 852175101}
   - {fileID: 1578424406}
   - {fileID: 387095756}
-  rollValueText:
+  rollValueTexts:
   - {fileID: 1835359454}
   - {fileID: 1546085685}
   - {fileID: 1546085684}
@@ -1596,6 +1600,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1535604410886918, guid: d9b515c5154db644bac9567e15421ad2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9b515c5154db644bac9567e15421ad2, type: 2}

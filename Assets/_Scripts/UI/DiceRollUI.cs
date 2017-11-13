@@ -10,7 +10,7 @@ public class DiceRollUI : Singleton<DiceRollUI>
 	[SerializeField] Text rollTypeText;
 	[SerializeField] Text rollStatusText;
     [SerializeField] Text[] charNameTexts;
-    [SerializeField] Text[] rollValueText;
+    [SerializeField] Text[] rollValueTexts;
     [SerializeField] float randomizerTime = 0.2f;
 
 	int lastRollValue = 0;
@@ -26,7 +26,7 @@ public class DiceRollUI : Singleton<DiceRollUI>
         for (int i = 0; i < charNameTexts.Length; ++i)
         {
             charNameTexts[i].text = string.Empty;
-            rollValueText[i].text = string.Empty;
+            rollValueTexts[i].text = string.Empty;
             lastDiceTypes[i] = string.Empty;
             lastRollValues[i] = 0;
         }
@@ -40,6 +40,11 @@ public class DiceRollUI : Singleton<DiceRollUI>
         rollTypeText.text = Enums.RollType.SingleRoll.ToString();
         lastRollType = Enums.RollType.SingleRoll.ToString();
         charNameTexts[0].text = "Single Roll (" + diceType + ") : ";
+        for (int i = 1; i < charNameTexts.Length; ++i)
+        {
+            charNameTexts[i].text = string.Empty;
+            rollValueTexts[i].text = string.Empty;
+        }
         StartCoroutine(SingleVisualRandomizerRoutine());
 	}
 
@@ -62,27 +67,30 @@ public class DiceRollUI : Singleton<DiceRollUI>
         if (isMultipleRoll)
         {
             rollStatusText.text = "Last roll values: ";
-            for (int i = 0; i < rollValueText.Length; ++i)
+            for (int i = 0; i < rollValueTexts.Length; ++i)
             {
-                rollValueText[i].text = (lastRollValues[i] < 0 ? "None" : lastRollValues[i].ToString());
+                rollValueTexts[i].text = (lastRollValues[i] < 0 ? "None" : lastRollValues[i].ToString());
                 if (lastDiceTypes[i] == Enums.DiceType.CoinFlip.ToString())
                 {
-                    rollValueText[i].text = (lastRollValues[i] == 2 ? "Good" : "Bad");
+                    rollValueTexts[i].text = (lastRollValues[i] == 2 ? "Good" : "Bad");
                 }
-                rollStatusText.text += rollValueText[i].text + ", ";
+                rollStatusText.text += rollValueTexts[i].text + ", ";
             }
             rollStatusText.text += "with roll type: " + lastRollType;            
         }
         else
         {
-            rollValueText[0].text = (lastRollValue < 0 ? "None" : lastRollValue.ToString());
+            rollValueTexts[0].text = (lastRollValue < 0 ? "None" : lastRollValue.ToString());
             if (lastDiceType == Enums.DiceType.CoinFlip.ToString())
             {
-                rollValueText[0].text = (lastRollValue == 2 ? "Good" : "Bad");
+                rollValueTexts[0].text = (lastRollValue == 2 ? "Good" : "Bad");
             }
-            rollValueText[1].text = rollValueText[2].text = rollValueText[3].text = string.Empty;
+            for (int i = 1; i < rollValueTexts.Length; ++i)
+            {
+                rollValueTexts[i].text = string.Empty;
+            }
             rollStatusText.text = string.Format("Last roll value: {0}, with dice type: {1}, with " +
-                "roll type: {2}", rollValueText[0].text, lastDiceType, lastRollType);
+                "roll type: {2}", rollValueTexts[0].text, lastDiceType, lastRollType);
         }
 	}
 
@@ -92,7 +100,7 @@ public class DiceRollUI : Singleton<DiceRollUI>
 		while (elapsedTime < randomizerTime)
 		{
 			yield return new WaitForSeconds(0.1f);
-			rollValueText[0].text = Random.Range(1,12).ToString();
+			rollValueTexts[0].text = Random.Range(1,12).ToString();
 			elapsedTime += Time.deltaTime;
 		}
         UpdateRollStatusUI(false);
@@ -104,9 +112,9 @@ public class DiceRollUI : Singleton<DiceRollUI>
         while (elapsedTime < randomizerTime)
         {
             yield return new WaitForSeconds(0.1f);
-            for (int i = 0; i < rollValueText.Length; ++i)
+            for (int i = 0; i < rollValueTexts.Length; ++i)
             {
-                rollValueText[i].text = Random.Range(1, 12).ToString(); 
+                rollValueTexts[i].text = Random.Range(1, 12).ToString(); 
             }
             elapsedTime += Time.deltaTime;
         }

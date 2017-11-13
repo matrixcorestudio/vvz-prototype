@@ -37,10 +37,13 @@ public class DiceRollUIManager : NetworkBehaviour
             charDiceDropdowns[i].ClearOptions();
             charDiceDropdowns[i].AddOptions(diceOptions);
         }
+        
+        InitSyncLists();
+    }
 
-        //vikingDiceTypes = new SyncListInt();
-        //zombieDiceTypes = new SyncListInt();
-
+    [Server]
+    void InitSyncLists()
+    {
         //Hardcoded for flight 1
         vikingDiceTypes.Add((int)Enums.DiceType.D6Plus2);
         vikingDiceTypes.Add((int)Enums.DiceType.D6Plus2);
@@ -57,7 +60,8 @@ public class DiceRollUIManager : NetworkBehaviour
     [ClientCallback]
     public void SingleRoll()
     {
-        Debug.Log("Single Roll Button pressed ;) value: " + singleDiceDropdown.value);
+        bool lp = isLocalPlayer;
+        Debug.Log("Single Roll Button pressed ;) value: " + singleDiceDropdown.value + " " + isLocalPlayer);
         CmdRollDice(Enums.RollType.SingleRoll, (Enums.DiceType)singleDiceDropdown.value);
     }
 
@@ -78,13 +82,15 @@ public class DiceRollUIManager : NetworkBehaviour
     [ClientCallback]
     public void ChangeVikingDice()
     {
+        bool lp = isLocalPlayer;
+        bool ic = isClient;
         string toLog = "Changing dice type to vikings to the next values: ";
         for (int i = 0; i < vikingDiceTypes.Count; ++i)
         {
             vikingDiceTypes[i] = charDiceDropdowns[i].value;
             toLog += vikingDiceTypes[i].ToString() + ", ";
         }
-        Debug.Log(toLog.Remove(toLog.Length - 2));
+        Debug.Log(toLog.Remove(toLog.Length - 2) + lp + " " + ic);
     }
 
     [ClientCallback]

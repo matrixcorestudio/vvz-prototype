@@ -591,9 +591,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.1
   apiCompatibilityLevel: 2
-  cloudProjectId: f57a836c-7ff6-4629-9ce6-9c3ee3a15555
+  cloudProjectId: 797ca82f-dbcc-489c-898d-6a0df1b7d98e
   projectName: Vikings vs Zombies
-  organizationId: matrix-core-studio
+  organizationId: lwyz-ph
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

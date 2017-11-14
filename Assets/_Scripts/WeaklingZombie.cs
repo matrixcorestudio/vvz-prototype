@@ -2,18 +2,19 @@
 using UnityEngine.Events;
 using UnityEngine.Networking;
 
-public class MiniZombie : NetworkBehaviour {
+public class WeaklingZombie : NetworkBehaviour
+{
     [System.Serializable]
     public class ToggleEvent : UnityEvent<bool> { }
 
     [SerializeField] ToggleEvent onToggleLocal;
-	public override void OnStartAuthority()
+    public override void OnStartAuthority()
     {
         if (hasAuthority)
         {
             EnableMiniZombie();
         }
-	}
+    }
 
     void EnableMiniZombie()
     {

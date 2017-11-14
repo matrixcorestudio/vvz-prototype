@@ -3,7 +3,7 @@ using Prototype.Utilities;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class Spawner : NetworkBehaviour
+public class WeaklingZombieSpawner : NetworkBehaviour
 {
     public GameObject zombiePrefab;
     Player m_player;
@@ -12,20 +12,20 @@ public class Spawner : NetworkBehaviour
     {
         m_player = GetComponent<Player>();
     }
-    void Update ()
+    void Update()
     {
         if (!isLocalPlayer)
         {
             return;
         }
-        if (Input.GetKeyDown(KeyCode.Z) && m_player.PlayerType == Enums.PlayerType.Zombies)
+        if (Input.GetButtonDown("Spawn Weakling") && m_player.PlayerType == Enums.PlayerType.Zombies)
         {
             CmdSpawnZombie();
         }
-	}
+    }
 
     [Command]
-    void CmdSpawnZombie ()
+    void CmdSpawnZombie()
     {
         GameObject zombie = Instantiate(zombiePrefab, transform.position + Vector3.left, transform.rotation, transform);
         NetworkServer.SpawnWithClientAuthority(zombie, connectionToClient);

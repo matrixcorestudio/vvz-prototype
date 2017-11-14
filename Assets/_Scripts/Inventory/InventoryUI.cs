@@ -8,8 +8,8 @@ public class InventoryUI : MonoBehaviour
     InventorySlot[] m_slots;
 	void Start ()
     {
-        m_inventory = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<Inventory>();
-        m_inventory.inventoryChangeEvent += UpdateUI;
+        //m_inventory = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<Inventory>();
+        //m_inventory.inventoryChangeEvent += UpdateUI;
         m_slots = cardsParent.GetComponentsInChildren<InventorySlot>();
     }
 	

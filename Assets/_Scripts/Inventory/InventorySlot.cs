@@ -10,7 +10,7 @@ public class InventorySlot : MonoBehaviour
 
     private void Start()
     {
-        m_inventory = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<Inventory>();
+       // m_inventory = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<Inventory>();
     }
 
     public void AddCard(CardData newCard)

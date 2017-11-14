@@ -1,6 +1,5 @@
 ﻿namespace Prototype.Utilities
 {
-
     public static class Enums
     {
         public enum DiceType
@@ -30,6 +29,46 @@
             SingleRoll,
             VikingRoll,
             ZombieRoll
+        }
+
+        public enum StatusEffect
+        {
+            Paralysis,
+            Threatened,
+            Slowness,
+            Quickness,
+            Connoisseur,
+            Cured,
+            Flying,
+            DivineProtection,
+            Disruption,
+            Invisible,
+            Buried,
+            Nonexistent,
+            Petrification,
+            Wounded,
+            Fear,
+            Disabled,
+            Sickness,
+            Blessed,
+            Blocker,
+            GoodLuck,
+            Hiker,
+            Instinct,
+            Sneaky,
+            BadLuck,
+            Butterfingers,
+            Cursed,
+            Exposed,
+            GamblerLuck,
+            Nervousness,
+            MoreFear,
+            Aggression,
+            Flexible,
+            Unstoppable,
+            Intimidating,
+            Radical,
+            Allergic
         }
     }
 

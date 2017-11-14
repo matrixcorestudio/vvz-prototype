@@ -8,9 +8,9 @@ public class InventorySlot : MonoBehaviour
     CardData m_card;
     Inventory m_inventory;
 
-    private void Start()
+    public void Init(Inventory inventory)
     {
-       // m_inventory = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<Inventory>();
+        m_inventory = inventory;
     }
 
     public void AddCard(CardData newCard)

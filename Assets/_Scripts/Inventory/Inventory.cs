@@ -7,9 +7,20 @@ public class Inventory : NetworkBehaviour
 	public List<CardData> cards = new List<CardData>();
 	public int space = 5;
 
-    //Envento para cuando se presente un cambio en el inventario, a�adir, usar, o remover cartas.
     public delegate void OnInventoryChange();
     public event OnInventoryChange inventoryChangeEvent;
+
+    private void Start()
+    {
+        if (isLocalPlayer)
+        {
+            InventoryUI inventoryUI = FindObjectOfType<InventoryUI>();
+            if (inventoryUI != null)
+            {
+                inventoryUI.Init(this);
+            }
+        }
+    }
 
     public bool Add(CardData card)
 	{

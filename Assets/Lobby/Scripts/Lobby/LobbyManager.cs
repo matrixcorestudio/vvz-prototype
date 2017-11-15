@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.Networking.Types;
 using UnityEngine.Networking.Match;
 using System.Collections;
-
+using System.Collections.Generic;
 
 namespace Prototype.NetworkLobby
 {
@@ -52,6 +52,9 @@ namespace Prototype.NetworkLobby
         protected ulong _currentMatchID;
 
         protected LobbyHook _lobbyHooks;
+
+        Hashtable playerConnLobbyHash = new Hashtable();
+        List<LobbyPlayer> extraLobbyPlayers = new List<LobbyPlayer>();
 
         void Start()
         {
@@ -291,8 +294,37 @@ namespace Prototype.NetworkLobby
                     p.ToggleJoinButton(numPlayers + 1 >= minPlayers);
                 }
             }
-
+            if (!playerConnLobbyHash.Contains(conn))
+            {
+                playerConnLobbyHash.Add(conn, newPlayer);
+            }
+            else
+            {
+                extraLobbyPlayers.Add(newPlayer);
+            }
             return obj;
+        }
+        public override GameObject OnLobbyServerCreateGamePlayer(NetworkConnection conn, short playerControllerId)
+        {
+            LobbyPlayer lobbyPlayer = playerControllerId==0? (LobbyPlayer) playerConnLobbyHash[conn]:extraLobbyPlayers[playerControllerId-1];
+            Transform spawnPoint = GetStartPosition();
+            GameObject gamePlayer;
+            if (lobbyPlayer.playerColor == Color.blue)
+            {
+                gamePlayer = (GameObject)Instantiate(spawnPrefabs[0], spawnPoint.position, spawnPoint.rotation);
+                Debug.Log("Enter Viking");
+            }
+            else if (lobbyPlayer.playerColor == Color.magenta)
+            {
+                gamePlayer = (GameObject)Instantiate(spawnPrefabs[1], spawnPoint.position, spawnPoint.rotation);
+                Debug.Log("Enter Zombie");
+            }
+            else
+            {
+                gamePlayer = (GameObject)Instantiate(spawnPrefabs[2], spawnPoint.position, spawnPoint.rotation);
+                Debug.Log("Enter Spectator");
+            }
+            return gamePlayer;
         }
 
         public override void OnLobbyServerPlayerRemoved(NetworkConnection conn, short playerControllerId)

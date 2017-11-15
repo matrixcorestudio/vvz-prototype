@@ -7,89 +7,153 @@ using Prototype.Utilities;
 
 namespace Prototype.Player
 {
-    [RequireComponent(typeof(Player))]
     public class PlayerDiceRoll : NetworkBehaviour
-    {
-        public int offsetX = 0;
-        public int offsetY = 0;
-        public int buttonWidht = 70;
-        public int buttonHeight = 20;
+    {        
+        private SyncListInt vikingDiceTypes = new SyncListInt();
+        private SyncListInt zombieDiceTypes = new SyncListInt();
 
-        Player m_player;
+        private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
+        private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
 
-        public delegate void OnDiceRoll(Player player, string result);
-        public event OnDiceRoll DiceRollEvent;
+        private Player player;
+        private bool foundDRM = false;
 
-        void Start()
+        private void Start()
         {
-            m_player = GetComponent<Player>();           
+            if (isServer)
+            {
+                Debug.Log("Initiating SyncLists");
+                InitSyncLists();
+            }
         }
 
-        //[ClientCallback]
-        //void OnGUI()
-        //{
-        //    if (!isLocalPlayer)
-        //    {
-        //        return;
-        //    }
-        //    int xpos = offsetX + 10;
-        //    int ypos = offsetY + 10;
-        //    int vSpacing = 30;
+        private void Update()
+        {
+            if (!isLocalPlayer || foundDRM)
+            {
+                return;
+            }
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D4.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D4);
-        //    }
+            DiceRollUIManager diceRollerManager = FindObjectOfType<DiceRollUIManager>();
+            if (diceRollerManager != null)
+            {
+                foundDRM = true;
+                Debug.Log("Found Dice Roll Manager ;)");
+                diceRollerManager.Init(this);
+            }
+        }
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D4Plus1.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D4Plus1);
-        //    }
+        [ClientCallback]
+        public void RollDice(Enums.RollType rollType, Enums.DiceType diceType)
+        {
+            CmdRollDice(rollType, diceType);
+        }
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D6.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D6);
-        //    }
+        [ClientCallback]
+        public void ChangeVikingDice(int[] newValues)
+        {
+            CmdChangeVikingDice(newValues);
+        }
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D6Plus2.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D6Plus2);
-        //    }
+        [ClientCallback]
+        public void ChangeZombieDice(int[] newValues)
+        {
+            CmdChangeZombieDice(newValues);
+        }
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D10Max8.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D10Max8);
-        //    }
+        [Command]
+        void CmdRollDice(Enums.RollType rollType, Enums.DiceType diceType)
+        {
+            Debug.Log("Rolling Dice in CmdRollDice");
+            if (rollType == Enums.RollType.SingleRoll)
+            {
+                int rollResult = CalculateResult(diceType);
+                RpcRollSingleDice(rollResult, diceType);
+            }
+            else
+            {
+                int[] rollResults = new int[4];
+                string[] diceTypes = new string[4];
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D12Min3.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D12Min3);
-        //    }
+                if (rollType == Enums.RollType.VikingRoll)
+                {
+                    for (int i = 0; i < vikingDiceTypes.Count; ++i)
+                    {
+                        Enums.DiceType dt = (Enums.DiceType)vikingDiceTypes[i];
+                        rollResults[i] = CalculateResult(dt);
+                        diceTypes[i] = dt.ToString();
+                    }
+                    RpcRollMultipleDice(rollResults, diceTypes, vikingNamesFlight1, Enums.RollType.VikingRoll);
+                }
+                else //Roll type is zombies
+                {
+                    for (int i = 0; i < zombieDiceTypes.Count; ++i)
+                    {
+                        Enums.DiceType dt = (Enums.DiceType)zombieDiceTypes[i];
+                        rollResults[i] = CalculateResult(dt);
+                        diceTypes[i] = dt.ToString();
+                    }
+                    RpcRollMultipleDice(rollResults, diceTypes, zombieNamesFlight1, Enums.RollType.ZombieRoll);
+                }
+            }
+        }
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D4X2.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D4X2);
-        //    }
+        [Command]
+        void CmdChangeVikingDice(int[] newValues)
+        {
+            bool lp = isLocalPlayer;
+            bool ic = isClient;
+            string toLog = "Changing dice type to vikings to the next values: ";
+            for (int i = 0; i < vikingDiceTypes.Count; ++i)
+            {
+                vikingDiceTypes[i] = newValues[i];
+                toLog += vikingDiceTypes[i].ToString() + ", ";
+            }
+            Debug.Log(toLog.Remove(toLog.Length - 2) + lp + " " + ic);
+        }
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D3X3.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D3X3);
-        //    }
+        [Command]
+        void CmdChangeZombieDice(int[] newValues)
+        {
+            bool lp = isLocalPlayer;
+            bool ic = isClient;
+            string toLog = "Changing dice type to vikings to the next values: ";
+            for (int i = 0; i < zombieDiceTypes.Count; ++i)
+            {
+                zombieDiceTypes[i] = newValues[i];
+                toLog += zombieDiceTypes[i].ToString() + ", ";
+            }
+            Debug.Log(toLog.Remove(toLog.Length - 2) + lp + " " + ic);
+        }
 
-        //    ypos += vSpacing;
-        //    if (GUI.Button(new Rect(xpos, ypos, buttonWidht, buttonHeight), Enums.DiceType.D4Plus4.ToString()))
-        //    {
-        //        CmdRollDice(Enums.DiceType.D4Plus4);
-        //    }
-        //}
+        [ClientRpc]
+        void RpcRollSingleDice(int rollValue, Enums.DiceType diceType)
+        {
+            Debug.Log("RpcRollSingle entered ;)");
+            DiceRollUI.Instance.RollSingleDice(rollValue, diceType.ToString());
+        }
+
+        [ClientRpc]
+        void RpcRollMultipleDice(int[] rollValues, string[] diceTypes, string[] charNames, Enums.RollType rollType)
+        {
+            DiceRollUI.Instance.RollMultipleDice(rollValues, diceTypes, charNames, rollType);
+        }
+        
+        [Server]
+        void InitSyncLists()
+        {
+            //Hardcoded for flight 1
+            vikingDiceTypes.Add((int)Enums.DiceType.D6Plus2);
+            vikingDiceTypes.Add((int)Enums.DiceType.D6Plus2);
+            vikingDiceTypes.Add((int)Enums.DiceType.D12Min3);
+            vikingDiceTypes.Add((int)Enums.DiceType.D10Max8);
+
+            //Hardcoded for flight 1
+            zombieDiceTypes.Add((int)Enums.DiceType.D6);
+            zombieDiceTypes.Add((int)Enums.DiceType.D4X2);
+            zombieDiceTypes.Add((int)Enums.DiceType.D6);
+            zombieDiceTypes.Add((int)Enums.DiceType.D6);
+        }
 
         [Server]
         int CalculateResult(Enums.DiceType dice)
@@ -125,6 +189,7 @@ namespace Prototype.Player
                     return -1;
             }
         }
+
         [Server] int CalculateCoinFlip() { return UnityEngine.Random.Range(1, 3); }
         [Server] int CalculateD3() { return UnityEngine.Random.Range(1, 4); }
         [Server] int CalculateD4() { return UnityEngine.Random.Range(1, 5); }
@@ -133,23 +198,6 @@ namespace Prototype.Player
         [Server] int CalculateD10() { return UnityEngine.Random.Range(1, 11); }
         [Server] int CalculateD12() { return UnityEngine.Random.Range(1, 13); }
 
-
-        [Command]
-        void CmdRollDice(Enums.DiceType diceType)
-        {
-            int rollResult = CalculateResult(diceType);
-            if (DiceRollEvent != null)
-            {
-                DiceRollEvent(m_player, "Dice Roll: " + rollResult + ", DiceType: " + diceType);
-            }
-            //RpcRollDice(rollResult, diceType, m_player.name);
-        }
-
-        //[ClientRpc]
-        //void RpcRollDice(int rollValue, Enums.DiceType diceType, string playerName)
-        //{
-        //    DiceRollUI.Instance.RollDice(rollValue, diceType.ToString(), playerName);
-        //}
     }
 
 }

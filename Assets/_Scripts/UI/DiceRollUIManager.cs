@@ -11,15 +11,14 @@ public class DiceRollUIManager : NetworkBehaviour
 {
     public Dropdown singleDiceDropdown;
     public Dropdown[] charDiceDropdowns;
+    public HUDManager HUD;
 
     public delegate void OnDiceRoll(string result);
     public event OnDiceRoll DiceRollEvent;
 
     private SyncListInt vikingDiceTypes = new SyncListInt();
     private SyncListInt zombieDiceTypes = new SyncListInt();
-    private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
-    private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
-
+   
     private Player player;
     public Player Player { get; set; }
 
@@ -174,7 +173,7 @@ public class DiceRollUIManager : NetworkBehaviour
                     rollResults[i] = CalculateResult(dt);
                     diceTypes[i] = dt.ToString();
                 }
-                RpcRollMultipleDice(rollResults, diceTypes, vikingNamesFlight1, Enums.RollType.VikingRoll);
+                RpcRollMultipleDice(rollResults, diceTypes, HUD.vikingNamesFlight1, Enums.RollType.VikingRoll);
             }
             else //Roll type is zombies
             {
@@ -184,7 +183,7 @@ public class DiceRollUIManager : NetworkBehaviour
                     rollResults[i] = CalculateResult(dt);
                     diceTypes[i] = dt.ToString();
                 }
-                RpcRollMultipleDice(rollResults, diceTypes, zombieNamesFlight1, Enums.RollType.ZombieRoll);
+                RpcRollMultipleDice(rollResults, diceTypes, HUD.zombieNamesFlight1, Enums.RollType.ZombieRoll);
             }
         }
     }

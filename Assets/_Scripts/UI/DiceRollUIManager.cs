@@ -18,11 +18,7 @@ public class DiceRollUIManager : MonoBehaviour
 
     private void Start()
     {
-        List<string> diceOptions = new List<string>();
-        foreach (var type in Enum.GetValues(typeof(Enums.DiceType)))
-        {
-            diceOptions.Add(type.ToString());
-        }
+        List<string> diceOptions = new List<string>(Enum.GetNames(typeof(Enums.DiceType)));
         singleDiceDropdown.ClearOptions();
         singleDiceDropdown.AddOptions(diceOptions);
         for (int i = 0; i < charDiceDropdowns.Length; i++)

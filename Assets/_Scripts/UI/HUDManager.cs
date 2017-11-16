@@ -7,24 +7,64 @@ using UnityEngine.UI;
 using Prototype.Utilities;
 using Prototype.Player;
 
-public class HUDManager : NetworkBehaviour
+public class HUDManager : MonoBehaviour
 {
-    public string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
-    public string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
+    public InputField[] CharacterNameFields; //size 8
+    public Text[] StocksTexts; //size 8
+    public Text[] EnergyTexts; //size 8
+    public Dropdown[] StFxDropdowns; //size 16
+    public Text[] StFxTurnsTexts; //size 16
 
-    private SyncListInt vikingStocks = new SyncListInt();
-    private SyncListInt vikingPP = new SyncListInt();
-    private SyncListInt vikingStatus1 = new SyncListInt();
-    private SyncListInt vikingStatusTurns1 = new SyncListInt();
-    private SyncListInt vikingStatus2 = new SyncListInt();
-    private SyncListInt vikingStatusTurns2 = new SyncListInt();
+    private HUD hud;
+    
+    private void Start()
+    {
+        var stFxs = new List<string>(Enum.GetNames(typeof(Enums.StatusEffect)));
+        for (int i = 0; i < StFxDropdowns.Length; ++i)
+        {
+            StFxDropdowns[i].AddOptions(stFxs);
+        }        
+    }
 
-    private SyncListInt zombieStocks = new SyncListInt();
-    private SyncListInt zombieRP = new SyncListInt();
-    private SyncListInt zombieStatus1 = new SyncListInt();
-    private SyncListInt zombieStatusTurns1 = new SyncListInt();
-    private SyncListInt zombieStatus2 = new SyncListInt();
-    private SyncListInt zombieStatusTurns2 = new SyncListInt();
+    public void Init(HUD hud)
+    {
+        this.hud = hud;
+        this.hud.NameChangedEvent += UpdateNames;
+        this.hud.StockChangedEvent += UpdateStocks;
+        this.hud.EnergyChangedEvent += UpdateEnergy;
+        this.hud.StFxChangedEvent += UpdateStFx;
+        this.hud.StFxTurnsChangedEvent += UpdateStFxTurns;
 
+        for (int i = 0; i < 8; ++i)
+        {
+            CharacterNameFields[i].text = this.hud.CharacterNames[i];
+            StocksTexts[i].text = this.hud.Stocks[i].ToString();
+            EnergyTexts[i].text = this.hud.EnergyPower[i].ToString();
+        }
+    }
 
+    public void UpdateNames(int index)
+    {
+
+    }
+
+    public void UpdateStocks(int index)
+    {
+       
+    }
+
+    public void UpdateEnergy(int index)
+    {
+
+    }
+
+    public void UpdateStFx(int index)
+    {
+
+    }
+
+    public void UpdateStFxTurns(int index)
+    {
+
+    }
 }

@@ -17,6 +17,7 @@ namespace Prototype.Player
 
         private Player player;
         private bool foundDRM = false;
+        private bool gotPlayer = false;
 
         private void Start()
         {
@@ -40,6 +41,12 @@ namespace Prototype.Player
                 foundDRM = true;
                 Debug.Log("Found Dice Roll Manager ;)");
                 diceRollerManager.Init(this);
+            }
+
+            if (!gotPlayer)
+            {
+                player = gameObject.GetComponent<Player>();
+                gotPlayer = (player != null);
             }
         }
 

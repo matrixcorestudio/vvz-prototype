@@ -635,7 +635,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1065775633272274, guid: ff6708a788c38544e9176fdbae199e14, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff6708a788c38544e9176fdbae199e14, type: 2}
@@ -2461,6 +2461,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c628747bed909f640aa67dd718b5f68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StFxDropdowns: []
+  StFxTurnsTexts: []
+  StocksTexts: []
+  EnergyTexts: []
+  CharacterNameFields: []
 --- !u!4 &1304919169
 Transform:
   m_ObjectHideFlags: 0

@@ -18,21 +18,14 @@ namespace Prototype.Player
         [SerializeField] ToggleEvent onToggleShared;
         [SerializeField] ToggleEvent onToggleLocal;
         [SerializeField] ToggleEvent onToggleRemote;
-        [SerializeField] ToggleEvent onToggleSpectator;
 
         [SerializeField] List<Text> characterNames;
         [SerializeField] List<SpriteRenderer> renderers;
-        [SerializeField] Sprite vikingSprite;
-        [SerializeField] Sprite zombieSprite;
 
-        
         private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
         private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
         private Color[] vikingColorsFlight1 = { Color.white, new Color(1f, 165f / 255f, 0), Color.red, Color.black};
         private Color[] zombieColorsFlight1 = { Color.magenta, new Color(165f / 255f, 42f / 255f, 42f / 255f), Color.green, Color.yellow};
-
-        private Enums.PlayerType m_playerType;
-        public Enums.PlayerType PlayerType { get { return m_playerType; } }
 
         private Enums.DiceType[] vikingDiceTypes;
         public Enums.DiceType[] VikingDiceTypes
@@ -76,19 +69,12 @@ namespace Prototype.Player
         {
             if (playerTextColor == Color.blue)
             {
-                m_playerType = Enums.PlayerType.Vikings;
                 InitializeVikings();
             }
             else if(playerTextColor == Color.magenta)
             {
-                m_playerType = Enums.PlayerType.Zombies;
                 InitializeZombies();
-            }
-            else
-            {
-                m_playerType = Enums.PlayerType.Spectator;
-                InitializeSpectator();
-            }            
+            }           
         }
 
         public void EnablePlayer()
@@ -123,13 +109,11 @@ namespace Prototype.Player
             {
                 characterNames[i].text = vikingNamesFlight1[i];
                 characterNames[i].color = vikingColorsFlight1[i];
-                renderers[i].sprite = vikingSprite;
                 if (isLocalPlayer)
                 {
-                    renderers[i].sortingOrder = -1;
+                    renderers[i].sortingOrder = 1;
                 }
             }
-
             EnablePlayer();
         }
 
@@ -139,19 +123,12 @@ namespace Prototype.Player
             {
                 characterNames[i].text = zombieNamesFlight1[i];
                 characterNames[i].color = zombieColorsFlight1[i];
-                renderers[i].sprite = zombieSprite;
                 if (isLocalPlayer)
                 {
-                    renderers[1].sortingOrder = -1;
+                    renderers[i].sortingOrder = 1;
                 }
             }
-
             EnablePlayer();
-        }
-
-        private void InitializeSpectator()
-        {
-            onToggleSpectator.Invoke(false);
         }
     } 
 }

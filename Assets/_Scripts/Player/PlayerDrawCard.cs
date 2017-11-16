@@ -13,7 +13,7 @@ public class PlayerDrawCard : NetworkBehaviour
 	Player m_player;
     Inventory m_inventory;
 	public delegate void OnDrawCard(Player player, string result);
-	public event OnDrawCard drawCardEvent;
+	public event OnDrawCard DrawCardEvent;
 
 	void Start ()
 	{
@@ -52,9 +52,9 @@ public class PlayerDrawCard : NetworkBehaviour
 		CardData card = ServerCardDealer.Instance.DrawBlessing();
         m_inventory.Add(card);
 		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
-		if(drawCardEvent != null)
+		if(DrawCardEvent != null)
 		{
-			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+			DrawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
 		}
 	}
 
@@ -64,9 +64,9 @@ public class PlayerDrawCard : NetworkBehaviour
 		CardData card = ServerCardDealer.Instance.DrawCurse();
         m_inventory.Add(card);
         RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
-		if(drawCardEvent != null)
+		if(DrawCardEvent != null)
 		{
-			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+			DrawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
 		}
 	}
 
@@ -76,9 +76,9 @@ public class PlayerDrawCard : NetworkBehaviour
 		CardData card = ServerCardDealer.Instance.DrawRandom();
         m_inventory.Add(card);
 		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
-		if(drawCardEvent != null)
+		if(DrawCardEvent != null)
 		{
-			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+			DrawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
 		}
 	}
 

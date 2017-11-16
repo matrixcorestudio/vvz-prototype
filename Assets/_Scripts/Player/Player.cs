@@ -13,7 +13,9 @@ namespace Prototype.Player
     public class Player : NetworkBehaviour
     {
         [SyncVar] public new string name;
-        [SyncVar] public Color playerTextColor;
+        [SyncVar] public Color playerColor;
+
+        public Enums.PlayerType playerType = Enums.PlayerType.Vikings;
 
         [SerializeField] ToggleEvent onToggleShared;
         [SerializeField] ToggleEvent onToggleLocal;
@@ -67,14 +69,15 @@ namespace Prototype.Player
 
         private void Start()
         {
-            if (playerTextColor == Color.blue)
+            if (playerType == Enums.PlayerType.Vikings)
             {
-                InitializeVikings();
+                InitializeCharacters(vikingNamesFlight1, vikingColorsFlight1);
             }
-            else if(playerTextColor == Color.magenta)
+            else if(playerType == Enums.PlayerType.Zombies)
             {
-                InitializeZombies();
-            }           
+                InitializeCharacters(zombieNamesFlight1, zombieColorsFlight1);
+            }
+            EnablePlayer();
         }
 
         public void EnablePlayer()
@@ -103,32 +106,17 @@ namespace Prototype.Player
             }
         }
 
-        private void InitializeVikings()
+        void InitializeCharacters(string[] names, Color[] colors)
         {
-            for (int i = 0; i < vikingNamesFlight1.Length; ++i)
+            for (int i = 0; i < names.Length; ++i)
             {
-                characterNames[i].text = vikingNamesFlight1[i];
-                characterNames[i].color = vikingColorsFlight1[i];
+                characterNames[i].text = names[i];
+                characterNames[i].color = colors[i];
                 if (isLocalPlayer)
                 {
                     renderers[i].sortingOrder = 1;
                 }
             }
-            EnablePlayer();
-        }
-
-        private void InitializeZombies()
-        {
-            for (int i = 0; i < zombieNamesFlight1.Length; ++i)
-            {
-                characterNames[i].text = zombieNamesFlight1[i];
-                characterNames[i].color = zombieColorsFlight1[i];
-                if (isLocalPlayer)
-                {
-                    renderers[i].sortingOrder = 1;
-                }
-            }
-            EnablePlayer();
         }
     } 
 }

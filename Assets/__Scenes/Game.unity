@@ -1406,7 +1406,7 @@ MonoBehaviour:
     i13: 0
     i14: 0
     i15: 0
-  m_ServerOnly: 1
+  m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!1 &984275680
 GameObject:
@@ -2461,11 +2461,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c628747bed909f640aa67dd718b5f68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StFxDropdowns: []
-  StFxTurnsTexts: []
+  CharacterNameFields: []
   StocksTexts: []
   EnergyTexts: []
-  CharacterNameFields: []
+  StFxDropdowns: []
+  StFxTurnsTexts: []
 --- !u!4 &1304919169
 Transform:
   m_ObjectHideFlags: 0

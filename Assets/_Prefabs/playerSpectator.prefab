@@ -76,6 +76,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   playerTextColor: {r: 0, g: 0, b: 0, a: 0}
+  playerType: 2
   onToggleShared:
     m_PersistentCalls:
       m_Calls: []

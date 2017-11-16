@@ -260,7 +260,6 @@ GameObject:
   - component: {fileID: 114663810321319220}
   - component: {fileID: 114043503266981744}
   - component: {fileID: 114074795792168004}
-  - component: {fileID: 114635420477150478}
   - component: {fileID: 114963270248781748}
   - component: {fileID: 114276250471060970}
   - component: {fileID: 114674204470733350}
@@ -519,7 +518,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  playerTextColor: {r: 0, g: 0, b: 0, a: 0}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
+  playerType: 1
   onToggleShared:
     m_PersistentCalls:
       m_Calls: []
@@ -865,17 +865,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114635420477150478
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1786259994688736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afc1244dfb7c943bf812a0642dd7ccab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114663810321319220
 MonoBehaviour:
   m_ObjectHideFlags: 1

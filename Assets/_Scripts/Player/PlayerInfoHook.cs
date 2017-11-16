@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -14,6 +14,6 @@ public class PlayerInfoHook : LobbyHook
         LobbyPlayer lobby = lobbyPlayer.GetComponent<LobbyPlayer>();
         Player player = gamePlayer.GetComponent<Player>();
         player.name = lobby.playerName;
-        player.playerTextColor = lobby.playerColor;
+        player.playerColor = lobby.playerColor;
     }
 }

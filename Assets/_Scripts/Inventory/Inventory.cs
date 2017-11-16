@@ -8,7 +8,7 @@ public class Inventory : NetworkBehaviour
 	public int space = 5;
 
     public delegate void OnInventoryChange();
-    public event OnInventoryChange inventoryChangeEvent;
+    public event OnInventoryChange InventoryChangeEvent;
 
     private void Start()
     {
@@ -30,9 +30,9 @@ public class Inventory : NetworkBehaviour
 			return false;
 		}
 		cards.Add(card);
-        if (inventoryChangeEvent != null)
+        if (InventoryChangeEvent != null)
         {
-            inventoryChangeEvent();
+            InventoryChangeEvent();
         }
 		return true;
 	}
@@ -40,9 +40,9 @@ public class Inventory : NetworkBehaviour
 	public void Remove(CardData card)
 	{
 		cards.Remove(card);
-        if (inventoryChangeEvent != null)
+        if (InventoryChangeEvent != null)
         {
-            inventoryChangeEvent();
+            InventoryChangeEvent();
         }
     }
 }

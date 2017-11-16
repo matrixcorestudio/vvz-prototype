@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
+    public Text nameText;
     public Image cardImage;
     public Button discardButton;
     CardData m_card;
@@ -16,6 +17,7 @@ public class InventorySlot : MonoBehaviour
     public void AddCard(CardData newCard)
     {
         m_card = newCard;
+        nameText.text = newCard.name;
         cardImage.sprite = newCard.cardImage;
         cardImage.enabled = true;
         discardButton.interactable = true;
@@ -24,6 +26,7 @@ public class InventorySlot : MonoBehaviour
     public void ClearSlot()
     {
         m_card = null;
+        nameText.text = "";
         cardImage.sprite = null;
         cardImage.enabled = false;
         discardButton.interactable = false;

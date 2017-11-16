@@ -6,21 +6,23 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventoryUI;
     Inventory m_inventory;
     InventorySlot[] m_slots;
+    bool isInitialized = false;
 
     public void Init(Inventory inventory)
     {
         m_inventory = inventory;
-        m_inventory.inventoryChangeEvent += UpdateUI;
+        m_inventory.InventoryChangeEvent += UpdateUI;
         m_slots = cardsParent.GetComponentsInChildren<InventorySlot>();
         foreach (var slot in m_slots)
         {
             slot.Init(m_inventory);
         }
+        isInitialized = true;
     }
 	
 	void Update ()
     {
-        if (Input.GetButtonDown("Inventory"))
+        if (isInitialized && Input.GetButtonDown("Inventory"))
         {
             inventoryUI.SetActive(!inventoryUI.activeSelf);
         }

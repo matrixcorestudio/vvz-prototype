@@ -13,26 +13,21 @@ namespace Prototype.Player
     public class Player : NetworkBehaviour
     {
         [SyncVar] public new string name;
-        [SyncVar] public Color playerTextColor;
+        [SyncVar] public Color playerColor;
+
+        public Enums.PlayerType playerType = Enums.PlayerType.Vikings;
 
         [SerializeField] ToggleEvent onToggleShared;
         [SerializeField] ToggleEvent onToggleLocal;
         [SerializeField] ToggleEvent onToggleRemote;
-        [SerializeField] ToggleEvent onToggleSpectator;
 
         [SerializeField] List<Text> characterNames;
         [SerializeField] List<SpriteRenderer> renderers;
-        [SerializeField] Sprite vikingSprite;
-        [SerializeField] Sprite zombieSprite;
 
-        
         private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
         private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
         private Color[] vikingColorsFlight1 = { Color.white, new Color(1f, 165f / 255f, 0), Color.red, Color.black};
         private Color[] zombieColorsFlight1 = { Color.magenta, new Color(165f / 255f, 42f / 255f, 42f / 255f), Color.green, Color.yellow};
-
-        private Enums.PlayerType m_playerType;
-        public Enums.PlayerType PlayerType { get { return m_playerType; } }
 
         private Enums.DiceType[] vikingDiceTypes;
         public Enums.DiceType[] VikingDiceTypes
@@ -74,21 +69,15 @@ namespace Prototype.Player
 
         private void Start()
         {
-            if (playerTextColor == Color.blue)
+            if (playerType == Enums.PlayerType.Vikings)
             {
-                m_playerType = Enums.PlayerType.Vikings;
-                InitializeVikings();
+                InitializeCharacters(vikingNamesFlight1, vikingColorsFlight1);
             }
-            else if(playerTextColor == Color.magenta)
+            else if(playerType == Enums.PlayerType.Zombies)
             {
-                m_playerType = Enums.PlayerType.Zombies;
-                InitializeZombies();
+                InitializeCharacters(zombieNamesFlight1, zombieColorsFlight1);
             }
-            else
-            {
-                m_playerType = Enums.PlayerType.Spectator;
-                InitializeSpectator();
-            }            
+            EnablePlayer();
         }
 
         public void EnablePlayer()
@@ -117,41 +106,17 @@ namespace Prototype.Player
             }
         }
 
-        private void InitializeVikings()
+        void InitializeCharacters(string[] names, Color[] colors)
         {
-            for (int i = 0; i < vikingNamesFlight1.Length; ++i)
+            for (int i = 0; i < names.Length; ++i)
             {
-                characterNames[i].text = vikingNamesFlight1[i];
-                characterNames[i].color = vikingColorsFlight1[i];
-                renderers[i].sprite = vikingSprite;
+                characterNames[i].text = names[i];
+                characterNames[i].color = colors[i];
                 if (isLocalPlayer)
                 {
-                    renderers[i].sortingOrder = -1;
+                    renderers[i].sortingOrder = 1;
                 }
             }
-
-            EnablePlayer();
-        }
-
-        private void InitializeZombies()
-        {
-            for (int i = 0; i < zombieNamesFlight1.Length; ++i)
-            {
-                characterNames[i].text = zombieNamesFlight1[i];
-                characterNames[i].color = zombieColorsFlight1[i];
-                renderers[i].sprite = zombieSprite;
-                if (isLocalPlayer)
-                {
-                    renderers[1].sortingOrder = -1;
-                }
-            }
-
-            EnablePlayer();
-        }
-
-        private void InitializeSpectator()
-        {
-            onToggleSpectator.Invoke(false);
         }
     } 
 }

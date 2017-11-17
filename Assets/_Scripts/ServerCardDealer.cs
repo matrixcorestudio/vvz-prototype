@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServerCardDealer : Singleton<ServerCardDealer> 
+public class ServerCardDealer : Singleton<ServerCardDealer>
 {
 	[System.Serializable]
 	public struct DealerStatus
@@ -22,7 +22,7 @@ public class ServerCardDealer : Singleton<ServerCardDealer>
 			lastCardDescription = card.description;
 		}
 	}
-		
+
 	public List<CardData> blessingCards = new List<CardData>();
 	public List<CardData> curseCards = new List<CardData>();
 
@@ -43,7 +43,7 @@ public class ServerCardDealer : Singleton<ServerCardDealer>
 
 	public override void Awake ()
 	{
-		base.Awake();
+        base.Awake();
 		m_lastDrawnCard = ScriptableObject.CreateInstance<CardData>();
 	}
 
@@ -99,7 +99,7 @@ public class ServerCardDealer : Singleton<ServerCardDealer>
 		}
 		ShuffleDeck(m_curses, Random.Range(4, 7));
 	}
-		
+	
 	void ShuffleDeck(List<int> deck, int iterations)
 	{
 		if (iterations == 0)

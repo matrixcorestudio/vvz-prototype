@@ -5,15 +5,11 @@ using Prototype.Player;
 [RequireComponent(typeof(Player))]
 public class PlayerDrawCard : NetworkBehaviour 
 {
-	//int xpos = 10;
-	//int ypos = 310;
-	//int buttonWidth = 80;
-	//int buttonHeight = 20;
+    public delegate void OnDrawCard(Player player, string result);
+    public event OnDrawCard DrawCardEvent;
 
-	Player m_player;
+    Player m_player;
     Inventory m_inventory;
-	public delegate void OnDrawCard(Player player, string result);
-	public event OnDrawCard drawCardEvent;
 
 	void Start ()
 	{
@@ -21,40 +17,23 @@ public class PlayerDrawCard : NetworkBehaviour
         m_inventory = GetComponent<Inventory>();
 	}
 
-    //[ClientCallback]
-    //void OnGUI()
-    //{
-    //    if (!isLocalPlayer)
-    //    {
-    //        return;
-    //    }
-    //    int _ypos = ypos;
-    //    int _xpos = xpos;
-    //    if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Blessing"))
-    //    {
-    //        CmdDrawBlessing();
-    //    }
-    //    _ypos += buttonHeight + 10;
-    //    if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Curse"))
-    //    {
-    //        CmdDrawCurse();
-    //    }
-    //    _ypos += buttonHeight + 10;
-    //    if (GUI.Button(new Rect(_xpos, _ypos, buttonWidth, buttonHeight), "Random"))
-    //    {
-    //        CmdDrawRandom();
-    //    }
-    //}
+    private void Update()
+    {
+        if (!isLocalPlayer) return;
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            CmdDrawRandom();
+        }
+    }
 
     [Command]
 	void CmdDrawBlessing ()
 	{
 		CardData card = ServerCardDealer.Instance.DrawBlessing();
-        m_inventory.Add(card);
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
-		if(drawCardEvent != null)
+        RpcAddToInventory(card.id);
+		if(DrawCardEvent != null)
 		{
-			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+			DrawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
 		}
 	}
 
@@ -62,11 +41,10 @@ public class PlayerDrawCard : NetworkBehaviour
 	void CmdDrawCurse ()
 	{
 		CardData card = ServerCardDealer.Instance.DrawCurse();
-        m_inventory.Add(card);
-        RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
-		if(drawCardEvent != null)
+        RpcAddToInventory(card.id);
+        if (DrawCardEvent != null)
 		{
-			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+			DrawCardEvent(m_player, "Draw card: "+ ServerCardDealer.Instance.CardDealerStatus.lastCardName);
 		}
 	}
 
@@ -74,13 +52,23 @@ public class PlayerDrawCard : NetworkBehaviour
 	void CmdDrawRandom ()
 	{
 		CardData card = ServerCardDealer.Instance.DrawRandom();
-        m_inventory.Add(card);
-		RpcUpdateDeckStatusInfo(ServerCardDealer.Instance.CardDealerStatus, m_player.name);
-		if(drawCardEvent != null)
+        RpcAddToInventory(card.id);
+        if (DrawCardEvent != null)
 		{
-			drawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
+			DrawCardEvent(m_player, "Draw card: "+ ServerCardDealer.Instance.CardDealerStatus.lastCardName);
 		}
 	}
+
+    [ClientRpc]
+    void RpcAddToInventory(int cardId)
+    {
+        CardData newCard = ServerCardDealer.Instance.blessingCards.Find(card => card.id == cardId);
+        if (newCard == null)
+        {
+            newCard = ServerCardDealer.Instance.curseCards.Find(card => card.id == cardId);
+        }
+        m_inventory.Add(newCard);
+    }
 
 	[ClientRpc]
 	void RpcUpdateDeckStatusInfo (ServerCardDealer.DealerStatus dealerStatus, string playerName)

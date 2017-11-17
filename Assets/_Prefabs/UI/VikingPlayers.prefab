@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 222895510817623260}
   - component: {fileID: 114410975168774324}
   m_Layer: 5
-  m_Name: stock
+  m_Name: pp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 222322855649351156}
   - component: {fileID: 114362474580977704}
   m_Layer: 5
-  m_Name: stock
+  m_Name: pp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 222319585868967382}
   - component: {fileID: 114764241000357664}
   m_Layer: 5
-  m_Name: stock
+  m_Name: status2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1161,7 +1161,7 @@ GameObject:
   - component: {fileID: 222451482803713186}
   - component: {fileID: 114355884832704292}
   m_Layer: 5
-  m_Name: stock
+  m_Name: status2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1830,7 +1830,7 @@ GameObject:
   - component: {fileID: 222362337611451532}
   - component: {fileID: 114811582332472988}
   m_Layer: 5
-  m_Name: stock
+  m_Name: status2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1933,7 +1933,7 @@ GameObject:
   - component: {fileID: 222059787685885200}
   - component: {fileID: 114126018517076076}
   m_Layer: 5
-  m_Name: stock
+  m_Name: status1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2245,7 +2245,7 @@ GameObject:
   - component: {fileID: 222850054439730680}
   - component: {fileID: 114551147571284676}
   m_Layer: 5
-  m_Name: stock
+  m_Name: status2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2262,7 +2262,7 @@ GameObject:
   - component: {fileID: 222171638830305950}
   - component: {fileID: 114852655021289906}
   m_Layer: 5
-  m_Name: stock
+  m_Name: status1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2296,7 +2296,7 @@ GameObject:
   - component: {fileID: 222668276965596244}
   - component: {fileID: 114072938223228582}
   m_Layer: 5
-  m_Name: stock
+  m_Name: status1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3018,7 +3018,7 @@ GameObject:
   - component: {fileID: 222724079137772658}
   - component: {fileID: 114750143324671230}
   m_Layer: 5
-  m_Name: stock
+  m_Name: status1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3485,7 +3485,7 @@ GameObject:
   - component: {fileID: 222253991925905460}
   - component: {fileID: 114409609423056378}
   m_Layer: 5
-  m_Name: stock
+  m_Name: pp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3767,7 +3767,7 @@ GameObject:
   - component: {fileID: 222773846051324906}
   - component: {fileID: 114035766932767476}
   m_Layer: 5
-  m_Name: stock
+  m_Name: pp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6500,7 +6500,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114547728266155724}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: AddStock
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114278896809602932
@@ -6883,7 +6894,18 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: ChangeCharacterName
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+SubmitEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:

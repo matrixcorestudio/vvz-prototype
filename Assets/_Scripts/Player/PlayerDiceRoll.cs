@@ -12,8 +12,8 @@ namespace Prototype.Player
         private SyncListInt vikingDiceTypes = new SyncListInt();
         private SyncListInt zombieDiceTypes = new SyncListInt();
 
-        private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
-        private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
+        //private string[] vikingNamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone" };
+        //private string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
 
         private Player player;
         private bool foundDRM = false;
@@ -90,6 +90,11 @@ namespace Prototype.Player
                         rollResults[i] = CalculateResult(dt);
                         diceTypes[i] = dt.ToString();
                     }
+                    var vikingNamesFlight1 = new string[4];
+                    for (int i = 0; i < 4; ++i)
+                    {
+                        vikingNamesFlight1[i] = HUDUISingleton.Instance.NamesFlight1[i];
+                    }
                     RpcRollMultipleDice(rollResults, diceTypes, vikingNamesFlight1, Enums.RollType.VikingRoll);
                 }
                 else //Roll type is zombies
@@ -99,6 +104,11 @@ namespace Prototype.Player
                         Enums.DiceType dt = (Enums.DiceType)zombieDiceTypes[i];
                         rollResults[i] = CalculateResult(dt);
                         diceTypes[i] = dt.ToString();
+                    }
+                    var zombieNamesFlight1 = new string[4];
+                    for (int i = 0; i < 4; ++i)
+                    {
+                        zombieNamesFlight1[i] = HUDUISingleton.Instance.NamesFlight1[i + 4];
                     }
                     RpcRollMultipleDice(rollResults, diceTypes, zombieNamesFlight1, Enums.RollType.ZombieRoll);
                 }

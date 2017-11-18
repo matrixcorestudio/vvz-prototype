@@ -9,40 +9,16 @@ using Prototype.Player;
 
 public class HUD : NetworkBehaviour
 {
-    public delegate void OnNameChange(int index);
-    public event OnNameChange NameChangedEvent;
-    public delegate void OnStockChange(int index);
-    public event OnStockChange StockChangedEvent;
-    public delegate void OnEnergyChange(int index);
-    public event OnEnergyChange EnergyChangedEvent;
-    public delegate void OnStFxChange(int index);
-    public event OnStFxChange StFxChangedEvent;
-    public delegate void OnStFxTurnsChange(int index);
-    public event OnStFxTurnsChange StFxTurnsChangedEvent;
+    //public SyncListString CharacterNames = new SyncListString(); //size 8
+    //public SyncListInt Stocks = new SyncListInt(); //size 8
+    //public SyncListInt EnergyPower = new SyncListInt(); //size 8
+    //public SyncListInt StFxs = new SyncListInt(); // size 16
+    //public SyncListInt StFxsTurns = new SyncListInt(); //size 16
+    private const int MAX = 10;
+    private const int MIN = 0;
 
-
-    public string[] NamesFlight1 = { "[1] Storm Caller", "[2] Dice Master", "[3] Gambler", "[4] Earl Stone"
-                               ,"[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
-    //public string[] zombieNamesFlight1 = { "[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
-
-    public SyncListString CharacterNames = new SyncListString(); //size 8
-    public SyncListInt Stocks = new SyncListInt(); //size 8
-    public SyncListInt EnergyPower = new SyncListInt(); //size 8
-    public SyncListInt StFxs = new SyncListInt(); // size 16
-    public SyncListInt StFxsTurns = new SyncListInt(); //size 16
-
-    private Player player;
-    private bool foundPlayer = false;
     private bool foundHUDMngr;
     private HUDManager hUDManager;
-
-    private void Start()
-    {
-        if (isServer)
-        {
-            InitSyncLists();
-        }
-    }
 
     private void Update()
     {
@@ -63,100 +39,164 @@ public class HUD : NetworkBehaviour
     [ClientCallback]
     public void ChangeCharacterName(int index, string newName)
     {
-        
+        CmdChangeCharacterName(index, newName);
     }
 
     [ClientCallback]
     public void AddStock(int index, int currentValue)
     {
-        Debug.Log("Adding 1 stock to viking leader");
         CmdAddStock(index, currentValue);
     }
 
     [ClientCallback]
-    public void RemoveStock(int index)
+    public void RemoveStock(int index, int currentValue)
     {
-
+        CmdRemoveStock(index, currentValue);
     }
 
     [ClientCallback]
-    public void AddEnergy(int index)
+    public void AddEnergy(int index, int currentValue)
     {
-
+        CmdAddEnergy(index, currentValue);
     }
 
     [ClientCallback]
-    public void RemoveEnergy(int index)
+    public void RemoveEnergy(int index, int currentValue)
     {
-
+        CmdRemoveEnergy(index, currentValue);
     }
 
     [ClientCallback]
-    public void ChangeStatusEffect(int index, Enums.StatusEffect statusEffect)
+    public void ChangeStatusEffect(int index, int statusEffect)
     {
-
+        CmdChangeStatusEffect(index, statusEffect);
     }
 
     [ClientCallback]
-    public void AddTurnsToStatusEffect(int index)
+    public void AddTurnsToStatusEffect(int index, int currentValue)
     {
-
+        CmdAddTurnsToStatusEffect(index, currentValue);
     }
 
     [ClientCallback]
-    public void RemoveTurnsToStatusEffect(int index)
+    public void RemoveTurnsToStatusEffect(int index, int currentValue)
     {
-
+        CmdRemoveTurnsToStatusEffect(index, currentValue);
     }
 
     [Command]
     private void CmdChangeCharacterName(int index, string newName)
     {
-        CharacterNames[index] = newName;
-        if (NameChangedEvent != null)
-        {
-            NameChangedEvent(index);
-        }
+        RpcChangeCharacterName(index, newName);
     }
 
     [Command]
     private void CmdAddStock(int index, int currentValue)
     {
-        
+        if (currentValue == MAX)
+        {
+            return;
+        }
         RpcAddStock(index, currentValue);
+    }
+
+    [Command]
+    private void CmdRemoveStock(int index, int currentValue)
+    {
+        if (currentValue == MIN)
+        {
+            return;
+        }
+        RpcRemoveStock(index, currentValue);
+    }
+
+    [Command]
+    private void CmdAddEnergy(int index, int currentValue)
+    {
+        RpcAddEnergy(index, currentValue);
+    }
+
+    [Command]
+    private void CmdRemoveEnergy(int index, int currentValue)
+    {
+        if (currentValue == MIN)
+        {
+            return;
+        }
+        RpcRemoveEnergy(index, currentValue);
+    }
+
+    [Command]
+    private void CmdChangeStatusEffect(int index, int newValue)
+    {
+        RpcChangeStatusEffect(index, newValue);
+    }
+
+    [Command]
+    private void CmdAddTurnsToStatusEffect(int index, int currentValue)
+    {
+        if (currentValue == MAX)
+        {
+            return;
+        }
+        RpcAddTurnsToStatusEffect(index, currentValue);
+    }
+
+    [Command]
+    private void CmdRemoveTurnsToStatusEffect(int index, int currentValue)
+    {
+        if (currentValue == MIN)
+        {
+            return;
+        }
+        RpcRemoveTurnsToStatusEffect(index, currentValue);
+    }
+
+    [ClientRpc]
+    private void RpcChangeCharacterName(int index, string newName)
+    {
+        HUDUISingleton.Instance.UpdateNames(index, newName);
     }
 
     [ClientRpc]
     private void RpcAddStock(int index, int currentValue)
     {
-        //++Stocks[index];
         HUDUISingleton.Instance.UpdateStocks(index, currentValue + 1);
-        //if (StockChangedEvent != null)
-        //{
-        //    StockChangedEvent(index);
-        //}
-        //if (hUDManager == null)
-        //{
-        //    hUDManager = FindObjectOfType<HUDManager>();
-        //}
-        //hUDManager.UpdateStocks(index);
-        //HUDManager.Instance.UpdateStocks(index);
     }
 
-    [Server]
-    private void InitSyncLists()
+    [ClientRpc]
+    private void RpcRemoveStock(int index, int currentValue)
     {
-        for (int i = 0; i < 8; ++i)
-        {
-            CharacterNames.Add(i < 4 ? NamesFlight1[i] : NamesFlight1[i]);
-            Stocks.Add(i < 4 ? (i == 0 ? 4 : 3) : (i == 4 ? 6 : 5));
-            EnergyPower.Add(i < 4 ? 5 : 0);            
-        }
+        HUDUISingleton.Instance.UpdateStocks(index, currentValue - 1);
+    }
 
-        for (int i = 0; i < 16; ++i)
-        {
-            StFxs.Add(0);
-            StFxsTurns.Add(0);
-        }
+    [ClientRpc]
+    private void RpcAddEnergy(int index, int currentValue)
+    {
+        HUDUISingleton.Instance.UpdateEnergy(index, currentValue + 1);
+    }
+
+    [ClientRpc]
+    private void RpcRemoveEnergy(int index, int currentValue)
+    {
+        HUDUISingleton.Instance.UpdateEnergy(index, currentValue - 1);
+    }
+
+    [ClientRpc]
+    private void RpcChangeStatusEffect(int index, int newValue)
+    {
+        HUDUISingleton.Instance.UpdateStatusEffect(index, newValue);
+    }
+
+    [ClientRpc]
+    private void RpcAddTurnsToStatusEffect(int index, int currentValue)
+    {
+        HUDUISingleton.Instance.UpdateStatusEffectTurns(index, currentValue + 1);
+    }
+
+    [ClientRpc]
+    private void RpcRemoveTurnsToStatusEffect(int index, int currentValue)
+    {
+        HUDUISingleton.Instance.UpdateStatusEffectTurns(index, currentValue - 1);
     }
 }

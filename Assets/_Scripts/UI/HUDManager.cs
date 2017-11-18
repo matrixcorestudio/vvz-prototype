@@ -19,16 +19,6 @@ public class HUDManager : MonoBehaviour
     public Text[] StFxTurnsTexts; //size 16
 
     private HUD hud;
-    
-    private void Start()
-    {
-        //var stFxs = new List<string>(Enum.GetNames(typeof(Enums.StatusEffect)));
-        //for (int i = 0; i < StFxDropdowns.Length; ++i)
-        //{
-        //    StFxDropdowns[i].ClearOptions();
-        //    StFxDropdowns[i].AddOptions(stFxs);
-        //}
-    }
 
     private void Update()
     {
@@ -49,24 +39,6 @@ public class HUDManager : MonoBehaviour
     public void Init(HUD hud)
     {
         this.hud = hud;
-        this.hud.NameChangedEvent += UpdateNames;
-        this.hud.StockChangedEvent += UpdateStocks;
-        this.hud.EnergyChangedEvent += UpdateEnergy;
-        this.hud.StFxChangedEvent += UpdateStFx;
-        this.hud.StFxTurnsChangedEvent += UpdateStFxTurns;
-
-        //for (int i = 0; i < 8; ++i)
-        //{
-        //    CharacterNameFields[i].text = this.hud.CharacterNames[i];
-        //    StocksTexts[i].text = this.hud.Stocks[i].ToString();
-        //    EnergyTexts[i].text = this.hud.EnergyPower[i].ToString();
-        //}
-
-        //for (int i = 0; i < 16; ++i)
-        //{
-        //    StFxDropdowns[i].value = this.hud.StFxs[i];
-        //    StFxTurnsTexts[i].text = this.hud.StFxsTurns[i].ToString();
-        //}
     }
 
 #region UI calls
@@ -82,61 +54,33 @@ public class HUDManager : MonoBehaviour
 
     public void RemoveStock(int index)
     {
-        hud.RemoveStock(index);
+        hud.RemoveStock(index, int.Parse(StocksTexts[index].text));
     }
 
     public void AddEnergy(int index)
     {
-        hud.AddEnergy(index);
+        hud.AddEnergy(index, int.Parse(EnergyTexts[index].text));
     }
 
     public void RemoveEnergy(int index)
     {
-        hud.RemoveEnergy(index);
+        hud.RemoveEnergy(index, int.Parse(EnergyTexts[index].text));
     }
 
     public void ChangeStatusEffect(int index)
     {
-        hud.ChangeStatusEffect(index, (Enums.StatusEffect)StFxDropdowns[index].value);
+        hud.ChangeStatusEffect(index, StFxDropdowns[index].value);
     }
 
     public void AddTurnsToStatusEffect(int index)
     {
-        hud.AddTurnsToStatusEffect(index);
+        hud.AddTurnsToStatusEffect(index, int.Parse(StFxTurnsTexts[index].text));
     }
 
     public void RemoveTurnsToStatusEffect(int index)
     {
-        hud.RemoveTurnsToStatusEffect(index);
+        hud.RemoveTurnsToStatusEffect(index, int.Parse(StFxTurnsTexts[index].text));
     }
 #endregion
 
-#region events
-    public void UpdateNames(int index)
-    {
-        CharacterNameFields[index].text = hud.CharacterNames[index];
-    }
-
-    public void UpdateStocks(int index)
-    {
-        StocksTexts[index].text = hud.Stocks[index].ToString();
-        //StocksTexts[index].text = (int.Parse(StocksTexts[index].text) + 1).ToString();
-    }
-
-    public void UpdateEnergy(int index)
-    {
-        EnergyTexts[index].text = hud.EnergyPower[index].ToString();
-    }
-
-    public void UpdateStFx(int index)
-    {
-        StFxDropdowns[index].value = hud.StFxs[index];
-    }
-
-    public void UpdateStFxTurns(int index)
-    {
-        StFxTurnsTexts[index].text = hud.StFxsTurns[index].ToString();
-    }
-
-#endregion
 }

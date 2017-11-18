@@ -633,13 +633,20 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1065775633272274, guid: ff6708a788c38544e9176fdbae199e14, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 114276631062834448, guid: ff6708a788c38544e9176fdbae199e14,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1304919168}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff6708a788c38544e9176fdbae199e14, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &374382782 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114705180287438006, guid: ff6708a788c38544e9176fdbae199e14,
+    type: 2}
+  m_PrefabInternal: {fileID: 374382781}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &380159541
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +959,7 @@ GameObject:
   - component: {fileID: 829383450}
   - component: {fileID: 829383451}
   - component: {fileID: 829383452}
+  - component: {fileID: 829383453}
   m_Layer: 5
   m_Name: UICanvas
   m_TagString: Untagged
@@ -1100,6 +1108,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardsParent: {fileID: 984275681}
   inventoryUI: {fileID: 2131969387}
+--- !u!114 &829383453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 829383445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47f9db4f0b77d04192bbe50974e2924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StocksTexts:
+  - {fileID: 374382782}
 --- !u!1 &840161631
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,7 +1624,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1535604410886918, guid: d9b515c5154db644bac9567e15421ad2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9b515c5154db644bac9567e15421ad2, type: 2}
@@ -2461,8 +2482,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c628747bed909f640aa67dd718b5f68f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VikingInfo: {fileID: 0}
+  ZombieInfo: {fileID: 0}
+  KeysInfo: {fileID: 0}
   CharacterNameFields: []
-  StocksTexts: []
+  StocksTexts:
+  - {fileID: 374382782}
   EnergyTexts: []
   StFxDropdowns: []
   StFxTurnsTexts: []

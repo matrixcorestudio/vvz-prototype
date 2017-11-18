@@ -67,10 +67,10 @@ public class HUD : NetworkBehaviour
     }
 
     [ClientCallback]
-    public void AddStock(int index)
+    public void AddStock(int index, int currentValue)
     {
         Debug.Log("Adding 1 stock to viking leader");
-        CmdAddStock(index);
+        CmdAddStock(index, currentValue);
     }
 
     [ClientCallback]
@@ -120,19 +120,21 @@ public class HUD : NetworkBehaviour
     }
 
     [Command]
-    private void CmdAddStock(int index)
+    private void CmdAddStock(int index, int currentValue)
     {
-        ++Stocks[index];
-        RpcAddStock(index);
+        
+        RpcAddStock(index, currentValue);
     }
 
     [ClientRpc]
-    private void RpcAddStock(int index)
+    private void RpcAddStock(int index, int currentValue)
     {
-        if (StockChangedEvent != null)
-        {
-            StockChangedEvent(index);
-        }
+        //++Stocks[index];
+        HUDUISingleton.Instance.UpdateStocks(index, currentValue + 1);
+        //if (StockChangedEvent != null)
+        //{
+        //    StockChangedEvent(index);
+        //}
         //if (hUDManager == null)
         //{
         //    hUDManager = FindObjectOfType<HUDManager>();

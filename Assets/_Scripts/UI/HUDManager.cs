@@ -22,12 +22,12 @@ public class HUDManager : MonoBehaviour
     
     private void Start()
     {
-        var stFxs = new List<string>(Enum.GetNames(typeof(Enums.StatusEffect)));
-        for (int i = 0; i < StFxDropdowns.Length; ++i)
-        {
-            StFxDropdowns[i].ClearOptions();
-            StFxDropdowns[i].AddOptions(stFxs);
-        }
+        //var stFxs = new List<string>(Enum.GetNames(typeof(Enums.StatusEffect)));
+        //for (int i = 0; i < StFxDropdowns.Length; ++i)
+        //{
+        //    StFxDropdowns[i].ClearOptions();
+        //    StFxDropdowns[i].AddOptions(stFxs);
+        //}
     }
 
     private void Update()
@@ -55,18 +55,18 @@ public class HUDManager : MonoBehaviour
         this.hud.StFxChangedEvent += UpdateStFx;
         this.hud.StFxTurnsChangedEvent += UpdateStFxTurns;
 
-        for (int i = 0; i < 8; ++i)
-        {
-            CharacterNameFields[i].text = this.hud.CharacterNames[i];
-            StocksTexts[i].text = this.hud.Stocks[i].ToString();
-            EnergyTexts[i].text = this.hud.EnergyPower[i].ToString();
-        }
+        //for (int i = 0; i < 8; ++i)
+        //{
+        //    CharacterNameFields[i].text = this.hud.CharacterNames[i];
+        //    StocksTexts[i].text = this.hud.Stocks[i].ToString();
+        //    EnergyTexts[i].text = this.hud.EnergyPower[i].ToString();
+        //}
 
-        for (int i = 0; i < 16; ++i)
-        {
-            StFxDropdowns[i].value = this.hud.StFxs[i];
-            StFxTurnsTexts[i].text = this.hud.StFxsTurns[i].ToString();
-        }
+        //for (int i = 0; i < 16; ++i)
+        //{
+        //    StFxDropdowns[i].value = this.hud.StFxs[i];
+        //    StFxTurnsTexts[i].text = this.hud.StFxsTurns[i].ToString();
+        //}
     }
 
 #region UI calls
@@ -77,7 +77,7 @@ public class HUDManager : MonoBehaviour
 
     public void AddStock(int index)
     {
-        hud.AddStock(index);
+        hud.AddStock(index, int.Parse(StocksTexts[index].text));
     }
 
     public void RemoveStock(int index)

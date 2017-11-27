@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Prototype.Utilities;
 
 [System.Serializable]
 public struct BoardChange
 {
 	public Tile modifiedTile;
-	public TileType oldType;
+	public Enums.TileType oldType;
 
-	public BoardChange(Tile tile, TileType type)
+	public BoardChange(Tile tile, Enums.TileType type)
 	{
 		modifiedTile = tile;
 		oldType = type;
@@ -48,7 +49,7 @@ public class BoardEditor : MonoBehaviour
 		}
 
 		List<string> tileOptions = new List<string>();
-		foreach (var type in Enum.GetValues(typeof(TileType)))
+		foreach (var type in Enum.GetValues(typeof(Enums.TileType)))
 		{
 			tileOptions.Add(type.ToString());
 		}

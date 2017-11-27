@@ -13,9 +13,11 @@ public class HUDManager : MonoBehaviour
     public GameObject ZombieInfo;
     public GameObject KeysInfo;
     public InputField[] CharacterNameFields; //size 8
+    public InputField[] MovementInputFields; //size 8
     public Text[] StocksTexts; //size 8
     public Text[] EnergyTexts; //size 8
     public Dropdown[] StFxDropdowns; //size 16
+    public InputField[] StFxValueInputFields; //size 16
     public Text[] StFxTurnsTexts; //size 16
 
     private HUD hud;
@@ -47,6 +49,11 @@ public class HUDManager : MonoBehaviour
         hud.ChangeCharacterName(index, CharacterNameFields[index].text);
     }
 
+    public void ChangeMovementValue(int index)
+    {
+        hud.ChangeMovementValue(index, MovementInputFields[index].text);
+    }
+
     public void AddStock(int index)
     {
         hud.AddStock(index, int.Parse(StocksTexts[index].text));
@@ -70,6 +77,11 @@ public class HUDManager : MonoBehaviour
     public void ChangeStatusEffect(int index)
     {
         hud.ChangeStatusEffect(index, StFxDropdowns[index].value);
+    }
+
+    public void ChangeStatusEffectValue(int index)
+    {
+        hud.ChangeStatusEffectValue(index, StFxValueInputFields[index].text);
     }
 
     public void AddTurnsToStatusEffect(int index)

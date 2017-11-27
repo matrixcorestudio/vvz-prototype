@@ -36,10 +36,17 @@ public class HUD : NetworkBehaviour
         }
     }
 
+#region ClientCallbacks
     [ClientCallback]
     public void ChangeCharacterName(int index, string newName)
     {
         CmdChangeCharacterName(index, newName);
+    }
+
+    [ClientCallback]
+    public void ChangeMovementValue(int index, string newValue)
+    {
+        CmdChangeMovementValue(index, newValue);
     }
 
     [ClientCallback]
@@ -73,6 +80,12 @@ public class HUD : NetworkBehaviour
     }
 
     [ClientCallback]
+    public void ChangeStatusEffectValue(int index, string newValue)
+    {
+        CmdChangeStatusEffectValue(index, newValue);
+    }
+
+    [ClientCallback]
     public void AddTurnsToStatusEffect(int index, int currentValue)
     {
         CmdAddTurnsToStatusEffect(index, currentValue);
@@ -83,11 +96,19 @@ public class HUD : NetworkBehaviour
     {
         CmdRemoveTurnsToStatusEffect(index, currentValue);
     }
+#endregion
 
+#region Commands
     [Command]
     private void CmdChangeCharacterName(int index, string newName)
     {
         RpcChangeCharacterName(index, newName);
+    }
+
+    [Command]
+    private void CmdChangeMovementValue(int index, string newValue)
+    {
+        RpcChangeMovementValue(index, newValue);
     }
 
     [Command]
@@ -133,6 +154,12 @@ public class HUD : NetworkBehaviour
     }
 
     [Command]
+    private void CmdChangeStatusEffectValue(int index, string newValue)
+    {
+        RpcChangeStatusEffectValue(index, newValue);
+    }
+
+    [Command]
     private void CmdAddTurnsToStatusEffect(int index, int currentValue)
     {
         if (currentValue == MAX)
@@ -151,11 +178,18 @@ public class HUD : NetworkBehaviour
         }
         RpcRemoveTurnsToStatusEffect(index, currentValue);
     }
-
+#endregion
+    #region RPCs
     [ClientRpc]
     private void RpcChangeCharacterName(int index, string newName)
     {
         HUDUISingleton.Instance.UpdateNames(index, newName);
+    }
+
+    [ClientRpc]
+    private void RpcChangeMovementValue(int index, string newValue)
+    {
+        HUDUISingleton.Instance.UpdateMovementValue(index, newValue);
     }
 
     [ClientRpc]
@@ -189,6 +223,12 @@ public class HUD : NetworkBehaviour
     }
 
     [ClientRpc]
+    private void RpcChangeStatusEffectValue(int index, string newValue)
+    {
+        HUDUISingleton.Instance.UpdateStatusEffectValue(index, newValue);
+    }
+
+    [ClientRpc]
     private void RpcAddTurnsToStatusEffect(int index, int currentValue)
     {
         HUDUISingleton.Instance.UpdateStatusEffectTurns(index, currentValue + 1);
@@ -199,4 +239,5 @@ public class HUD : NetworkBehaviour
     {
         HUDUISingleton.Instance.UpdateStatusEffectTurns(index, currentValue - 1);
     }
+#endregion
 }

@@ -2,6 +2,26 @@
 {
     public static class Enums
     {
+        public enum TileType
+        {
+            Empty = 1,
+            Regular = 2,
+            Radioactive = 4,
+            ZombieSpawn = 8,
+            VikingSpawn = 16,
+            VikingGoal = 32,
+            Curse = 64,
+            Blessing = 128,
+            RandomCard = 256,
+            Highground = 512,
+            WarpForced = 1024,
+            WarpOptional = 2048,
+            GreenHillZone = 4096,
+            Switch = 8192,
+            PPSpace = 16384,
+            ConditionalGate = 32768
+        }
+
         public enum DiceType
         {
             None,

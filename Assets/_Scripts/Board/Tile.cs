@@ -1,43 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public enum TileType
-{
-	Empty = 1,
-	Regular = 2,
-	Radioactive = 4,
-	ZombieSpawn = 8,
-	VikingSpawn = 16,
-	Finish = 32,
-	Trap = 64,
-	PowerUp = 128,
-	Event = 256,
-	Highground = 512,
-	WarpForced = 1024,
-	WarpOptional = 2048,
-	GreenHillZone = 4096,
-	Switch = 8192,
-	DangerZone = 16384,
-	ConditionalGate = 32768
-}
+using Prototype.Utilities;
 
 public class Tile : MonoBehaviour 
 {
 	public int xIndex;
 	public int yIndex;
-	public TileType tileType = TileType.Empty;
+	public Enums.TileType tileType = Enums.TileType.Empty;
 	public Renderer rend;
     private string clickedTile = string.Empty;
 	Board m_board;
-//	void Awake()
-//	{
-//		rend = GetComponent<Renderer>();
-//	}
 
 	public void Init(int type, int x,int y, Board board)
 	{
-		tileType = (TileType)type;
+		tileType = (Enums.TileType)type;
 		xIndex = x;
 		yIndex = y;
 		m_board = board;
@@ -61,18 +38,18 @@ public class Tile : MonoBehaviour
 
 	public void ResetProperties()
 	{
-		tileType = TileType.Empty;
+		tileType = Enums.TileType.Empty;
 		SetMaterial();
 	}
 		
 	public void ChangeProperties(int optionTile)
 	{
-		tileType = (TileType)Mathf.Pow (2f, optionTile);
+		tileType = (Enums.TileType)Mathf.Pow (2f, optionTile);
 		SetMaterial();
 		Debug.Log (gameObject.name+"; Changed to type: "+tileType);
 	}
 
-	public void ChangeProperties(TileType type)
+	public void ChangeProperties(Enums.TileType type)
 	{
 		tileType = type;
 		SetMaterial();

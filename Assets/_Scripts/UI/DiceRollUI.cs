@@ -75,6 +75,15 @@ public class DiceRollUI : Singleton<DiceRollUI>
                     rollValueTexts[i].text = (lastRollValues[i] == 2 ? "Good" : "Bad");
                 }
                 rollStatusText.text += rollValueTexts[i].text + ", ";
+
+                if (rollTypeText.text == Enums.RollType.VikingRoll.ToString())
+                {
+                    HUDUISingleton.Instance.UpdateMovementValue(i, rollValueTexts[i].text);
+                }
+                else
+                {
+                    HUDUISingleton.Instance.UpdateMovementValue(i + 4, rollValueTexts[i].text);
+                }
             }
             rollStatusText.text += "with roll type: " + lastRollType;            
         }

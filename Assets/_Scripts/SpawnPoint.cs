@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Prototype.Utilities;
 
 public class SpawnPoint : MonoBehaviour {
 	public Board board;
@@ -19,7 +20,7 @@ public class SpawnPoint : MonoBehaviour {
 			yield return new WaitForSeconds(2f);
 			foreach (var tile in board.AllTiles) 
 			{
-				if(tile.tileType == TileType.VikingSpawn)
+				if(tile.tileType == Enums.TileType.VikingSpawn)
 				{
 					GameObject sp = new GameObject("VikingSpawn");
 					sp.transform.SetParent(transform);

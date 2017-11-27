@@ -11,17 +11,20 @@ public class HUDUISingleton : Singleton<HUDUISingleton>
                                ,"[1] Puniszher", "[2] Crawler", "[3] Lizard Tongue", "[4] Life-Taker" };
 
 
-   [SerializeField] InputField[] CharacterNameFields; //size 8
-   [SerializeField] Text[] StocksTexts; //size 8
-   [SerializeField] Text[] EnergyTexts; //size 8
-   [SerializeField] Dropdown[] StFxDropdowns; //size 16
-   [SerializeField] Text[] StFxTurnsTexts; //size 16
+    [SerializeField] InputField[] CharacterNameFields; //size 8
+    [SerializeField] InputField[] MoveInputFields; //size 8
+    [SerializeField] Text[] StocksTexts; //size 8
+    [SerializeField] Text[] EnergyTexts; //size 8
+    [SerializeField] Dropdown[] StFxDropdowns; //size 16
+    [SerializeField] InputField[] StFxValueInputFields; // size 16
+    [SerializeField] Text[] StFxTurnsTexts; //size 16
 
     private void Start()
     {
         for (int i = 0; i < StocksTexts.Length; ++i)
         {
             CharacterNameFields[i].text = NamesFlight1[i];
+            MoveInputFields[i].text = string.Empty;
             StocksTexts[i].text = (i < 4 ? (i == 0 ? 4 : 3) : (i == 4 ? 6 : 5)).ToString();
             EnergyTexts[i].text = (i < 4 ? 5 : 0).ToString();
         }
@@ -33,6 +36,7 @@ public class HUDUISingleton : Singleton<HUDUISingleton>
             StFxDropdowns[i].ClearOptions();
             StFxDropdowns[i].AddOptions(options);
             StFxDropdowns[i].value = 0;
+            StFxValueInputFields[i].text = string.Empty;
             StFxTurnsTexts[i].text = "0";
         }
     }
@@ -41,6 +45,11 @@ public class HUDUISingleton : Singleton<HUDUISingleton>
     {
         CharacterNameFields[index].text = newName;
         NamesFlight1[index] = newName;
+    }
+
+    public void UpdateMovementValue(int index, string movement)
+    {
+        MoveInputFields[index].text = movement;
     }
 
     public void UpdateStocks(int index, int newValue)
@@ -56,6 +65,11 @@ public class HUDUISingleton : Singleton<HUDUISingleton>
     public void UpdateStatusEffect(int index, int newValue)
     {
         StFxDropdowns[index].value = newValue;
+    }
+
+    public void UpdateStatusEffectValue(int index, string newValue)
+    {
+        StFxValueInputFields[index].text = newValue;
     }
 
     public void UpdateStatusEffectTurns(int index, int newValue)

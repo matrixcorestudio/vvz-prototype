@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 114230310789225082}
   - component: {fileID: 114421222982751182}
   - component: {fileID: 114947878292852322}
+  - component: {fileID: 114411120142417124}
   m_Layer: 0
   m_Name: playerZombie
   m_TagString: Player
@@ -805,6 +806,17 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Player1
+--- !u!114 &114411120142417124
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786259994688736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11631d32656aff4c98b54c3e1935aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114421222982751182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1091,16 +1103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523294fb7e413c1449f4865132e570b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vikingNamesFlight1:
-  - '[1] Storm Caller'
-  - '[2] Dice Master'
-  - '[3] Gambler'
-  - '[4] Earl Stone'
-  zombieNamesFlight1:
-  - '[1] Puniszher'
-  - '[2] Crawler'
-  - '[3] Lizard Tongue'
-  - '[4] Life-Taker'
 --- !u!114 &114963270248781748
 MonoBehaviour:
   m_ObjectHideFlags: 1

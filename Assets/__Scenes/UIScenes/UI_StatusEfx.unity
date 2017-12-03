@@ -529,7 +529,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: None
 --- !u!222 &538633748
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 594006054}
   - component: {fileID: 594006056}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -567,6 +567,7 @@ MonoBehaviour:
   xmlRawFile: {fileID: 4900000, guid: 6d561d8754921ab48accc06cf6e2b997, type: 3}
   uiText: {fileID: 703017659}
   statusName: {fileID: 1387824132}
+  statusReference: {fileID: 594006056}
 --- !u!4 &594006055
 Transform:
   m_ObjectHideFlags: 0
@@ -847,46 +848,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-    id est massa. Cras eu ante luctus leo fermentum aliquam. Quisque quis sapien dictum,
-    fermentum risus at, pretium magna. Etiam volutpat velit eget nunc euismod consectetur.
-    Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus
-    mus. Proin et metus ac diam sodales congue eget a augue. Nulla ullamcorper lectus
-    lorem, sit amet porta dui sagittis eu. Quisque rhoncus, tellus ut pellentesque
-    commodo, nibh tortor dictum sem, quis luctus neque quam fermentum sem. Cras scelerisque,
-    nibh vitae semper congue, diam elit pellentesque ligula, nec tristique magna dui
-    semper libero. Nullam vulputate augue ut diam iaculis pharetra. Fusce mattis a
-    velit eget eleifend. Integer ultrices tempor finibus. Nulla eleifend et massa
-    et aliquam. Quisque rutrum erat lectus, in tincidunt felis sodales a. In gravida
-    laoreet metus eget laoreet.\r\n\r\nPellentesque eleifend, orci eu sagittis pharetra,
-    est lectus ultrices diam, quis fringilla velit magna sed ante. Ut leo elit, vulputate
-    vitae lectus ac, cursus ultricies felis. Proin id dui dolor. Nullam non lorem
-    sagittis, egestas magna et, vulputate velit. Mauris eu orci ipsum. Aliquam elementum
-    id purus pulvinar consectetur. Donec eget mauris enim. Aenean vel sapien sit amet
-    mauris venenatis commodo id ac nunc. Curabitur accumsan neque et augue elementum,
-    ac convallis neque auctor. Nunc ultricies feugiat purus, nec bibendum libero dapibus
-    eu. Proin aliquam blandit rutrum.\r\n\r\nPellentesque a rutrum turpis. Aliquam
-    posuere iaculis nulla ac consequat. Aenean sit amet condimentum felis. Cras nec
-    nisi enim. Donec placerat sollicitudin fermentum. Maecenas arcu sem, placerat
-    eu ultricies eu, porta sed nibh. Fusce lobortis sem massa, ac placerat lorem condimentum
-    porttitor. In sit amet est sed felis viverra suscipit. Sed dolor nisi, consectetur
-    id urna non, iaculis laoreet ante. Interdum et malesuada fames ac ante ipsum primis
-    in faucibus. Mauris rutrum dictum justo, bibendum eleifend felis dictum a. Morbi
-    eleifend sit amet leo at tempus. Donec ut facilisis ante.\r\n\r\nNam faucibus,
-    leo sed iaculis placerat, odio nisi placerat velit, tristique porta metus ipsum
-    ut tellus. Aenean rhoncus vulputate urna, sit amet volutpat lacus accumsan gravida.
-    Quisque venenatis augue ut odio tincidunt, sit amet semper purus malesuada. Nunc
-    at nulla vel diam aliquet sollicitudin vitae quis eros. Ut laoreet hendrerit libero,
-    semper consequat sapien convallis nec. Donec ante nisi, molestie a tincidunt a,
-    tristique in lacus. Phasellus tincidunt facilisis risus ac interdum. Proin ullamcorper
-    ultrices nisi non eleifend. Pellentesque quis volutpat nulla, at lacinia mi. Donec
-    sollicitudin posuere metus at porttitor. Quisque quis nulla mattis, molestie nulla
-    quis, consequat ex. Maecenas eget viverra neque.\r\n\r\nProin dignissim nunc quis
-    neque commodo elementum. Cras sit amet ipsum magna. Duis sollicitudin mollis maximus.
-    Suspendisse ultrices in lacus ac elementum. Etiam ex dui, placerat a ultrices
-    quis, dictum rutrum diam. Nulla auctor, quam vitae cursus hendrerit, enim sapien
-    maximus tellus, vestibulum bibendum ex elit sit amet ante. Nunc ac elit sodales,
-    placerat mauris in, imperdiet mi. "
+  m_Text: No Status Selected
 --- !u!222 &703017660
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1337,7 +1299,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.48
-  m_Text: What ever
+  m_Text: Select status
 --- !u!222 &1387824133
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1942,7 +1904,9 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options: []
+    m_Options:
+    - m_Text: None
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

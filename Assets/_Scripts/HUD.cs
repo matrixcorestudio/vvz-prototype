@@ -179,7 +179,7 @@ public class HUD : NetworkBehaviour
         RpcRemoveTurnsToStatusEffect(index, currentValue);
     }
 #endregion
-    #region RPCs
+#region RPCs
     [ClientRpc]
     private void RpcChangeCharacterName(int index, string newName)
     {

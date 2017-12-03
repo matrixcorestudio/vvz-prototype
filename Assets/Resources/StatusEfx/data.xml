@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ItemCollection>
+    <Item id="0">
+	<id>0</id>
+	  <name>Connoisseur</name>
+      <parameter>N</parameter>
+	  <target>Both</target>
+	  <clasification>Good</clasification>
+	  <description>Once per turn, you can change your direction to any other direction available during any phase except Movement Phase. You have N uses.</description>
+	  <troubleshooting></troubleshooting>
+    </Item>
+	<Item>
+	  <id>1</id>
+	  <name>Cured</name>
+      <parameter>-</parameter>
+	  <target>Both</target>
+	  <clasification>Good</clasification>
+	  <description>You cannot receive any negative status effect and lose the ones you have.</description>
+	  <troubleshooting></troubleshooting>
+    </Item>
+	<Item>
+	  <id>2</id>
+	  <name>Flying</name>
+      <parameter>-</parameter>
+	  <target>Both</target>
+	  <clasification>Good</clasification>
+	  <description>You cannot be attacked by normal attacks and your movement does not count as stepping.</description>
+	  <troubleshooting>cannot pass through illegal zones for this Character (Ex. Viking cannot step Radioactive Zones). Can still be affected by abilities or effects that are not attacks (Ex. Paralysis, Slowness, etc).</troubleshooting>
+    </Item>
+
+</ItemCollection>

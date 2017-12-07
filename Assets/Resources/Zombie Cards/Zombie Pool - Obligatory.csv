@@ -1,0 +1,33 @@
+1000,Braindead,0 RP,Receive Paralysis for your next Movement Phase.
+1001,Feetless Zombie,0 RP,Receive Slowness(1) for your next Movement Phase. (Reduce your total movement by 1).
+1002,One-Legged Zombie,0 RP,Receive Slowness(2) for your next Movement Phase. (Reduce your total movement by 2).
+1003,Legless Zombie,0 RP,Receive Slowness(3) for your next Movement Phase. (Reduce your total movement by 3).
+1004,Shambled,0 RP,Receive Petrification for 1 Cycle. (You don't have that turn)
+1005,Lost Smell,0 RP,Receive Threatened(2) for your next Movement Phase. (You cannot roll dice, instead, your total movement is 2)
+1006,Lost Appetite,0 RP,Receive Threatened(1) for your next Movement Phase. (You cannot roll dice, instead, your total movement is 1)
+1007,Blown-Off,0 RP,Lose 4 RP.
+1008,Heavy Blown-Off,0 RP,Lose 6 RP.
+1009,Blown Teeth,0 RP,Receive Fear for 1 Cycle. (Cannot kill any Character by any means).
+1010,Soul Released,0 RP,Sickness: You cannot select cards from the Zombie Pool during the next Zombie Phase.
+1011,Unversed,0 RP,Respawn.
+1012,Soul Absorbed,0 RP,Lose 0 RPtock.
+1013,Normalize,0 RP,Receive Disruption for 1 turn. (You cannot use any ability at all).
+1014,Blood Mist,0 RP,All Zombies in Range(4) receive Fear for 1 turn.
+1015,Final Remains,0 RP,If you kill a Viking during your next landing, you also die.
+1016,Out of the Way!,0 RP,Destroy target Weakling Zombie.
+1017,GwaaAAHHH!!,0 RP,All Weakling Zombies are destroyed.
+1018,Night of the Walkers,0 RP,Lose all RP.
+1019,Gift to the Living,0 RP,Transfer 0 RPtock to target Viking.
+1020,Feed the Living,0 RP,Lose 3 RP and target Viking receives 3 PP.
+1021,Tribute to the Living,0 RP,Lose 5 RP and target Viking receives 5 PP.
+1022,Mildness,0 RP,Receive Agression(-1) for your next landing. (Your range decreases by 1).
+1023,De-HAZ'd,0 RP,Allergic: Radioactive Zones will not give you any RP during your next Movement Phase.
+1024,Ground Zero,0 RP,All Non-Weakling Zombies lose or gain RP until all have 3 RP. Lose all of your RP (5 RP minimum) to avoid.
+1025,Raise the Alarms!,0 RP,All Vikings in Range(5) receive Quickness(3) for their next Movement Phase. (They add 3 to their total movement).
+1026,Easy Target,0 RP,Nearest Viking receives Instinct(1) for 1 turn. (Can kill Zombies in Range(1)).
+1027,"We can kill that!",0 RP,All Vikings in Range(4) instantly gain 3 PP.
+1028,Angry Gods,0 RP,You die.
+1029,Malfunctioning Wires,0 RP,All Zombies in Range(4) receive Paralysis for their next Movement Phase.
+1030,Trip Wires,0 RP,All Zombies in Range(5) receive Slowness(2) for their next Movement Phase.
+1031,Public Enemy,0 RP,Lose 1 RP for each Viking stock in play.
+1032,Back to the Grave,0 RP,If you have 8 or more RP, all Zombies in Range(10) (including you) die and this card is destroyed, otherwise, it returns to the pool as if it was not selected.

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400611b6fb3964401a1fc6c901da259a, type: 3}
+  m_Name: Flashlight
+  m_EditorClassIdentifier: 
+  id: 9
+  description: "Vikings don\xB4t lose stocks to weakling zombie attaks untill the
+    start of the next viking phase."
+  flight: 1
+  isQuick: 0
+  type: 1
+  target: 1
+  cardImage: {fileID: 0}

@@ -102,12 +102,20 @@ public class HUD : NetworkBehaviour
     [Command]
     private void CmdChangeCharacterName(int index, string newName)
     {
+        if (newName == null)
+        {
+            newName = string.Empty;
+        }
         RpcChangeCharacterName(index, newName);
     }
 
     [Command]
     private void CmdChangeMovementValue(int index, string newValue)
     {
+        if (newValue == null)
+        {
+            newValue = string.Empty;
+        }
         RpcChangeMovementValue(index, newValue);
     }
 
@@ -179,7 +187,7 @@ public class HUD : NetworkBehaviour
         RpcRemoveTurnsToStatusEffect(index, currentValue);
     }
 #endregion
-    #region RPCs
+#region RPCs
     [ClientRpc]
     private void RpcChangeCharacterName(int index, string newName)
     {

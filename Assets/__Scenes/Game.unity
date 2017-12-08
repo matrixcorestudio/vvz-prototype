@@ -26562,6 +26562,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05edb8bcfa5d7f242a208f45f4ae0525, type: 2}
   - {fileID: 11400000, guid: 059d7b3d180d3004e8fa86bb7bba7a08, type: 2}
   curseCards:
+  - {fileID: 11400000, guid: d703d41a80060e54f936f4c5ea955281, type: 2}
+  - {fileID: 11400000, guid: 6c31e7e8f80a56c45b39af14221bc8f0, type: 2}
+  - {fileID: 11400000, guid: abb4dd40bdd38384b9c795d581d57edb, type: 2}
+  - {fileID: 11400000, guid: 440d2c11121d8784293c6e70b21b410a, type: 2}
+  - {fileID: 11400000, guid: 3751500316426ed48b1101c6cdd9285a, type: 2}
+  - {fileID: 11400000, guid: 40a66d26ef339be4088020e9bf7b4054, type: 2}
+  - {fileID: 11400000, guid: 864069e4948f18143a42e919b115c81b, type: 2}
+  - {fileID: 11400000, guid: a10ed4daaf8ceb449ae3e9461dbc0e6e, type: 2}
+  - {fileID: 11400000, guid: 94c0a7d1442e91442b541235cb8c01dd, type: 2}
+  - {fileID: 11400000, guid: 7b35a6e2651b3cb45aac46fdc93a4ac2, type: 2}
+  - {fileID: 11400000, guid: 84095f08c705d234fab031aba88fd18f, type: 2}
+  - {fileID: 11400000, guid: 74801927b4efc204dbbde6ea67b29736, type: 2}
+  - {fileID: 11400000, guid: 04fbab548f4a818469070dc103aedf35, type: 2}
+  - {fileID: 11400000, guid: 4add69ee4a53db94f8da0bbf78279116, type: 2}
+  - {fileID: 11400000, guid: 643b50dc95ea55e478f5c7e9c22bf0bd, type: 2}
   - {fileID: 11400000, guid: 49ad9c7b7438f724c894ec6e475b0269, type: 2}
   - {fileID: 11400000, guid: 607b9193d58397142903e65f0da29ff3, type: 2}
 --- !u!1 &917929245

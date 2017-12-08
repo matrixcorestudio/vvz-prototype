@@ -4,20 +4,32 @@ public class InventoryUI : MonoBehaviour
 {
     public Transform cardsParent;
     public GameObject inventoryUI;
+    public GameObject inventoryButtonsPanel;
     Inventory m_inventory;
+    PlayerDrawCard m_playerDrawCard;
     InventorySlot[] m_slots;
     bool isInitialized = false;
 
-    public void Init(Inventory inventory)
+    public void Init(Inventory inventory, bool isLocalPlayer = false)
     {
         m_inventory = inventory;
+        m_playerDrawCard = m_inventory.gameObject.GetComponent<PlayerDrawCard>();
         m_inventory.InventoryChangeEvent += UpdateUI;
         m_slots = cardsParent.GetComponentsInChildren<InventorySlot>();
         foreach (var slot in m_slots)
         {
             slot.Init(m_inventory);
+            if (!isLocalPlayer)
+            {
+                slot.discardButton.gameObject.SetActive(false);
+                slot.useButton.gameObject.SetActive(false);
+            }
         }
         isInitialized = true;
+        if (!isLocalPlayer)
+        {
+            inventoryButtonsPanel.SetActive(false);
+        }
     }
 	
 	void Update ()
@@ -41,5 +53,21 @@ public class InventoryUI : MonoBehaviour
                 m_slots[i].ClearSlot();
             }
         }
+    }
+
+    /**Inventory options**/
+    public void DrawRandomButton()
+    {
+        m_playerDrawCard.CmdDrawRandom();
+    }
+
+    public void DrawBlessingButton()
+    {
+        m_playerDrawCard.CmdDrawBlessing();
+    }
+
+    public void DrawCurseButton()
+    {
+        m_playerDrawCard.CmdDrawCurse();
     }
 }

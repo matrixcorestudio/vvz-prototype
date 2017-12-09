@@ -519,7 +519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
-  playerTextColor: {r: 0, g: 0, b: 0, a: 0}
+  playerColor: {r: 0, g: 0, b: 0, a: 0}
+  playerType: 0
   onToggleShared:
     m_PersistentCalls:
       m_Calls: []
@@ -694,7 +695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards: []
-  space: 5
+  space: 6
 --- !u!114 &114230310789225082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1115,16 +1116,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523294fb7e413c1449f4865132e570b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vikingNamesFlight1:
-  - '[1] Storm Caller'
-  - '[2] Dice Master'
-  - '[3] Gambler'
-  - '[4] Earl Stone'
-  zombieNamesFlight1:
-  - '[1] Puniszher'
-  - '[2] Crawler'
-  - '[3] Lizard Tongue'
-  - '[4] Life-Taker'
 --- !u!212 &212424778061130382
 SpriteRenderer:
   m_ObjectHideFlags: 1

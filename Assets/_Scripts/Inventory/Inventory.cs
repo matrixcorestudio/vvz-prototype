@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 public class Inventory : NetworkBehaviour
 {
 	public List<CardData> cards = new List<CardData>();
-	public int space = 5;
+    public int space = 6;
 
     public delegate void OnInventoryChange();
     public event OnInventoryChange InventoryChangeEvent;

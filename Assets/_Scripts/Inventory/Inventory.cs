@@ -5,20 +5,23 @@ using UnityEngine.Networking;
 public class Inventory : NetworkBehaviour
 {
 	public List<CardData> cards = new List<CardData>();
-	public int space = 5;
+    public int space = 6;
 
     public delegate void OnInventoryChange();
     public event OnInventoryChange InventoryChangeEvent;
 
+    InventoryUI m_inventoryUI;
+
     private void Start()
     {
-        if (isLocalPlayer)
+        m_inventoryUI = FindObjectOfType<InventoryUI>();
+        if (m_inventoryUI != null)
         {
-            InventoryUI inventoryUI = FindObjectOfType<InventoryUI>();
-            if (inventoryUI != null)
-            {
-                inventoryUI.Init(this);
-            }
+            m_inventoryUI.Init(this, isLocalPlayer);
+        }
+        else
+        {
+            Debug.LogWarning("Could not find Inventory UI");
         }
     }
 
@@ -39,7 +42,19 @@ public class Inventory : NetworkBehaviour
 
 	public void Remove(CardData card)
 	{
-		cards.Remove(card);
+        CmdRemove(card.id);
+    }
+
+    [Command]
+    void CmdRemove(int cardId)
+    {
+        RpcRemove(cardId);
+    }
+
+    [ClientRpc]
+    void RpcRemove(int cardId)
+    {
+        cards.Remove(cards.Find(card => card.id == cardId));
         if (InventoryChangeEvent != null)
         {
             InventoryChangeEvent();

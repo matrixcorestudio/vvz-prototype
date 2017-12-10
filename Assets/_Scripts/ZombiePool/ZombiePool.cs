@@ -20,7 +20,7 @@ public class ZombiePool : NetworkBehaviour
         {
             Debug.Log("Found Zombie Pool Manager");
             foundZombiePoolMngr = true;
-            zombiePoolMngr.Init(this);
+            zombiePoolMngr.Init(this, isLocalPlayer);
         }
     }
 

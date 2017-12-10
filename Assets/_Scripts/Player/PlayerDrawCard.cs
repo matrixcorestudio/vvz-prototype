@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Networking;
 using Prototype.Player;
+using System.Linq;
 
 [RequireComponent(typeof(Player))]
 public class PlayerDrawCard : NetworkBehaviour 
@@ -8,71 +9,61 @@ public class PlayerDrawCard : NetworkBehaviour
     public delegate void OnDrawCard(Player player, string result);
     public event OnDrawCard DrawCardEvent;
 
+    delegate CardData DrawCardTypeDelegate();
+
     Player m_player;
     Inventory m_inventory;
+    ServerCardDealer m_dealer;
 
 	void Start ()
 	{
 		m_player = GetComponent<Player>();
         m_inventory = GetComponent<Inventory>();
+        m_dealer = ServerCardDealer.Instance;
 	}
 
-    private void Update()
+    void DrawCard(DrawCardTypeDelegate cardTypeDelegate)
     {
-        if (!isLocalPlayer) return;
-        if (Input.GetKeyDown(KeyCode.C))
+        if (m_inventory.cards.Count < m_inventory.space)
         {
-            CmdDrawRandom();
+            CardData card = cardTypeDelegate();
+            RpcAddToInventory(card.id);
+            if (DrawCardEvent != null)
+            {
+                DrawCardEvent(m_player, "Draw card: " + card.name);
+            }
         }
     }
 
     [Command]
-	void CmdDrawBlessing ()
+	public void CmdDrawBlessing ()
 	{
-		CardData card = ServerCardDealer.Instance.DrawBlessing();
-        RpcAddToInventory(card.id);
-		if(DrawCardEvent != null)
-		{
-			DrawCardEvent(m_player, "Draw card: "+ServerCardDealer.Instance.CardDealerStatus.lastCardName);
-		}
+        DrawCard(m_dealer.DrawBlessing);
 	}
 
 	[Command]
-	void CmdDrawCurse ()
+	public void CmdDrawCurse ()
 	{
-		CardData card = ServerCardDealer.Instance.DrawCurse();
-        RpcAddToInventory(card.id);
-        if (DrawCardEvent != null)
-		{
-			DrawCardEvent(m_player, "Draw card: "+ ServerCardDealer.Instance.CardDealerStatus.lastCardName);
-		}
-	}
+        DrawCard(m_dealer.DrawCurse);
+    }
 
 	[Command]
-	void CmdDrawRandom ()
+	public void CmdDrawRandom ()
 	{
-		CardData card = ServerCardDealer.Instance.DrawRandom();
-        RpcAddToInventory(card.id);
-        if (DrawCardEvent != null)
-		{
-			DrawCardEvent(m_player, "Draw card: "+ ServerCardDealer.Instance.CardDealerStatus.lastCardName);
-		}
-	}
+        DrawCard(m_dealer.DrawRandom);
+    }
 
     [ClientRpc]
     void RpcAddToInventory(int cardId)
     {
-        CardData newCard = ServerCardDealer.Instance.blessingCards.Find(card => card.id == cardId);
-        if (newCard == null)
+        CardData newCard = m_dealer.blessingCards.Union(m_dealer.curseCards).ToList().Find(card => card.id == cardId);
+        if (newCard != null)
         {
-            newCard = ServerCardDealer.Instance.curseCards.Find(card => card.id == cardId);
+            m_inventory.Add(newCard);
         }
-        m_inventory.Add(newCard);
+        else
+        {
+            Debug.LogWarning("Could not find card in dealer!");
+        }
     }
-
-	[ClientRpc]
-	void RpcUpdateDeckStatusInfo (ServerCardDealer.DealerStatus dealerStatus, string playerName)
-	{
-		//CardDrawUI.Instance.UpdateDeckStatusUI(dealerStatus, playerName);
-	}
 }

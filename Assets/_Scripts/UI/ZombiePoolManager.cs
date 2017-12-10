@@ -8,6 +8,17 @@ public class ZombiePoolManager : MonoBehaviour
     public GameObject ZombiePoolPanel;
 
     private ZombiePool zombiePool;
+    private Button[] buttons;
+    private bool activateButtons = false;
+
+    private void Start()
+    {
+        buttons = ZombiePoolPanel.GetComponentsInChildren<Button>();
+        foreach (var button in buttons)
+        {
+            button.gameObject.SetActive(false);
+        }
+    }
 
     private void Update()
     {
@@ -15,11 +26,22 @@ public class ZombiePoolManager : MonoBehaviour
         {
             ZombiePoolPanel.SetActive(!ZombiePoolPanel.activeSelf);
         }
+
+        if (activateButtons)
+        {
+            activateButtons = false;
+            foreach (var button in buttons)
+            {
+                button.gameObject.SetActive(true);
+            }
+        }
+
     }
 
-    public void Init(ZombiePool zombiePool)
+    public void Init(ZombiePool zombiePool, bool isLocalPlayer = false)
     {
         this.zombiePool = zombiePool;
+        activateButtons = isLocalPlayer;
     }
 
 #region UI Calls

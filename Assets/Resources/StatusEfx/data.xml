@@ -1,31 +1,327 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ItemCollection>
-    <Item id="0">
-	<id>0</id>
-	  <name>Connoisseur</name>
-      <parameter>N</parameter>
-	  <target>Both</target>
-	  <clasification>Good</clasification>
-	  <description>Once per turn, you can change your direction to any other direction available during any phase except Movement Phase. You have N uses.</description>
-	  <troubleshooting></troubleshooting>
-    </Item>
 	<Item>
-	  <id>1</id>
-	  <name>Cured</name>
-      <parameter>-</parameter>
-	  <target>Both</target>
-	  <clasification>Good</clasification>
-	  <description>You cannot receive any negative status effect and lose the ones you have.</description>
-	  <troubleshooting></troubleshooting>
-    </Item>
+		<id>0</id>
+		<name>Connoisseur</name>
+		<parameter>N</parameter>
+		<target>Both</target>
+		<clasification>Good</clasification>
+		<description>Once per turn, you can change your direction to any other direction available during any phase except Movement Phase. You have N uses.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
 	<Item>
-	  <id>2</id>
-	  <name>Flying</name>
-      <parameter>-</parameter>
-	  <target>Both</target>
-	  <clasification>Good</clasification>
-	  <description>You cannot be attacked by normal attacks and your movement does not count as stepping.</description>
-	  <troubleshooting>cannot pass through illegal zones for this Character (Ex. Viking cannot step Radioactive Zones). Can still be affected by abilities or effects that are not attacks (Ex. Paralysis, Slowness, etc).</troubleshooting>
-    </Item>
-
+		<id>1</id>
+		<name>Cured</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Good</clasification>
+		<description>You cannot receive any negative status effect and lose the ones you have.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>2</id>
+		<name>Flying</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Good</clasification>
+		<description>You cannot be attacked by normal attacks and your movement does not count as stepping.</description>
+		<troubleshooting>cannot pass through illegal zones for this Character (Ex. Viking cannot step Radioactive Zones). Can still be affected by abilities or effects that are not attacks (Ex. Paralysis, Slowness, etc).</troubleshooting>
+	</Item>
+	<Item>
+		<id>3</id>
+		<name>Divine Protection</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Good</clasification>
+		<description>You cannot die nor lose stocks by any means.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>4</id>
+		<name>Invisible</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Good</clasification>
+		<description>You cannot be attacked by normal attacks.</description>
+		<troubleshooting>Can still be affected by abilities or effects that are not attacks (Ex. Paralysis, Slowness, etc).</troubleshooting>
+	</Item>
+	<Item>
+		<id>5</id>
+		<name>Quickness</name>
+		<parameter>N</parameter>
+		<target>Both</target>
+		<clasification>Good</clasification>
+		<description>Your movement is increased by N.</description>
+		<troubleshooting>Effects applies after rolling and before moving.</troubleshooting>
+	</Item>
+	<Item>
+		<id>6</id>
+		<name>Buried</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>Petrification and Nonexistent</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>7</id>
+		<name>Nonexistent</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>You cannot be affected by anything and you cannot affect anyone with anything as well. You can only roll dice and move through legal paths, cannot activate anything.</description>
+		<troubleshooting>Is like Flying, but you cannot also be affected by any ability, event, shenaningan, etc. (Not even automatic PP gain) and vice versa</troubleshooting>
+	</Item>
+	<Item>
+		<id>8</id>
+		<name>Paralysis</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>You cannot move. You can still activate abilities or cards.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>9</id>
+		<name>Petrification</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>Skip your turn completely.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>10</id>
+		<name>Wounded</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>You cannot receive any positive status effect and lose the ones you have.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>11</id>
+		<name>Slowness</name>
+		<parameter>N</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>Your movement is decreased by N, to a minimum of 1.</description>
+		<troubleshooting>Effects applies after rolling and before moving.</troubleshooting>
+	</Item>
+	<Item>
+		<id>12</id>
+		<name>Threatened</name>
+		<parameter>N</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>Ignore your dice roll value for movement, instead, your total movement is N.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>13</id>
+		<name>Fear</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>You cannot kill any Character by any means. Can still kill Weakling Zombies.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>14</id>
+		<name>Disabled</name>
+		<parameter>X</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>You cannot use any of your X abilities.</description>
+		<troubleshooting>X = passive, active</troubleshooting>
+	</Item>
+	<Item>
+		<id>15</id>
+		<name>Disruption</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>Disabled(passive) + Disabled(active)</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>16</id>
+		<name>Sickness</name>
+		<parameter>-</parameter>
+		<target>Both</target>
+		<clasification>Bad</clasification>
+		<description>You cannot draw, activate or discard any card.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>17</id>
+		<name>Blessed</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Good</clasification>
+		<description>You cannot take any further Curse cards.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>18</id>
+		<name>Blocker</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Good</clasification>
+		<description>Zombies cannot attack you, pass through you or land in the same Space as you.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>19</id>
+		<name>Good Luck</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Good</clasification>
+		<description>Any card space you land on is treated as if it was a Blessing space.</description>
+		<troubleshooting>Apply effect only when landing.</troubleshooting>
+	</Item>
+	<Item>
+		<id>20</id>
+		<name>Hiker</name>
+		<parameter>N</parameter>
+		<target>Viking</target>
+		<clasification>Good</clasification>
+		<description>The size of your Inventory increases by N.</description>
+		<troubleshooting>If you lose this effect, cards in the extra spots are discarded automatically.</troubleshooting>
+	</Item>
+	<Item>
+		<id>21</id>
+		<name>Instinct</name>
+		<parameter>N, RangeType</parameter>
+		<target>Viking</target>
+		<clasification>Good</clasification>
+		<description>You can kill opposing Zombies. (RangeType(N))</description>
+		<troubleshooting>rangeType: Range(N), fRange(N), etc.</troubleshooting>
+	</Item>
+	<Item>
+		<id>22</id>
+		<name>Sneaky</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Good</clasification>
+		<description>You can only be attacked by Zombies if they land in the same space as you.</description>
+		<troubleshooting>Ignores Zombie's range.</troubleshooting>
+	</Item>
+	<Item>
+		<id>23</id>
+		<name>Bad Luck</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Bad</clasification>
+		<description>Any card space you land on is treated as if it was a Curse space.</description>
+		<troubleshooting>Apply effect only when landing.</troubleshooting>
+	</Item>
+	<Item>
+		<id>24</id>
+		<name>Butterfingers</name>
+		<parameter>X || Y || Z</parameter>
+		<target>Viking</target>
+		<clasification>Bad</clasification>
+		<description>You cannot equip any (X||Y||Z) weapon. Discard any equipment of that type that you currently have equipped.</description>
+		<troubleshooting>Melee, Bows or Shields. (Ex. Butterfingers(Melee, Bows): cannot equip Melee or Bows.</troubleshooting>
+	</Item>
+	<Item>
+		<id>25</id>
+		<name>Cursed</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Bad</clasification>
+		<description>You cannot take any further Blessings.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>26</id>
+		<name>Exposed</name>
+		<parameter>N</parameter>
+		<target>Viking</target>
+		<clasification>Bad</clasification>
+		<description>Your hurtbox for Zombie attacks range is increased by N. </description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>27</id>
+		<name>Gambler Luck</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Bad</clasification>
+		<description>Any card space you land on is treated as if it was a Random Card Space.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>28</id>
+		<name>Nervousness</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Bad</clasification>
+		<description>You cannot pass through Non-Weakling Zombies or land in the same Space as them.</description>
+		<troubleshooting>Softlock?</troubleshooting>
+	</Item>
+	<Item>
+		<id>29</id>
+		<name>More Fear</name>
+		<parameter>-</parameter>
+		<target>Viking</target>
+		<clasification>Bad</clasification>
+		<description>You have Fear but additionally you cannot kill Weakling Zombies.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>30</id>
+		<name>Aggression</name>
+		<parameter>N</parameter>
+		<target>Zombie</target>
+		<clasification>Good</clasification>
+		<description>Your range increases by N.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>31</id>
+		<name>Flexible</name>
+		<parameter>-</parameter>
+		<target>Zombie</target>
+		<clasification>Good</clasification>
+		<description>Other Zombies can pass through you or land in the same Space as you.</description>
+		<troubleshooting>Can pass through other Zombies or land in the same Space as them.</troubleshooting>
+	</Item>
+	<Item>
+		<id>32</id>
+		<name>Unstoppable</name>
+		<parameter>-</parameter>
+		<target>Zombie</target>
+		<clasification>Good</clasification>
+		<description>Can pass through other Zombies or land in the same Space as them.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>33</id>
+		<name>Intimidating</name>
+		<parameter>-</parameter>
+		<target>Zombie</target>
+		<clasification>Good</clasification>
+		<description>Vikings cannot pass through you or land in the same Space as you.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>34</id>
+		<name>Radical</name>
+		<parameter>N</parameter>
+		<target>Zombie</target>
+		<clasification>Good</clasification>
+		<description>Increase the amount of RP gained by Radioactive Zones by N.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
+	<Item>
+		<id>35</id>
+		<name>Allergic</name>
+		<parameter>-</parameter>
+		<target>Zombie</target>
+		<clasification>Bad</clasification>
+		<description>You do not gain RP from Radioactive Zones.</description>
+		<troubleshooting></troubleshooting>
+	</Item>
 </ItemCollection>

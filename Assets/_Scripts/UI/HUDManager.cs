@@ -12,6 +12,7 @@ public class HUDManager : MonoBehaviour
     public GameObject VikingInfo;
     public GameObject ZombieInfo;
     public GameObject KeysInfo;
+    public GameObject StatusEffectsInfo;
     public InputField[] CharacterNameFields; //size 8
     public InputField[] MovementInputFields; //size 8
     public Text[] StocksTexts; //size 8
@@ -36,6 +37,11 @@ public class HUDManager : MonoBehaviour
         {
             KeysInfo.SetActive(!KeysInfo.activeSelf);
         }
+        else if (Input.GetButtonDown("Status Effects Info"))
+        {
+            StatusEffectsInfo.SetActive(!StatusEffectsInfo.activeSelf);
+        }
+
     }
 
     public void Init(HUD hud)

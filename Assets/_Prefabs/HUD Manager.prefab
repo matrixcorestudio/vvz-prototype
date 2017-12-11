@@ -55,6 +55,7 @@ MonoBehaviour:
   VikingInfo: {fileID: 0}
   ZombieInfo: {fileID: 0}
   KeysInfo: {fileID: 0}
+  StatusEffectsInfo: {fileID: 0}
   CharacterNameFields:
   - {fileID: 0}
   - {fileID: 0}

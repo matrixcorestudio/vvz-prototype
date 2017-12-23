@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ItemCollection>
+	<Item>
+		<id>0</id>
+		<name>[Leader] Master Storm Caller</name>
+		<dice>"D6+2 [3-8]"</dice>
+		<passive>
+-(Haze) Vikings can only be killed by Zombie attacks.
+		</passive>
+		<active>-[0 PP] (Call Thunder) Discard one card to gain 2 PP.
+-[3 PP] (GG - Godsend Gust) Vikings receive Quickness(1) and Zombies receive Slowness(1), both for their next Movement Phase.
+
+-[3 PP] (Trampling Hail) Untill the end of the next Zombie Phase, all Warp Spaces are disabled (they are treated as an Empty space).
+
+-[5 PP] (Heavy Rain) Remove all Status Effects from all Characters
+
+-[X + 1 PP] (Sumon Hurricane) All Spaces in Range(X) become Hurricane Zones until the start of the next Viking Phase. All Weakling Zombies that are in or enter a Hurricane Zone are instantly destroyed.
+</active>
+	</Item>
+	<Item>
+		<id>1</id>
+		<name>Dice Master</name>
+		<dice>D6+2[3 - 8]</dice>
+		<passive>
+-(Mischief) Quickness effects are doubled for you.
+		</passive>
+		<active>
+-[2 PP] (Trickster) Target Viking in Range(3) that has not moved yet this Round re-roll dice.
+
+-[3 PP] (Roll Breaker) Target Character in Range(5) receives Threatened(X). X is your current total movement for this turn."
+		</active>
+	</Item>
+	<Item>
+		<id>2</id>
+		<name>Gambler</name>
+		<dice>D12Min3[3 - 12]</dice>
+		<passive>
+-(Lucky 7) You always draw a Blessing when you land on a Random Card Space.
+
+-(Unlucky 13) You draw 2 Curses when you land on a Curse Space.
+		</passive>
+		<active>
+-[1 PP] (R. Roulette) Target Viking in Range(3) randomly gains 3 PP or loses 1 PP.
+
+-[2 PP] (House Wins) Randomly draw 1 Blessing or 1 Curse.
+
+-[10 PP] (All in) Randomly gain or lose 1 stock. If you gained the stock, also gain 5 PP.
+		</active>
+	</Item>
+	<Item>
+		<id>3</id>
+		<name>Earl Stone Beard Mean Face</name>
+		<dice>D10Max8[1-8]</dice>
+		<passive>
+-(Warrior) When landing, kill Zombies in Range(1) that have Fear.
+		</passive>
+		<active>
+-[3 PP] (The Look) Change direction to the one they came from to target Zombie in Range(5).
+		  
+-[X+1 PP] (Intimidate) Target Zombie in Range(X) receives Fear untill the end of the next Viking Phase (That Zombie cannot kill any Character by any means)."
+		</active>
+	</Item>
+
+</ItemCollection>

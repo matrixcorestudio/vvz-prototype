@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ItemCollection>
+	<Item>
+		<id>0</id>
+		<name>[Leader] Punizsher</name>
+		<dice>D6[1 - 6]</dice>
+		<passive>
+-(Hungry of Injustice) Agression(1): Your range is increased by 1.
+
+-(Eternal Punishment) When landing on the same Space as Vikings, you don't kill them, instead, those Vikings lose all Blessings and all PP, additionally, they receive Disruption until the start of the next Zombie Phase. (They cannot use any ability).
+
+-(Other Life Sorrow) When you die, respawn when 2 Vikings Phases have passed.
+		</passive>
+		<active>
+-[2 RP] (Weakling Spawner) Spawn a Weakling Zombie in target Radioactive Zone. You cannot activate this ability again this turn.
+
+-[X RP] (Imbalanced Penalty) All Vikings in Range(5) instantly lose X PP.
+
+-[X + 1 RP] (Morale Loss) All Vikings in Range(X) receive Disruption until the start of the next Zombie Phase.
+
+-[12 RP] (Laser of Punishment) All Vikings in fRange(∞) lose all Blessings and all PP, additionally, they receive Disruption and Theatened(2) both until two Viking Phases have passed.
+		</active>
+	</Item>
+	<Item>
+		<id>1</id>
+		<name>Crawler</name>
+		<dice>2D4[2 - 8]</dice>
+		<passive>
+-(Wall Crawling) Unstoppable: Can land or pass through other Zombies.
+
+-(Ceiling Crawling) Flexible: Other Zombies can land or pass through you.
+
+-(Leg Bite) When passing through Vikings, they receive Paralysis for their next Movement Phase.
+		</passive>
+		<active>
+-[3 RP] (Not Done Yet) Quickness(1): Add 1 to your total movement for your next Movement Phase.
+
+-[10 RP] (Radioactive Self-Destruct) Kill all Characters in Range(5). Weakling Zombies in range are destroyed.You die losing 2 stocks and respawn when 2 Vikings Phases have passed.
+
+-[12 RP] (Acid Rain) All Vikings in Range(5) lose all Status Effects.
+		</active>
+	</Item>
+	<Item>
+		<id>2</id>
+		<name>Lizard Tongue</name>
+		<dice>D6[1 - 6]</dice>
+		<passive>
+-(Three Meter Tongue) Your range is fRange(3), but you can only kill Vikings that are 3 or less spaces exactly in front of you (no branches). If you land on a branch Space, you maintain your direction, even if you face a wall.
+		</passive>
+		<active>
+Same as Crawler
+		</active>
+	</Item>
+	<Item>
+		<id></id>
+		<name>Life-Taker</name>
+		<dice>D6[1 - 6]</dice>
+		<passive>
+-(Enemy of the Gods) When killing Vikings, first they lose all Blessings, then they die.
+
+-(Soul Taker) If landing on the same Space as Vikings, steal one stock to each Viking in that Space (and add it to your own stock counter). Enemy of the Gods takes effect right after this. 
+		</passive>
+		<active>
+Same as Crawler
+		</active>
+	</Item>
+
+</ItemCollection>

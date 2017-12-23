@@ -7,55 +7,64 @@ using System.Collections.Generic;
 
 public class XMLCharacterLoader : MonoBehaviour
 {
-    public TextAsset xmlRawFile; // contenedor para el archivo data.xml
-    public Text uiText; //descripcion del status seleccionado
-	public List<UiCharacterInfo> vikingList = new List<UiCharacterInfo>(); //contener de todos los status leidos de data.xml
-	public List<UiCharacterInfo> zombieList = new List<UiCharacterInfo>(); //contener de todos los status leidos de data.xml
+    public TextAsset xmlRawFileV; // contenedor para el archivo data.xml
+	public TextAsset xmlRawFileZ; // contenedor para el archivo data.xml
+	public Text uiText; //descripcion del status seleccionado
+	private string Zdata, Vdata;
+
     // Levanta el archivo.
     void Start()
     {
-        string data = xmlRawFile.text;
-		ParseXmlFile(data,vikingList);
-		ParseXmlFile(data,zombieList);
+		Zdata = xmlRawFileZ.text;
+		Vdata = xmlRawFileV.text;
+		ParseXmlFile(Vdata);
     }
 
-	void ParseXmlFile(string xmlData, List<UiCharacterInfo> charList)
+	void ParseXmlFile(string xmlData)
     {
-        string totVal = "";
-        string tempID = "";
-        string tempName = "";
-        string tempDice = "";
-        string tempPassive = "";
-        string tempActive = "";
+		string temp;//pare remover el primer id
+		string totalValue = "";
 
-
-        XmlDocument xmlDoc = new XmlDocument();
+		XmlDocument xmlDoc = new XmlDocument();
         xmlDoc.Load(new StringReader(xmlData));
-
 
         string xmlPathPattern = "//ItemCollection/Item"; //raiz del xml y el nombre de los elementos
         XmlNodeList myNodeList = xmlDoc.SelectNodes(xmlPathPattern);
 
         //Se lee el primer nodo que es id y se almacena de manera temporal.
         //es necesario tomar referencia al primer nodo, ya que todas las referencias subsequetes se tomaran a partir de la posicion del primero.
-        foreach (XmlNode node in myNodeList)
+		foreach (XmlNode node in myNodeList)
         {
+			
             XmlNode id = node.FirstChild;
-            tempID = id.InnerXml;
+			temp = id.InnerXml;
             XmlNode name = id.NextSibling;
-            tempName = name.InnerXml;
+			totalValue += "<b>Name:</b>\n";
+			totalValue+= name.InnerXml+ "\n";
             XmlNode dice = name.NextSibling;
-			tempDice = dice.InnerXml;
+			totalValue += "<b>Dice and range:</b>\n";
+			totalValue+= dice.InnerXml+ "\n";
             XmlNode passive = dice.NextSibling;
-			tempPassive = passive.InnerXml;
+			totalValue += "<b>Passive:</b>\n";
+			totalValue+= passive.InnerXml+ "\n";
             XmlNode active = passive.NextSibling;
-			tempActive = active.InnerXml;
-
+			totalValue += "<b>Active:</b>\n";
+			totalValue+= active.InnerXml;
 
             //agrega todo el show a la lista (las listas son cool)
-			charList.Add(new UiCharacterInfo(tempID, tempName, tempDice, tempPassive, tempActive));
-
+			//charList.Add(new UiCharacterInfo(tempID, tempName, tempDice, tempPassive, tempActive));
+			totalValue+= "\n*******************************************\n"; 
         }
-
+		uiText.text = totalValue; 
     }
+
+	/*Segun se detecte un int change en el dropwpdn, se carga la respectiva informaci'on al panel;*/
+	public void changeCharInfo(int dropValue){
+		if (dropValue == 1) {
+			ParseXmlFile (Zdata);
+		} else {
+			ParseXmlFile (Vdata);
+		}
+	}
+
 }

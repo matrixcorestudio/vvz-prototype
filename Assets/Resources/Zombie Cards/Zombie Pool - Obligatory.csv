@@ -10,17 +10,17 @@
 1009,Blown Teeth,0 RP,Receive Fear for 1 Cycle. (Cannot kill any Character by any means).
 1010,Soul Released,0 RP,Sickness: You cannot select cards from the Zombie Pool during the next Zombie Phase.
 1011,Unversed,0 RP,Respawn.
-1012,Soul Absorbed,0 RP,Lose 0 RPtock.
+1012,Soul Absorbed,0 RP,Lose 1 stock.
 1013,Normalize,0 RP,Receive Disruption for 1 turn. (You cannot use any ability at all).
 1014,Blood Mist,0 RP,All Zombies in Range(4) receive Fear for 1 turn.
 1015,Final Remains,0 RP,If you kill a Viking during your next landing, you also die.
 1016,Out of the Way!,0 RP,Destroy target Weakling Zombie.
 1017,GwaaAAHHH!!,0 RP,All Weakling Zombies are destroyed.
 1018,Night of the Walkers,0 RP,Lose all RP.
-1019,Gift to the Living,0 RP,Transfer 0 RPtock to target Viking.
+1019,Gift to the Living,0 RP,Transfer 1 stock to target Viking.
 1020,Feed the Living,0 RP,Lose 3 RP and target Viking receives 3 PP.
 1021,Tribute to the Living,0 RP,Lose 5 RP and target Viking receives 5 PP.
-1022,Mildness,0 RP,Receive Agression(-1) for your next landing. (Your range decreases by 1).
+1022,Mildness,0 RP,Receive Aggression(-1) for your next landing. (Your range decreases by 1).
 1023,De-HAZ'd,0 RP,Allergic: Radioactive Zones will not give you any RP during your next Movement Phase.
 1024,Ground Zero,0 RP,All Non-Weakling Zombies lose or gain RP until all have 3 RP. Lose all of your RP (5 RP minimum) to avoid.
 1025,Raise the Alarms!,0 RP,All Vikings in Range(5) receive Quickness(3) for their next Movement Phase. (They add 3 to their total movement).

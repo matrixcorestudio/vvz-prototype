@@ -1,6 +1,6 @@
 0,First to Eat,2 RP,Receive Unstoppable for the rest of the current Round. (Can step on other Zombies)
 1,Blood from Behind,4 RP,Instantly change to opposing direction.
-2,Vitamin Z,3 RP,Receive Agression(1) for your next landing. (Increase your total range by 1).
+2,Vitamin Z,3 RP,Receive Aggression(1) for your next landing. (Increase your total range by 1).
 3,Z-volution,6 RP,Swap places with the nearest non-weakling Zombie. This does not count as landing.
 4,Alchemy I,0 RP,Trade one stock for 6 RP only if you are a non-leader Zombie.
 5,True Walker,0 RP,Receive Nonexistent for the rest of the current Round. (Can only roll dice and move. You cannot affect anything, and nothing can affect you.)
@@ -9,7 +9,7 @@
 8,Toxic Waste,3 RP,Don't reduce your movement count when stepping in Radioactive Zones for your whole next Movement Phase.
 9,Bite Jump,7 RP,If a Viking is directly in front of you and there's legal path in between, move instantly to that Viking's position; this count as landing.
 10,Unversed,2 RP,Receive Flexible for the rest of the current Round. (Other Zombies can step you).
-11,Undead Carry,5 RP,Receive Unstopabble and Flexible for the rest of the current Round. (Can step other Zombies and other Zombies can step you)
+11,Undead Carry,5 RP,Receive Unstoppable and Flexible for the rest of the current Round. (Can step other Zombies and other Zombies can step you)
 12,Baton Pass,3 RP,Can only be activated during your Begin Turn Phase, skip your whole turn and pass it to target Zombie. This ends your turn. (That Zombie will have 2 turns this Round)
 13,Spontaneous Evo,7 RP,Swap places with the nearest Weakling Zombie. This does not count as landing.
 14,Bonds of Blood,0 RP,Transfer 5 RP to the nearest Non-Weakling Zombie. If you have less than 5 RP, transfer it all.
@@ -24,7 +24,7 @@
 23,Smell the Brains,3 RP,Receive Quickness(3) for your next Movement Phase. (Add 3 to your total movement)
 24,Run for your Blood,0 RP,Trade one stock for Quickness(5) for your next Movement Phase. (Add 5 to your total movement).
 25,Wicked Shriek,6 RP,Paralyze target Viking in Range(5) for its next Movement Phase.
-26,Bite,7 RP,Target Viking in Range(3) instantly loses 0 RPtock but does not dies.
+26,Bite,7 RP,Target Viking in Range(3) instantly loses 1 stock but does not dies.
 27,Zombie Outbreak,1 RP,All Vikings in Highgrounds instantly lose 3 PP.
 28,Zombie Apocalypse,2 RP,All Vikings in Highgrounds instantly lose 5 PP.
 29,Left Behind,2 RP,Target Viking in Range(3) instantly loses 4 PP.
@@ -41,7 +41,7 @@
 40,Weak Bite,4 RP,Target Viking in Range(3) receives Slowness(3) for its next Movement Phase. (That Viking reduces its total movement by 3).
 41,Strong Bite,6 RP,Target Viking in Range(5) receives Slowness(3) for its next Movement Phase. (That Viking reduces its total movement by 3).
 42,Brainsnap,2 RP,Land on the current space you are on and end your turn.
-43,Spitter,6 RP,Receive Agression(2) for your next landing. (Increase your total range by 2).
+43,Spitter,6 RP,Receive Aggression(2) for your next landing. (Increase your total range by 2).
 44,Haunt,5 RP,Swap places with target Zombie Leader and end your turn. This does count as landing but only for you
 45,Unholy Discharge,10 RP,All Vikings in Range(5) instantly loses all Blessings.
 46,Undying Horde,10 RP,All Zombies in Range(10) (not including you) receive 5 RP and Divine Protection until the next start of the Zombie Phase. (Those Zombies cannot die nor lose stocks by any means).

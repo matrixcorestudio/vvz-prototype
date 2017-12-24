@@ -10,22 +10,31 @@ public class BoardSelector : MonoBehaviour {
 	public SceneFader sceneFader;
 	public RectTransform contentPanel;
 	public Button buttonPrefab;
+    public TextAsset[] defaultMaps;
 	Object[] textAssets;
 	List<string> boardNames = new List<string>();
 
 	void Start ()
 	{
-		textAssets = Resources.LoadAll("",typeof(TextAsset));
-		foreach (var item in textAssets)
-		{
-			TextAsset t = item as TextAsset;
-			boardNames.Add(t.name);
-			Button button = Instantiate(buttonPrefab,contentPanel);
-			button.GetComponentInChildren<Text>().text = t.name;
-			button.onClick.AddListener(() => {SelectBoard(t.text);});
-		}
+        //textAssets = Resources.LoadAll("",typeof(TextAsset));
+        //foreach (var item in textAssets)
+        //{
+        //	TextAsset t = item as TextAsset;
+        //	boardNames.Add(t.name);
+        //	Button button = Instantiate(buttonPrefab,contentPanel);
+        //	button.GetComponentInChildren<Text>().text = t.name;
+        //	button.onClick.AddListener(() => {SelectBoard(t.text);});
+        //}
 
-		List<string> boardFiles = SaveLoadManager.LoadBoardsNames();
+        foreach (var map in defaultMaps)
+        {
+            boardNames.Add(map.name);
+            Button button = Instantiate(buttonPrefab, contentPanel);
+            button.GetComponentInChildren<Text>().text = map.name;
+            button.onClick.AddListener(() => { SelectBoard(map.text); });
+        }
+
+        List<string> boardFiles = SaveLoadManager.LoadBoardsNames();
 		foreach (var name in boardFiles) 
 		{
 			if(!boardNames.Contains(name))
